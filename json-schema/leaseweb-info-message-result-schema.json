@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/leaseweb/main/json-schema/leaseweb-info-message-result-schema.json",
+  "title": "infoMessageResult",
+  "x-generated": "2026-10-13",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/leaseweb-dns-openapi.yml#/components/schemas/infoMessageResult",
+  "properties": {
+    "infoMessage": {
+      "description": "Optional additional information",
+      "type": "string"
+    }
+  },
+  "type": "object"
+}

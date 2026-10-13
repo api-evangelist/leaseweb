@@ -1,0 +1,200 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/leaseweb/main/json-schema/leaseweb-get-iplist-result-schema.json",
+  "title": "getIPListResult",
+  "x-generated": "2026-10-13",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/leaseweb-ipmgmt-openapi.yml#/components/schemas/getIPListResult",
+  "properties": {
+    "ips": {
+      "items": {
+        "$ref": "#/$defs/ip"
+      },
+      "type": "array"
+    },
+    "_metadata": {
+      "$ref": "#/$defs/_metadata"
+    }
+  },
+  "required": [
+    "_metadata",
+    "ips"
+  ],
+  "type": "object",
+  "$defs": {
+    "_metadata": {
+      "description": "Metadata about the collection",
+      "properties": {
+        "totalCount": {
+          "description": "Total amount of elements in this collection",
+          "minimum": 0,
+          "type": "integer"
+        },
+        "offset": {
+          "default": 0,
+          "description": "The offset used to generate this response",
+          "minimum": 0,
+          "type": "integer"
+        },
+        "limit": {
+          "default": 5,
+          "description": "The limit used to generate this response",
+          "minimum": 0,
+          "type": "integer"
+        }
+      },
+      "required": [
+        "limit",
+        "offset",
+        "totalCount"
+      ],
+      "title": "metadata",
+      "type": "object"
+    },
+    "assignedContract": {
+      "description": "An explanation about the purpose of this instance.",
+      "properties": {
+        "id": {
+          "description": "ID of the contract connected to the IP.",
+          "type": "string"
+        }
+      },
+      "required": [
+        "id"
+      ],
+      "type": [
+        "object",
+        "null"
+      ]
+    },
+    "ip": {
+      "properties": {
+        "ip": {
+          "description": "IP address",
+          "type": "string"
+        },
+        "version": {
+          "$ref": "#/$defs/protocolVersion"
+        },
+        "type": {
+          "$ref": "#/$defs/ipType"
+        },
+        "prefixLength": {
+          "default": 0,
+          "description": "Prefix length of the IP range represented by the record. Note: this is not the same as `subnet.prefixLength`.",
+          "type": "integer"
+        },
+        "primary": {
+          "description": "Boolean indicating if this is the primary IP of the assigned equipment",
+          "type": "boolean"
+        },
+        "floatingIp": {
+          "description": "Indicates if the IP is a Floating IP",
+          "type": "boolean"
+        },
+        "reverseLookup": {
+          "description": "Reverse lookup set for the IP. This only applies to IPv4. For IPv6 see [GET /ips/{ip}/reverseLookup](#operation/get/ips/{ip}/reverseLookup).",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "nullRouted": {
+          "default": false,
+          "description": "Boolean to indicate if the IP is null-routed",
+          "type": "boolean"
+        },
+        "nullLevel": {
+          "description": "Null route level",
+          "type": [
+            "integer",
+            "null"
+          ]
+        },
+        "unnullingAllowed": {
+          "default": false,
+          "description": "Boolean indicating if the null route can be removed",
+          "type": "boolean"
+        },
+        "equipmentId": {
+          "description": "ID of the equipment using the IP",
+          "type": "string"
+        },
+        "assignedContract": {
+          "$ref": "#/$defs/assignedContract"
+        },
+        "subnet": {
+          "$ref": "#/$defs/subnet"
+        }
+      },
+      "required": [
+        "assignedContract",
+        "equipmentId",
+        "floatingIp",
+        "ip",
+        "nullLevel",
+        "nullRouted",
+        "prefixLength",
+        "primary",
+        "reverseLookup",
+        "subnet",
+        "type",
+        "unnullingAllowed",
+        "version"
+      ],
+      "title": "ip",
+      "type": "object"
+    },
+    "ipType": {
+      "enum": [
+        "NORMAL_IP",
+        "NETWORK",
+        "BROADCAST",
+        "GATEWAY",
+        "ROUTER1",
+        "ROUTER2",
+        "IPMI"
+      ],
+      "type": "string"
+    },
+    "protocolVersion": {
+      "description": "Protocol version",
+      "enum": [
+        4,
+        6
+      ],
+      "type": "integer"
+    },
+    "subnet": {
+      "description": "Object containing information about the network and gateway",
+      "properties": {
+        "id": {
+          "description": "Subnet identifier consisting of network IP and prefix length separated by underscore (e.g. 192.0.2.0_24)",
+          "type": "string"
+        },
+        "networkIp": {
+          "description": "Network IP of the subnet",
+          "type": "string"
+        },
+        "prefixLength": {
+          "default": 0,
+          "description": "Address prefix length",
+          "type": "integer"
+        },
+        "gateway": {
+          "description": "The gateway IP to be used in network settings",
+          "type": "string"
+        }
+      },
+      "required": [
+        "gateway",
+        "id",
+        "networkIp",
+        "prefixLength"
+      ],
+      "title": "subnet",
+      "type": "object"
+    }
+  }
+}

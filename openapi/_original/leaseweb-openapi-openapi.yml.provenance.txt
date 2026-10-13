@@ -1,0 +1,9 @@
+generated: '2026-10-13'
+method: probed
+generator: harvest-sibling-contracts.py
+source: https://raw.githubusercontent.com/leaseweb/leaseweb-go-sdk/main/publiccloud/api/openapi.yaml
+found_on: https://github.com/leaseweb/leaseweb-go-sdk
+operations: gh:openapi.yaml
+version: 3.0.0
+ownership: sibling of a contract the pass accepted on the same host; URL names the
+  provider

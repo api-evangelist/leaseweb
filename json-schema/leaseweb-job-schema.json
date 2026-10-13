@@ -1,0 +1,685 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/leaseweb/main/json-schema/leaseweb-job-schema.json",
+  "title": "job",
+  "x-generated": "2026-10-13",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/leaseweb-dedicatedserver-openapi.yml#/components/schemas/job",
+  "properties": {
+    "status": {
+      "description": "Status of the job",
+      "type": "string"
+    },
+    "uuid": {
+      "description": "Unique identifier of the job",
+      "type": "string"
+    },
+    "type": {
+      "$ref": "#/$defs/jobType"
+    },
+    "serverId": {
+      "description": "Id of the server",
+      "type": "string"
+    },
+    "bareMetalId": {
+      "deprecated": true,
+      "description": "Id of the server (deprecated, use serverId instead)",
+      "type": "string"
+    },
+    "node": {
+      "description": "Node ID for this server",
+      "type": "string"
+    },
+    "createdAt": {
+      "description": "Creation timestamp",
+      "format": "date-time",
+      "type": "string"
+    },
+    "updatedAt": {
+      "description": "Update timestamp",
+      "format": "date-time",
+      "type": "string"
+    },
+    "flow": {
+      "description": "Job flow",
+      "type": "string"
+    },
+    "currentTask": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/currentTask"
+        }
+      ]
+    },
+    "progress": {
+      "$ref": "#/$defs/progress"
+    },
+    "isRunning": {
+      "description": "Describes whether the job is running",
+      "type": "boolean"
+    },
+    "metadata": {
+      "$ref": "#/$defs/metadata"
+    },
+    "payload": {
+      "$ref": "#/$defs/jobPayload"
+    },
+    "tasks": {
+      "description": "List of tasks in the job",
+      "items": {
+        "$ref": "#/$defs/task"
+      },
+      "title": "tasks",
+      "type": "array"
+    }
+  },
+  "type": "object",
+  "$defs": {
+    "currentTask": {
+      "description": "The current task of the job",
+      "properties": {
+        "task": {
+          "$ref": "#/$defs/task"
+        }
+      },
+      "title": "currentTask",
+      "type": [
+        "object",
+        "null"
+      ]
+    },
+    "database": {
+      "description": "Database configuration",
+      "properties": {
+        "networkType": {
+          "description": "Network type for the database",
+          "type": "string"
+        },
+        "dbName": {
+          "description": "Name of the database",
+          "type": "string"
+        },
+        "type": {
+          "description": "Type of database",
+          "type": "string"
+        }
+      },
+      "title": "database",
+      "type": [
+        "object",
+        "null"
+      ]
+    },
+    "defaultPayloadNetwork": {
+      "description": "The network configuration of the server",
+      "properties": {
+        "public": {
+          "$ref": "#/$defs/public"
+        },
+        "internal": {
+          "$ref": "#/$defs/internal"
+        }
+      },
+      "title": "defaultPayloadNetwork",
+      "type": "object"
+    },
+    "genericPayload": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/payload"
+        }
+      ],
+      "title": "genericPayload",
+      "type": "object"
+    },
+    "installOperatingSystemPayload": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/payload"
+        },
+        {
+          "properties": {
+            "os": {
+              "$ref": "#/$defs/os"
+            },
+            "raid": {
+              "$ref": "#/$defs/raidPayload"
+            },
+            "device": {
+              "description": "The installation device",
+              "type": "string"
+            },
+            "hostname": {
+              "description": "The hostname of the server",
+              "type": "string"
+            },
+            "timezone": {
+              "description": "Timezone to be configured on the server",
+              "type": "string"
+            },
+            "partitions": {
+              "items": {
+                "$ref": "#/$defs/partition"
+              },
+              "type": "array"
+            },
+            "operatingSystemId": {
+              "description": "The ID of the operating system",
+              "type": "string"
+            },
+            "features": {
+              "description": "The server's features",
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            "featuresUtilized": {
+              "description": "The features that are being utilized by the server",
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            "sshKeys": {
+              "$ref": "#/$defs/sshKeys"
+            },
+            "database": {
+              "$ref": "#/$defs/database"
+            },
+            "aiFrameworks": {
+              "description": "The AI frameworks that are being installed on the server",
+              "items": {
+                "type": "string"
+              },
+              "type": [
+                "array",
+                "null"
+              ]
+            },
+            "callbackUrl": {
+              "description": "The URL to be called when the job is finished",
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "doEmailNotification": {
+              "description": "Whether to send email notifications",
+              "type": [
+                "boolean",
+                "null"
+              ]
+            },
+            "configurable": {
+              "description": "Whether the job is configurable",
+              "type": [
+                "boolean",
+                "null"
+              ]
+            }
+          }
+        }
+      ],
+      "title": "installOperatingSystemPayload",
+      "type": "object"
+    },
+    "internal": {
+      "properties": {
+        "mac": {
+          "description": "The MAC address of the server's internal network interface",
+          "type": "string"
+        }
+      },
+      "title": "internal",
+      "type": "object"
+    },
+    "jobPayload": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/installOperatingSystemPayload"
+        },
+        {
+          "$ref": "#/$defs/genericPayload"
+        },
+        {
+          "$ref": "#/$defs/rescueModePayload"
+        }
+      ],
+      "title": "jobPayload"
+    },
+    "jobType": {
+      "description": "Type of the job",
+      "enum": [
+        "install",
+        "rescueMode",
+        "hardwareScan",
+        "ipmiReset"
+      ],
+      "type": "string"
+    },
+    "metadata": {
+      "description": "Metadata of the job",
+      "properties": {
+        "BATCH_ID": {
+          "description": "The batch ID of the job",
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "title": "metadata",
+      "type": [
+        "object",
+        "null"
+      ]
+    },
+    "os": {
+      "properties": {
+        "name": {
+          "description": "A human readable name for the operating system",
+          "type": "string"
+        },
+        "type": {
+          "description": "The type of operating system",
+          "title": "operatingSystemType",
+          "type": "string"
+        },
+        "engine": {
+          "description": "Our engine used to install the operating system",
+          "type": "string"
+        },
+        "family": {
+          "description": "The operating system family",
+          "type": "string"
+        },
+        "version": {
+          "description": "The version of the operating system",
+          "type": "string"
+        },
+        "architecture": {
+          "description": "The architecture of the operating system",
+          "type": "string"
+        }
+      },
+      "title": "os",
+      "type": "object"
+    },
+    "partition": {
+      "properties": {
+        "mountpoint": {
+          "description": "The partition mount point (eg `/home`). Mandatory for the root partition (`/`) and not intended to be used in swap partition",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "filesystem": {
+          "description": "File system in which partition would be mounted",
+          "type": "string"
+        },
+        "size": {
+          "description": "Size of the partition (Normally in MB, but this is OS-specific)",
+          "type": "string"
+        }
+      },
+      "required": [
+        "filesystem",
+        "size"
+      ],
+      "title": "partition",
+      "type": "object"
+    },
+    "payload": {
+      "properties": {
+        "powerCycle": {
+          "description": "Whether the server should be powered off and on automatically before the job is started",
+          "type": "boolean"
+        },
+        "network": {
+          "$ref": "#/$defs/defaultPayloadNetwork"
+        },
+        "site": {
+          "description": "Location of the server",
+          "type": "string"
+        },
+        "initiatedBy": {
+          "description": "Who initiated the job",
+          "enum": [
+            "EMPLOYEE",
+            "CUSTOMER"
+          ],
+          "type": "string"
+        },
+        "serverBrand": {
+          "description": "The brand of the server",
+          "type": "string"
+        },
+        "serverChassis": {
+          "description": "The chassis of the server",
+          "type": "string"
+        },
+        "fileserverBaseUrl": {
+          "description": "The base URL of the fileserver",
+          "type": "string"
+        },
+        "serverHardwareRaid": {
+          "description": "Whether the server has hardware RAID",
+          "type": "boolean"
+        }
+      },
+      "title": "defaultPayload",
+      "type": "object"
+    },
+    "progress": {
+      "description": "Describes progress of the jobs on the server",
+      "properties": {
+        "total": {
+          "description": "Total number of tasks",
+          "type": "integer"
+        },
+        "waiting": {
+          "description": "Number of tasks waiting",
+          "type": "integer"
+        },
+        "pending": {
+          "description": "Number of tasks pending",
+          "type": "integer"
+        },
+        "inprogress": {
+          "description": "Number of tasks in progress",
+          "type": "integer"
+        },
+        "finished": {
+          "description": "Number of tasks finished",
+          "type": "integer"
+        },
+        "failed": {
+          "description": "Number of tasks failed",
+          "type": "integer"
+        },
+        "expired": {
+          "description": "Number of tasks expired",
+          "type": "integer"
+        },
+        "canceled": {
+          "description": "Number of tasks canceled",
+          "type": "integer"
+        },
+        "warning": {
+          "description": "Number of tasks with warnings",
+          "type": "integer"
+        },
+        "skipped": {
+          "description": "Number of tasks skipped",
+          "type": "integer"
+        },
+        "percentage": {
+          "description": "Percentage of tasks completed",
+          "type": "integer"
+        }
+      },
+      "title": "progress",
+      "type": "object"
+    },
+    "public": {
+      "properties": {
+        "ip": {
+          "description": "The IP address of the server",
+          "type": "string"
+        },
+        "mac": {
+          "description": "The MAC address of the server's first network interface",
+          "type": "string"
+        },
+        "cidr": {
+          "description": "The CIDR of the server",
+          "type": "string"
+        },
+        "prefix": {
+          "description": "The IP's prefix",
+          "type": "integer"
+        },
+        "gateway": {
+          "description": "The network gateway of the server",
+          "type": "string"
+        },
+        "netmask": {
+          "description": "The netmask of the server",
+          "type": "string"
+        },
+        "network": {
+          "description": "The network of the server",
+          "type": "string"
+        },
+        "isCustom": {
+          "description": "Whether the network is custom",
+          "type": "boolean"
+        },
+        "broadcast": {
+          "description": "The broadcast network of the server",
+          "type": "string"
+        },
+        "nameservers": {
+          "description": "The nameservers of the server",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "netmask_hex": {
+          "description": "The netmask of the server in hex",
+          "type": "string"
+        }
+      },
+      "title": "public",
+      "type": "object"
+    },
+    "raidPayload": {
+      "properties": {
+        "type": {
+          "description": "The type of RAID",
+          "enum": [
+            "HW",
+            "SW",
+            "NONE"
+          ],
+          "type": "string"
+        },
+        "level": {
+          "description": "The RAID level",
+          "enum": [
+            0,
+            1,
+            5,
+            10
+          ],
+          "type": "integer"
+        },
+        "numberOfDisks": {
+          "description": "The number of disks in the RAID",
+          "type": [
+            "integer",
+            "null"
+          ]
+        }
+      },
+      "title": "raidPayload",
+      "type": [
+        "object",
+        "null"
+      ]
+    },
+    "rescueModePayload": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/payload"
+        },
+        {
+          "properties": {
+            "rescueImageId": {
+              "description": "The ID of the rescue image if job is for rescue mode",
+              "type": "string"
+            },
+            "sshKeys": {
+              "$ref": "#/$defs/sshKeys"
+            },
+            "callbackUrl": {
+              "description": "The URL to be called when the job is finished",
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "doEmailNotification": {
+              "description": "Whether to send email notifications",
+              "type": [
+                "boolean",
+                "null"
+              ]
+            },
+            "configurable": {
+              "description": "Whether the job is configurable",
+              "type": [
+                "boolean",
+                "null"
+              ]
+            }
+          }
+        }
+      ],
+      "title": "rescueModePayload",
+      "type": "object"
+    },
+    "sshKeys": {
+      "description": "SSH keys to be added to the server",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "statusTimestamps": {
+      "description": "Timestamp for each state change",
+      "properties": {
+        "WAITING": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "PENDING": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "INPROGRESS": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "REBOOTING": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "FINISHED": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "FAILED": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "SKIPPED": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "CANCELED": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "WARNING": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "EXPIRED": {
+          "format": "date-time",
+          "type": "string"
+        }
+      },
+      "title": "statusTimestamps",
+      "type": "object"
+    },
+    "task": {
+      "description": "A task is a single unit of work that is part of a job",
+      "properties": {
+        "uuid": {
+          "description": "Unique ID for this task",
+          "type": "string"
+        },
+        "status": {
+          "description": "The status of the task",
+          "enum": [
+            "WAITING",
+            "PENDING",
+            "INPROGRESS",
+            "REBOOTING",
+            "FINISHED",
+            "FAILED",
+            "SKIPPED",
+            "CANCELED",
+            "WARNING",
+            "EXPIRED"
+          ],
+          "type": "string"
+        },
+        "description": {
+          "description": "Description of the task",
+          "type": "string"
+        },
+        "onError": {
+          "description": "The behaviour if this task fails",
+          "type": "string"
+        },
+        "errorMessage": {
+          "description": "An optional error message",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "flow": {
+          "description": "The flow this task is part of",
+          "type": "string"
+        },
+        "statusTimestamps": {
+          "$ref": "#/$defs/statusTimestamps"
+        },
+        "type": {
+          "description": "The type of the task",
+          "type": "string"
+        },
+        "actor": {
+          "description": "The actor of the task",
+          "type": "string"
+        },
+        "createdAt": {
+          "description": "Creation timestamp",
+          "format": "date-time",
+          "type": "string"
+        },
+        "updatedAt": {
+          "description": "Update timestamp",
+          "format": "date-time",
+          "type": "string"
+        },
+        "timeout": {
+          "description": "The timeout for the task",
+          "type": [
+            "integer",
+            "null"
+          ]
+        }
+      },
+      "title": "task",
+      "type": "object"
+    }
+  }
+}

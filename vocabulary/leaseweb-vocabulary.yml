@@ -1,0 +1,425 @@
+generated: '2026-10-13'
+method: derived
+generator: derive-vocabulary.py
+source:
+- openapi/leaseweb-abuse-openapi.yml
+- openapi/leaseweb-aggregationpack-openapi.yml
+- openapi/leaseweb-dedicatedserver-openapi.yml
+- openapi/leaseweb-dns-openapi.yml
+- openapi/leaseweb-invoice-openapi.yml
+vocabulary:
+  name: Leaseweb Domain Vocabulary
+  description: 'Terms declared by Leaseweb''s own API contract: its resource groups, objects and enumerations, with the contract''s definitions.
+    Derived, not authored.'
+  version: '2026-10-13'
+  terms:
+  - term: Errors
+    definition: 'The API uses standard HTTP status codes to indicate the success or failure of the API call. The response will be JSON. Most APIs
+      use the following format: ```json { "errorCode": "APP00800", "errorMessage": "The connection with the DB cannot be established.", "correlationId":
+      "550e8400-e29b-41d4-a716-446655440000", "userMessage": "Cannot handle your request at the moment. Please try again later.", '
+    tags:
+    - Resource Group
+    source: openapi/leaseweb-abuse-openapi.yml
+  - term: API Key Authentication
+    definition: Authentication for the APIs is required. To authenticate your call, you will need to sent your API key as `X-LSW-Auth` header.
+      You can generate API keys in the [Customer Portal](https://secure.leaseweb.com/api-client-management/).
+    tags:
+    - Resource Group
+    source: openapi/leaseweb-abuse-openapi.yml
+  - term: Object Storage
+    definition: Manage Object Storage resources including buckets, users, groups, access keys, credentials, and metrics.
+    tags:
+    - Resource Group
+    source: openapi/leaseweb-objectstorage-openapi.yml
+  - term: Security Groups
+    definition: Operations related to security groups
+    tags:
+    - Resource Group
+    source: openapi/leaseweb-publiccloud-openapi.yml
+  - term: statusValue
+    definition: 'Enumeration declared by the contract with values: OPEN, WAITING, CLOSED.'
+    tags:
+    - Enumeration
+    source: openapi/leaseweb-abuse-openapi.yml#/components/schemas/statusValue
+  - term: metadata
+    definition: Metadata about the collection
+    tags:
+    - Object
+    source: openapi/leaseweb-abuse-openapi.yml#/components/schemas/_metadata
+  - term: getReportListResult
+    definition: 'Object declared by the contract with fields: reports, _metadata.'
+    tags:
+    - Object
+    source: openapi/leaseweb-abuse-openapi.yml#/components/schemas/getReportListResult
+  - term: errorResult
+    definition: 'Object declared by the contract with fields: correlationId, errorCode, errorMessage, errorDetails.'
+    tags:
+    - Object
+    source: openapi/leaseweb-abuse-openapi.yml#/components/schemas/errorResult
+  - term: attachment
+    definition: 'Object declared by the contract with fields: id, mimeType, filename.'
+    tags:
+    - Object
+    source: openapi/leaseweb-abuse-openapi.yml#/components/schemas/attachment
+  - term: message
+    definition: 'Object declared by the contract with fields: postedBy, postedAt, body, attachment.'
+    tags:
+    - Object
+    source: openapi/leaseweb-abuse-openapi.yml#/components/schemas/message
+  - term: getReportResult
+    definition: 'Object declared by the contract with fields: id, subject, status, abuseType, reopened, reportedAt, updatedAt, notifier, customerId,
+      legalEntityId, body, deadline. (5 more)'
+    tags:
+    - Object
+    source: openapi/leaseweb-abuse-openapi.yml#/components/schemas/getReportResult
+  - term: getReportMessageListResult
+    definition: 'Object declared by the contract with fields: messages, _metadata.'
+    tags:
+    - Object
+    source: openapi/leaseweb-abuse-openapi.yml#/components/schemas/getReportMessageListResult
+  - term: createReportMessageOpts
+    definition: 'Object declared by the contract with fields: body, uploadId.'
+    tags:
+    - Object
+    source: openapi/leaseweb-abuse-openapi.yml#/components/schemas/createReportMessageOpts
+  - term: getReportResolutionListResult
+    definition: 'Object declared by the contract with fields: resolutions, isMessageRequired.'
+    tags:
+    - Object
+    source: openapi/leaseweb-abuse-openapi.yml#/components/schemas/getReportResolutionListResult
+  - term: resolveReportResult
+    definition: 'Object declared by the contract with fields: resolutions, message.'
+    tags:
+    - Object
+    source: openapi/leaseweb-abuse-openapi.yml#/components/schemas/resolveReportResult
+  - term: report
+    definition: 'Object declared by the contract with fields: id, subject, status, reportedAt, updatedAt, notifier, customerId, legalEntityId,
+      deadline, detectedIpAddresses.'
+    tags:
+    - Object
+    source: openapi/leaseweb-abuse-openapi.yml#/components/schemas/report
+  - term: detectedDomainNameList
+    definition: 'Object declared by the contract with fields: name, ipAddresses.'
+    tags:
+    - Object
+    source: openapi/leaseweb-abuse-openapi.yml#/components/schemas/detectedDomainNameList
+  - term: resolutionList
+    definition: 'Object declared by the contract with fields: id, description.'
+    tags:
+    - Object
+    source: openapi/leaseweb-abuse-openapi.yml#/components/schemas/resolutionList
+  - term: dataTrafficCommitUnit
+    definition: 'Enumeration declared by the contract with values: Gbps, Mbps, TB.'
+    tags:
+    - Enumeration
+    source: openapi/leaseweb-aggregationpack-openapi.yml#/components/schemas/dataTrafficCommitUnit
+  - term: networkPerformanceType
+    definition: 'Enumeration declared by the contract with values: VOLUME, PREMIUM.'
+    tags:
+    - Enumeration
+    source: openapi/leaseweb-aggregationpack-openapi.yml#/components/schemas/networkPerformanceType
+  - term: aggregationType
+    definition: 'Enumeration declared by the contract with values: Hybrid.'
+    tags:
+    - Enumeration
+    source: openapi/leaseweb-aggregationpack-openapi.yml#/components/schemas/aggregationType
+  - term: aggregationPack
+    definition: 'Object declared by the contract with fields: id, customerId, salesOrgId, contractStartDate, billingType, connectivityType, contractTerm,
+      dataTrafficCommit, dataTrafficCommitUnit, networkPerformanceType, aggregationType.'
+    tags:
+    - Object
+    source: openapi/leaseweb-aggregationpack-openapi.yml#/components/schemas/aggregationPack
+  - term: getAggregationPackListResult
+    definition: 'Object declared by the contract with fields: _metadata, connectContractItems.'
+    tags:
+    - Object
+    source: openapi/leaseweb-aggregationpack-openapi.yml#/components/schemas/getAggregationPackListResult
+  - term: macAddress
+    definition: Represents a MAC Address in the standard colon delimited format. Eg. `01:23:45:67:89:0A`
+    tags:
+    - Object
+    source: openapi/leaseweb-dedicatedserver-openapi.yml#/components/schemas/macAddress
+  - term: networkType
+    definition: Type of network
+    tags:
+    - Enumeration
+    source: openapi/leaseweb-dedicatedserver-openapi.yml#/components/schemas/networkType
+  - term: contract
+    definition: Contract information
+    tags:
+    - Object
+    source: openapi/leaseweb-dedicatedserver-openapi.yml#/components/schemas/contract
+  - term: featureAvailability
+    definition: List of features that are available for this device
+    tags:
+    - Object
+    source: openapi/leaseweb-dedicatedserver-openapi.yml#/components/schemas/featureAvailability
+  - term: location
+    definition: Device location
+    tags:
+    - Object
+    source: openapi/leaseweb-dedicatedserver-openapi.yml#/components/schemas/location
+  - term: port
+    definition: 'Object declared by the contract with fields: name, port.'
+    tags:
+    - Object
+    source: openapi/leaseweb-dedicatedserver-openapi.yml#/components/schemas/port
+  - term: networkInterface
+    definition: 'Object declared by the contract with fields: mac, ip, nullRouted, gateway, ports, locationId.'
+    tags:
+    - Object
+    source: openapi/leaseweb-dedicatedserver-openapi.yml#/components/schemas/networkInterface
+  - term: networkInterfaces
+    definition: Network interface information grouped by type
+    tags:
+    - Object
+    source: openapi/leaseweb-dedicatedserver-openapi.yml#/components/schemas/networkInterfaces
+  - term: linkSpeed
+    definition: The port speed in Mbps
+    tags:
+    - Enumeration
+    source: openapi/leaseweb-dedicatedserver-openapi.yml#/components/schemas/linkSpeed
+  - term: rackType
+    definition: rack type
+    tags:
+    - Enumeration
+    source: openapi/leaseweb-dedicatedserver-openapi.yml#/components/schemas/rackType
+  - term: rack
+    definition: Rack details where this network equipment is located at
+    tags:
+    - Object
+    source: openapi/leaseweb-dedicatedserver-openapi.yml#/components/schemas/rack
+  - term: server
+    definition: 'Object declared by the contract with fields: assetId, contract, featureAvailability, id, isPrivateNetworkEnabled, isPrivateNetworkCapable,
+      isRedundantPrivateNetworkCapable, location, networkInterfaces, powerPorts, privateNetworks, rack. (2 more)'
+    tags:
+    - Object
+    source: openapi/leaseweb-dedicatedserver-openapi.yml#/components/schemas/server
+  - term: getServerListResult
+    definition: 'Object declared by the contract with fields: _metadata, servers.'
+    tags:
+    - Object
+    source: openapi/leaseweb-dedicatedserver-openapi.yml#/components/schemas/getServerListResult
+  - term: updateReferenceOpts
+    definition: 'Object declared by the contract with fields: reference.'
+    tags:
+    - Object
+    source: openapi/leaseweb-dedicatedserver-openapi.yml#/components/schemas/updateReferenceOpts
+  - term: ip
+    definition: 'Object declared by the contract with fields: ddos, floatingIp, gateway, ip, mainIp, networkType, nullRouted, reverseLookup, version.'
+    tags:
+    - Object
+    source: openapi/leaseweb-dedicatedserver-openapi.yml#/components/schemas/ip
+  - term: ipList
+    definition: 'Object declared by the contract with fields: _metadata, ips.'
+    tags:
+    - Object
+    source: openapi/leaseweb-dedicatedserver-openapi.yml#/components/schemas/ipList
+  - term: updateIpProfileOpts
+    definition: 'Object declared by the contract with fields: detectionProfile, reverseLookup.'
+    tags:
+    - Object
+    source: openapi/leaseweb-dedicatedserver-openapi.yml#/components/schemas/updateIpProfileOpts
+  - term: nullRoute
+    definition: 'Object declared by the contract with fields: automatedUnnullingAt, comment, ip, nullLevel, nulledAt, ticketId.'
+    tags:
+    - Object
+    source: openapi/leaseweb-dedicatedserver-openapi.yml#/components/schemas/nullRoute
+  - term: nullRouteList
+    definition: 'Object declared by the contract with fields: _metadata, nullRoutes.'
+    tags:
+    - Object
+    source: openapi/leaseweb-dedicatedserver-openapi.yml#/components/schemas/nullRouteList
+  - term: addToPrivateNetworkOpts
+    definition: 'Object declared by the contract with fields: linkSpeed.'
+    tags:
+    - Object
+    source: openapi/leaseweb-dedicatedserver-openapi.yml#/components/schemas/addToPrivateNetworkOpts
+  - term: operationNetworkInterface
+    definition: 'Object declared by the contract with fields: linkSpeed, operStatus, status, switchInterface, switchName, type.'
+    tags:
+    - Object
+    source: openapi/leaseweb-dedicatedserver-openapi.yml#/components/schemas/operationNetworkInterface
+  - term: getNetworkInterfaceListResult
+    definition: 'Object declared by the contract with fields: _metadata, networkInterfaces.'
+    tags:
+    - Object
+    source: openapi/leaseweb-dedicatedserver-openapi.yml#/components/schemas/getNetworkInterfaceListResult
+  - term: networkTypeURL
+    definition: Type of network
+    tags:
+    - Enumeration
+    source: openapi/leaseweb-dedicatedserver-openapi.yml#/components/schemas/networkTypeURL
+  - term: getDdosNotificationSettingResult
+    definition: 'Object declared by the contract with fields: nulling, scrubbing.'
+    tags:
+    - Object
+    source: openapi/leaseweb-dedicatedserver-openapi.yml#/components/schemas/getDdosNotificationSettingResult
+  - term: updateDdosNotificationSettingOpts
+    definition: 'Object declared by the contract with fields: nulling, scrubbing.'
+    tags:
+    - Object
+    source: openapi/leaseweb-dedicatedserver-openapi.yml#/components/schemas/updateDdosNotificationSettingOpts
+  - term: metric
+    definition: 'Object declared by the contract with fields: unit, values.'
+    tags:
+    - Object
+    source: openapi/leaseweb-dedicatedserver-openapi.yml#/components/schemas/metric
+  - term: metrics
+    definition: 'Object declared by the contract with fields: _metadata, metrics.'
+    tags:
+    - Object
+    source: openapi/leaseweb-dedicatedserver-openapi.yml#/components/schemas/metrics
+  - term: notificationSetting
+    definition: 'Object declared by the contract with fields: actions, frequency, id, lastCheckedAt, threshold, thresholdExceededAt.'
+    tags:
+    - Object
+    source: openapi/leaseweb-dedicatedserver-openapi.yml#/components/schemas/notificationSetting
+  - term: getBandwidthNotificationSettingListResult
+    definition: 'Object declared by the contract with fields: _metadata, bandwidthNotificationSettings.'
+    tags:
+    - Object
+    source: openapi/leaseweb-dedicatedserver-openapi.yml#/components/schemas/getBandwidthNotificationSettingListResult
+  - term: bandwidthNotificationSettingOpts
+    definition: 'Object declared by the contract with fields: frequency, threshold, unit.'
+    tags:
+    - Object
+    source: openapi/leaseweb-dedicatedserver-openapi.yml#/components/schemas/bandwidthNotificationSettingOpts
+  - term: getDataTrafficNotificationSettingListResult
+    definition: 'Object declared by the contract with fields: _metadata, datatrafficNotificationSettings.'
+    tags:
+    - Object
+    source: openapi/leaseweb-dedicatedserver-openapi.yml#/components/schemas/getDataTrafficNotificationSettingListResult
+  - term: dataTrafficNotificationSettingOpts
+    definition: 'Object declared by the contract with fields: frequency, threshold, unit.'
+    tags:
+    - Object
+    source: openapi/leaseweb-dedicatedserver-openapi.yml#/components/schemas/dataTrafficNotificationSettingOpts
+  - term: vendor
+    definition: Vendor of the server
+    tags:
+    - Object
+    source: openapi/leaseweb-dedicatedserver-openapi.yml#/components/schemas/vendor
+  - term: serialNumber
+    definition: Serial number of the server
+    tags:
+    - Object
+    source: openapi/leaseweb-dedicatedserver-openapi.yml#/components/schemas/serialNumber
+  - term: diskId
+    definition: ID of the disk
+    tags:
+    - Object
+    source: openapi/leaseweb-dedicatedserver-openapi.yml#/components/schemas/diskId
+  - term: attribute
+    definition: 'Object declared by the contract with fields: flag, id, raw_value, thresh, type, updated, value, when_failed, worst.'
+    tags:
+    - Object
+    source: openapi/leaseweb-dedicatedserver-openapi.yml#/components/schemas/attribute
+  - term: memoryId
+    definition: ID of the memory
+    tags:
+    - Object
+    source: openapi/leaseweb-dedicatedserver-openapi.yml#/components/schemas/memoryId
+  - term: scannedAt
+    definition: Timestamp of hardware scan, the ISO-8601 format
+    tags:
+    - Object
+    source: openapi/leaseweb-dedicatedserver-openapi.yml#/components/schemas/scannedAt
+  - term: serverId
+    definition: Id of the server
+    tags:
+    - Object
+    source: openapi/leaseweb-dedicatedserver-openapi.yml#/components/schemas/serverId
+  - term: getHardwareResult
+    definition: 'Object declared by the contract with fields: id, parserVersion, result, scannedAt, serverId.'
+    tags:
+    - Object
+    source: openapi/leaseweb-dedicatedserver-openapi.yml#/components/schemas/getHardwareResult
+  - term: hardwareMonitoringMetrics
+    definition: Hardware monitoring data for a server
+    tags:
+    - Object
+    source: openapi/leaseweb-dedicatedserver-openapi.yml#/components/schemas/getHardwareMonitoringResult
+  - term: getHardwareMonitoringListResult
+    definition: 'Object declared by the contract with fields: _metadata, servers.'
+    tags:
+    - Object
+    source: openapi/leaseweb-dedicatedserver-openapi.yml#/components/schemas/getHardwareMonitoringListResult
+  - term: controlPanelList
+    definition: 'Object declared by the contract with fields: _metadata, controlPanels.'
+    tags:
+    - Object
+    source: openapi/leaseweb-dedicatedserver-openapi.yml#/components/schemas/controlPanelList
+  - term: getOperatingSystemListResult
+    definition: 'Object declared by the contract with fields: _metadata, operatingSystems.'
+    tags:
+    - Object
+    source: openapi/leaseweb-dedicatedserver-openapi.yml#/components/schemas/getOperatingSystemListResult
+  - term: partition
+    definition: 'Object declared by the contract with fields: mountpoint, filesystem, size.'
+    tags:
+    - Object
+    source: openapi/leaseweb-dedicatedserver-openapi.yml#/components/schemas/partition
+  - term: getOperatingSystemResult
+    definition: 'Object declared by the contract with fields: architecture, configurable, defaults, family, id, name, type, version, features,
+      supportedFileSystems, supportedBootDevices.'
+    tags:
+    - Object
+    source: openapi/leaseweb-dedicatedserver-openapi.yml#/components/schemas/getOperatingSystemResult
+  - term: getRescueImageListResult
+    definition: 'Object declared by the contract with fields: _metadata, rescueImages.'
+    tags:
+    - Object
+    source: openapi/leaseweb-dedicatedserver-openapi.yml#/components/schemas/getRescueImageListResult
+  - term: jobType
+    definition: Type of the job
+    tags:
+    - Enumeration
+    source: openapi/leaseweb-dedicatedserver-openapi.yml#/components/schemas/jobType
+  - term: task
+    definition: A task is a single unit of work that is part of a job
+    tags:
+    - Object
+    source: openapi/leaseweb-dedicatedserver-openapi.yml#/components/schemas/task
+  - term: currentTask
+    definition: The current task of the job
+    tags:
+    - Object
+    source: openapi/leaseweb-dedicatedserver-openapi.yml#/components/schemas/currentTask
+  - term: defaultPayload
+    definition: 'Object declared by the contract with fields: powerCycle, network, site, initiatedBy, serverBrand, serverChassis, fileserverBaseUrl,
+      serverHardwareRaid.'
+    tags:
+    - Object
+    source: openapi/leaseweb-dedicatedserver-openapi.yml#/components/schemas/payload
+  - term: sshKeys
+    definition: SSH keys to be added to the server
+    tags:
+    - Object
+    source: openapi/leaseweb-dedicatedserver-openapi.yml#/components/schemas/sshKeys
+  - term: job
+    definition: 'Object declared by the contract with fields: status, uuid, type, serverId, bareMetalId, node, createdAt, updatedAt, flow, currentTask,
+      progress, isRunning. (3 more)'
+    tags:
+    - Object
+    source: openapi/leaseweb-dedicatedserver-openapi.yml#/components/schemas/job
+  - term: credentialType
+    definition: The type of the credential.
+    tags:
+    - Enumeration
+    source: openapi/leaseweb-dedicatedserver-openapi.yml#/components/schemas/credentialType
+  - term: credentialWithoutPassword
+    definition: 'Object declared by the contract with fields: type, username.'
+    tags:
+    - Object
+    source: openapi/leaseweb-dedicatedserver-openapi.yml#/components/schemas/credentialWithoutPassword
+  - term: credentialList
+    definition: 'Object declared by the contract with fields: _metadata, credentials.'
+    tags:
+    - Object
+    source: openapi/leaseweb-dedicatedserver-openapi.yml#/components/schemas/credentialList
+  - term: createCredentialOpts
+    definition: 'Object declared by the contract with fields: password, type, username.'
+    tags:
+    - Object
+    source: openapi/leaseweb-dedicatedserver-openapi.yml#/components/schemas/createCredentialOpts

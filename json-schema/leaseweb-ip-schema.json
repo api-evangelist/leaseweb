@@ -1,0 +1,82 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/leaseweb/main/json-schema/leaseweb-ip-schema.json",
+  "title": "ip",
+  "x-generated": "2026-10-13",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/leaseweb-networkequipment-openapi.yml#/components/schemas/ip",
+  "properties": {
+    "ddos": {
+      "$ref": "#/$defs/dDos"
+    },
+    "floatingIp": {
+      "description": "Indicates if the IP is a Floating IP",
+      "type": "boolean"
+    },
+    "gateway": {
+      "description": "Gateway",
+      "type": "string"
+    },
+    "ip": {
+      "description": "IP address in CIDR notation",
+      "type": "string"
+    },
+    "mainIp": {
+      "description": "IP address is main",
+      "type": "boolean"
+    },
+    "networkType": {
+      "$ref": "#/$defs/networkType"
+    },
+    "nullRouted": {
+      "description": "IP address null routed",
+      "type": "boolean"
+    },
+    "reverseLookup": {
+      "description": "The reverse lookup value",
+      "type": "string"
+    },
+    "version": {
+      "description": "IP version",
+      "type": "integer"
+    }
+  },
+  "type": "object",
+  "$defs": {
+    "dDos": {
+      "description": "DDoS IP Protection Details",
+      "properties": {
+        "detectionProfile": {
+          "description": "The applied detection profile",
+          "enum": [
+            "STANDARD_DEFAULT",
+            "ADVANCED_DEFAULT",
+            "ADVANCED_LOW_UDP",
+            "ADVANCED_MED_UDP"
+          ],
+          "type": "string"
+        },
+        "protectionType": {
+          "description": "The type of DDoS protection",
+          "enum": [
+            "STANDARD",
+            "ADVANCED"
+          ],
+          "type": "string"
+        }
+      },
+      "title": "dDos",
+      "type": "object"
+    },
+    "networkType": {
+      "description": "Type of network",
+      "enum": [
+        "INTERNAL",
+        "PUBLIC",
+        "REMOTE_MANAGEMENT"
+      ],
+      "type": "string"
+    }
+  }
+}

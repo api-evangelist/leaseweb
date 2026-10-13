@@ -1,0 +1,108 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/leaseweb/main/json-schema/leaseweb-get-report-list-result-schema.json",
+  "title": "getReportListResult",
+  "x-generated": "2026-10-13",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/leaseweb-abuse-openapi.yml#/components/schemas/getReportListResult",
+  "properties": {
+    "reports": {
+      "description": "An array of abuse reports.",
+      "items": {
+        "$ref": "#/$defs/report"
+      },
+      "type": "array"
+    },
+    "_metadata": {
+      "$ref": "#/$defs/_metadata"
+    }
+  },
+  "type": "object",
+  "$defs": {
+    "_metadata": {
+      "description": "Metadata about the collection",
+      "properties": {
+        "totalCount": {
+          "description": "Total amount of elements in this collection",
+          "minimum": 0,
+          "type": "integer"
+        },
+        "offset": {
+          "default": 0,
+          "description": "The offset used to generate this response",
+          "minimum": 0,
+          "type": "integer"
+        },
+        "limit": {
+          "default": 5,
+          "description": "The limit used to generate this response",
+          "minimum": 0,
+          "type": "integer"
+        }
+      },
+      "required": [
+        "limit",
+        "offset",
+        "totalCount"
+      ],
+      "title": "metadata",
+      "type": "object"
+    },
+    "report": {
+      "properties": {
+        "id": {
+          "description": "The ID of the report.",
+          "type": "string"
+        },
+        "subject": {
+          "description": "The subject of the  report.",
+          "type": "string"
+        },
+        "status": {
+          "description": "The current status of the report.",
+          "enum": [
+            "OPEN",
+            "WAITING",
+            "CLOSED"
+          ],
+          "type": "string"
+        },
+        "reportedAt": {
+          "description": "The date and time the report was reported at.",
+          "type": "string"
+        },
+        "updatedAt": {
+          "description": "The date and time the report was last updated.",
+          "type": "string"
+        },
+        "notifier": {
+          "default": "REDACTED_FOR_PRIVACY",
+          "description": "Due to compliance, 'REDACTED_FOR_PRIVACY' is the default value.",
+          "type": "string"
+        },
+        "customerId": {
+          "description": "The customer ID of your account.",
+          "type": "string"
+        },
+        "legalEntityId": {
+          "description": "The legal entity ID of the customer account.",
+          "type": "string"
+        },
+        "deadline": {
+          "description": "The deadline before when the report needs to be resolved.",
+          "type": "string"
+        },
+        "detectedIpAddresses": {
+          "description": "The IP-addresses detected in the report body.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "title": "report",
+      "type": "object"
+    }
+  }
+}

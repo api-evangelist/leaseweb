@@ -1,23 +1,368 @@
 aid: leaseweb
 name: Leaseweb
-description: 'Leaseweb is a company surfaced via the API Evangelist harvest backlog (source: market-gap:object-storage)
-  and added to the network as a stub for full-pipeline profiling.'
+description: Leaseweb is a Netherlands-founded global Infrastructure-as-a-Service provider offering dedicated (bare metal) servers, public and private cloud, object storage, CDN, colocation and networking.
+  Its Developer API at api.leaseweb.com lets customers automate and integrate their infrastructure, authenticated with an API key sent in the X-LSW-Auth header; Leaseweb publishes the OpenAPI definitions
+  in its leaseweb-go-sdk GitHub repository.
 url: https://raw.githubusercontent.com/api-evangelist/leaseweb/refs/heads/main/apis.yml
 x-type: company
 x-source: harvest:market-gap:object-storage
-x-tier: stub
-x-tier-reason: harvest
+x-tier: profiled
+x-tier-reason: enrichment pass 2026-10-13 (local-v5; was harvest)
 specificationVersion: '0.20'
 created: '2026-10-13'
 modified: '2026-10-13'
 tags:
 - Company
-apis: []
+- Cloud
+- Infrastructure as a Service
+- Bare Metal
+- Dedicated Servers
+- Object Storage
+- DNS
+- Hosting
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
 - FN: APIs.json
   email: info@apis.io
 common:
+- type: AgenticAccess
+  url: agentic-access/leaseweb-agentic-access.yml
+- type: Spectral
+  url: rules/leaseweb-rules.yml
+- type: JSONLD
+  url: json-ld/leaseweb-context.jsonld
+- type: Vocabulary
+  url: vocabulary/leaseweb-vocabulary.yml
+- type: DataModel
+  url: data-model/leaseweb-data-model.yml
+- type: Authentication
+  url: authentication/leaseweb-authentication.yml
+- type: ErrorCatalog
+  url: errors/leaseweb-problem-types.yml
+- type: Conformance
+  url: conformance/leaseweb-conformance.yml
+- type: Hosts
+  url: hosts/leaseweb-hosts.yml
+- type: Vendors
+  url: vendors/leaseweb-vendors.yml
+- type: SDKs
+  url: packages/leaseweb-packages.yml
+- type: Packages
+  url: packages/leaseweb-packages.yml
+- type: DomainSecurity
+  url: security/leaseweb-domain-security.yml
 - type: Website
   url: https://www.leaseweb.com
+- type: DeveloperPortal
+  url: https://developer.leaseweb.com/
+- type: Documentation
+  url: https://developer.leaseweb.com/docs/
+- type: GettingStarted
+  url: https://developer.leaseweb.com/get-started/
+- type: Blog
+  url: https://blog.leaseweb.com/
+- type: GitHubOrganization
+  url: https://github.com/leaseweb
+- type: Login
+  url: https://secure.leaseweb.com/
+- type: SourceCode
+  name: Leaseweb Go SDK
+  url: https://github.com/leaseweb/leaseweb-go-sdk
+apis:
+- aid: leaseweb:publiccloud
+  name: Leaseweb Public Cloud API
+  description: The Leaseweb Public Cloud API, part of the Leaseweb Developer API for automating Leaseweb infrastructure. Contract published by Leaseweb in github.com/leaseweb/leaseweb-go-sdk (publiccloud/api/openapi.yaml).
+  humanURL: https://developer.leaseweb.com/docs/
+  baseURL: https://api.leaseweb.com/publicCloud/v1
+  tags:
+  - Leaseweb
+  - Public Cloud
+  properties:
+  - type: OpenAPI
+    url: openapi/leaseweb-publiccloud-openapi.yml
+  - type: OpenAPI
+    name: OpenAPI (provider-hosted)
+    url: https://raw.githubusercontent.com/leaseweb/leaseweb-go-sdk/main/publiccloud/api/openapi.yaml
+  - type: Documentation
+    url: https://developer.leaseweb.com/docs/
+  - type: JSONSchema
+    url: json-schema/leaseweb-instance-details-schema.json
+  - type: JSONSchema
+    url: json-schema/leaseweb-instance-list-schema.json
+  - type: JSONSchema
+    url: json-schema/leaseweb-auto-scaling-group-details-schema.json
+  - type: JSONSchema
+    url: json-schema/leaseweb-load-balancer-listener-details-schema.json
+  - type: JSONSchema
+    url: json-schema/leaseweb-load-balancer-details-schema.json
+  - type: JSONSchema
+    url: json-schema/leaseweb-load-balancers-schema.json
+- aid: leaseweb:dedicatedserver
+  name: Leaseweb Dedicated Servers API
+  description: The Leaseweb Dedicated Servers API, part of the Leaseweb Developer API for automating Leaseweb infrastructure. Contract published by Leaseweb in github.com/leaseweb/leaseweb-go-sdk (dedicatedserver/api/openapi.yaml).
+  humanURL: https://developer.leaseweb.com/docs/
+  baseURL: https://api.leaseweb.com/bareMetals/v2
+  tags:
+  - Leaseweb
+  - Dedicated Servers
+  properties:
+  - type: OpenAPI
+    url: openapi/leaseweb-dedicatedserver-openapi.yml
+  - type: OpenAPI
+    name: OpenAPI (provider-hosted)
+    url: https://raw.githubusercontent.com/leaseweb/leaseweb-go-sdk/main/dedicatedserver/api/openapi.yaml
+  - type: Documentation
+    url: https://developer.leaseweb.com/docs/
+  - type: JSONSchema
+    url: json-schema/leaseweb-job-list-schema.json
+  - type: JSONSchema
+    url: json-schema/leaseweb-get-server-list-result-schema.json
+  - type: JSONSchema
+    url: json-schema/leaseweb-server-job-schema.json
+  - type: JSONSchema
+    url: json-schema/leaseweb-job-schema.json
+  - type: JSONSchema
+    url: json-schema/leaseweb-get-hardware-result-schema.json
+  - type: JSONSchema
+    url: json-schema/leaseweb-server-schema.json
+- aid: leaseweb:networkequipment
+  name: Leaseweb Dedicated Network Equipment API
+  description: The Leaseweb Dedicated Network Equipment API, part of the Leaseweb Developer API for automating Leaseweb infrastructure. Contract published by Leaseweb in github.com/leaseweb/leaseweb-go-sdk
+    (networkequipment/api/openapi.yaml).
+  humanURL: https://developer.leaseweb.com/docs/
+  baseURL: https://api.leaseweb.com/bareMetals/v2
+  tags:
+  - Leaseweb
+  - Dedicated Network Equipment
+  properties:
+  - type: OpenAPI
+    url: openapi/leaseweb-networkequipment-openapi.yml
+  - type: OpenAPI
+    name: OpenAPI (provider-hosted)
+    url: https://raw.githubusercontent.com/leaseweb/leaseweb-go-sdk/main/networkequipment/api/openapi.yaml
+  - type: Documentation
+    url: https://developer.leaseweb.com/docs/
+  - type: JSONSchema
+    url: json-schema/leaseweb-get-network-equipment-list-result-schema.json
+  - type: JSONSchema
+    url: json-schema/leaseweb-network-equipment-schema.json
+  - type: JSONSchema
+    url: json-schema/leaseweb-ip-schema.json
+  - type: JSONSchema
+    url: json-schema/leaseweb-ip-list-schema.json
+  - type: JSONSchema
+    url: json-schema/leaseweb-null-route-list-schema.json
+  - type: JSONSchema
+    url: json-schema/leaseweb-credential-list-schema.json
+- aid: leaseweb:dns
+  name: Leaseweb DNS API
+  description: The Leaseweb DNS API, part of the Leaseweb Developer API for automating Leaseweb infrastructure. Contract published by Leaseweb in github.com/leaseweb/leaseweb-go-sdk (dns/api/openapi.yaml).
+  humanURL: https://developer.leaseweb.com/docs/
+  baseURL: https://api.leaseweb.com/hosting/v2
+  tags:
+  - Leaseweb
+  - DNS
+  properties:
+  - type: OpenAPI
+    url: openapi/leaseweb-dns-openapi.yml
+  - type: OpenAPI
+    name: OpenAPI (provider-hosted)
+    url: https://raw.githubusercontent.com/leaseweb/leaseweb-go-sdk/main/dns/api/openapi.yaml
+  - type: Documentation
+    url: https://developer.leaseweb.com/docs/
+  - type: JSONSchema
+    url: json-schema/leaseweb-import-resource-record-sets-result-schema.json
+  - type: JSONSchema
+    url: json-schema/leaseweb-get-resource-record-set-list-result-schema.json
+  - type: JSONSchema
+    url: json-schema/leaseweb-resource-record-set-schema.json
+  - type: JSONSchema
+    url: json-schema/leaseweb-resource-record-set-details-schema.json
+  - type: JSONSchema
+    url: json-schema/leaseweb-get-query-metrics-result-schema.json
+  - type: JSONSchema
+    url: json-schema/leaseweb-info-message-result-schema.json
+- aid: leaseweb:objectstorage
+  name: Leaseweb Object Storage API
+  description: The Leaseweb Object Storage API, part of the Leaseweb Developer API for automating Leaseweb infrastructure. Contract published by Leaseweb in github.com/leaseweb/leaseweb-go-sdk (objectstorage/api/openapi.yaml).
+  humanURL: https://developer.leaseweb.com/docs/
+  baseURL: https://api.leaseweb.com/objectStorage/v1
+  tags:
+  - Leaseweb
+  - Object Storage
+  properties:
+  - type: OpenAPI
+    url: openapi/leaseweb-objectstorage-openapi.yml
+  - type: OpenAPI
+    name: OpenAPI (provider-hosted)
+    url: https://raw.githubusercontent.com/leaseweb/leaseweb-go-sdk/main/objectstorage/api/openapi.yaml
+  - type: Documentation
+    url: https://developer.leaseweb.com/docs/
+  - type: JSONSchema
+    url: json-schema/leaseweb-bucket-schema.json
+  - type: JSONSchema
+    url: json-schema/leaseweb-create-object-storage-access-key-result-schema.json
+  - type: JSONSchema
+    url: json-schema/leaseweb-get-object-storage-list-result-schema.json
+  - type: JSONSchema
+    url: json-schema/leaseweb-get-object-storage-bucket-list-result-schema.json
+  - type: JSONSchema
+    url: json-schema/leaseweb-create-object-storage-bucket-opts-schema.json
+  - type: JSONSchema
+    url: json-schema/leaseweb-group-schema.json
+- aid: leaseweb:ordering
+  name: Leaseweb Ordering API
+  description: The Leaseweb Ordering API, part of the Leaseweb Developer API for automating Leaseweb infrastructure. Contract published by Leaseweb in github.com/leaseweb/leaseweb-go-sdk (ordering/api/openapi.yaml).
+  humanURL: https://developer.leaseweb.com/docs/
+  baseURL: https://api.leaseweb.com/ordering/v1
+  tags:
+  - Leaseweb
+  - Ordering
+  properties:
+  - type: OpenAPI
+    url: openapi/leaseweb-ordering-openapi.yml
+  - type: OpenAPI
+    name: OpenAPI (provider-hosted)
+    url: https://raw.githubusercontent.com/leaseweb/leaseweb-go-sdk/main/ordering/api/openapi.yaml
+  - type: Documentation
+    url: https://developer.leaseweb.com/docs/
+  - type: JSONSchema
+    url: json-schema/leaseweb-dedicated-server-schema.json
+  - type: JSONSchema
+    url: json-schema/leaseweb-vps-schema.json
+  - type: JSONSchema
+    url: json-schema/leaseweb-dedicated-server-list-schema.json
+  - type: JSONSchema
+    url: json-schema/leaseweb-order-vps-opts-schema.json
+  - type: JSONSchema
+    url: json-schema/leaseweb-vps-list-schema.json
+  - type: JSONSchema
+    url: json-schema/leaseweb-order-dedicated-server-opts-schema.json
+- aid: leaseweb:ipmgmt
+  name: Leaseweb IP Management API
+  description: The Leaseweb IP Management API, part of the Leaseweb Developer API for automating Leaseweb infrastructure. Contract published by Leaseweb in github.com/leaseweb/leaseweb-go-sdk (ipmgmt/api/openapi.yaml).
+  humanURL: https://developer.leaseweb.com/docs/
+  baseURL: https://api.leaseweb.com/ipMgmt/v2
+  tags:
+  - Leaseweb
+  - IP Management
+  properties:
+  - type: OpenAPI
+    url: openapi/leaseweb-ipmgmt-openapi.yml
+  - type: OpenAPI
+    name: OpenAPI (provider-hosted)
+    url: https://raw.githubusercontent.com/leaseweb/leaseweb-go-sdk/main/ipmgmt/api/openapi.yaml
+  - type: Documentation
+    url: https://developer.leaseweb.com/docs/
+  - type: JSONSchema
+    url: json-schema/leaseweb-null-routed-ip-schema.json
+  - type: JSONSchema
+    url: json-schema/leaseweb-ip-schema.json
+  - type: JSONSchema
+    url: json-schema/leaseweb-get-null-route-history-list-result-schema.json
+  - type: JSONSchema
+    url: json-schema/leaseweb-get-iplist-result-schema.json
+  - type: JSONSchema
+    url: json-schema/leaseweb-null-route-ipopts-schema.json
+  - type: JSONSchema
+    url: json-schema/leaseweb-update-null-route-opts-schema.json
+- aid: leaseweb:abuse
+  name: Leaseweb Abuse Reports API
+  description: The Leaseweb Abuse Reports API, part of the Leaseweb Developer API for automating Leaseweb infrastructure. Contract published by Leaseweb in github.com/leaseweb/leaseweb-go-sdk (abuse/api/openapi.yaml).
+  humanURL: https://developer.leaseweb.com/docs/
+  baseURL: https://api.leaseweb.com/abuse/v1
+  tags:
+  - Leaseweb
+  - Abuse Reports
+  properties:
+  - type: OpenAPI
+    url: openapi/leaseweb-abuse-openapi.yml
+  - type: OpenAPI
+    name: OpenAPI (provider-hosted)
+    url: https://raw.githubusercontent.com/leaseweb/leaseweb-go-sdk/main/abuse/api/openapi.yaml
+  - type: Documentation
+    url: https://developer.leaseweb.com/docs/
+  - type: JSONSchema
+    url: json-schema/leaseweb-get-report-result-schema.json
+  - type: JSONSchema
+    url: json-schema/leaseweb-get-report-list-result-schema.json
+  - type: JSONSchema
+    url: json-schema/leaseweb-get-report-message-list-result-schema.json
+  - type: JSONSchema
+    url: json-schema/leaseweb-get-report-resolution-list-result-schema.json
+  - type: JSONSchema
+    url: json-schema/leaseweb-resolve-report-result-schema.json
+  - type: JSONSchema
+    url: json-schema/leaseweb-create-report-message-opts-schema.json
+- aid: leaseweb:invoice
+  name: Leaseweb Invoices API
+  description: The Leaseweb Invoices API, part of the Leaseweb Developer API for automating Leaseweb infrastructure. Contract published by Leaseweb in github.com/leaseweb/leaseweb-go-sdk (invoice/api/openapi.yaml).
+  humanURL: https://developer.leaseweb.com/docs/
+  baseURL: https://api.leaseweb.com/invoices/v1
+  tags:
+  - Leaseweb
+  - Invoices
+  properties:
+  - type: OpenAPI
+    url: openapi/leaseweb-invoice-openapi.yml
+  - type: OpenAPI
+    name: OpenAPI (provider-hosted)
+    url: https://raw.githubusercontent.com/leaseweb/leaseweb-go-sdk/main/invoice/api/openapi.yaml
+  - type: Documentation
+    url: https://developer.leaseweb.com/docs/
+  - type: JSONSchema
+    url: json-schema/leaseweb-get-invoice-result-schema.json
+  - type: JSONSchema
+    url: json-schema/leaseweb-get-proforma-result-schema.json
+  - type: JSONSchema
+    url: json-schema/leaseweb-get-invoices-result-schema.json
+  - type: JSONSchema
+    url: json-schema/leaseweb-get-invoices-export-csv-result-schema.json
+  - type: JSONSchema
+    url: json-schema/leaseweb-get-invoice-pdf-result-schema.json
+- aid: leaseweb:aggregationpack
+  name: Leaseweb Aggregation Packs API
+  description: The Leaseweb Aggregation Packs API, part of the Leaseweb Developer API for automating Leaseweb infrastructure. Contract published by Leaseweb in github.com/leaseweb/leaseweb-go-sdk (aggregationpack/api/openapi.yaml).
+  humanURL: https://developer.leaseweb.com/docs/
+  baseURL: https://api.leaseweb.com/bareMetals/v2
+  tags:
+  - Leaseweb
+  - Aggregation Packs
+  properties:
+  - type: OpenAPI
+    url: openapi/leaseweb-aggregationpack-openapi.yml
+  - type: OpenAPI
+    name: OpenAPI (provider-hosted)
+    url: https://raw.githubusercontent.com/leaseweb/leaseweb-go-sdk/main/aggregationpack/api/openapi.yaml
+  - type: Documentation
+    url: https://developer.leaseweb.com/docs/
+  - type: JSONSchema
+    url: json-schema/leaseweb-aggregation-pack-schema.json
+  - type: JSONSchema
+    url: json-schema/leaseweb-get-aggregation-pack-list-result-schema.json
+- aid: leaseweb:leaseweb-openapi-api
+  name: Leaseweb Openapi API
+  description: 'The base URL for this API is: **https://api.leaseweb.com/publicCloud/v1/**'
+  humanURL: https://github.com/leaseweb/leaseweb-go-sdk
+  baseURL: https://api.leaseweb.com/publicCloud/v1
+  properties:
+  - type: OpenAPI
+    url: openapi/_original/leaseweb-openapi-openapi.yml
+  - type: JSONSchema
+    url: json-schema/leaseweb-instance-details-schema.json
+  - type: JSONSchema
+    url: json-schema/leaseweb-instance-list-schema.json
+  - type: JSONSchema
+    url: json-schema/leaseweb-auto-scaling-group-details-schema.json
+  - type: JSONSchema
+    url: json-schema/leaseweb-load-balancer-listener-details-schema.json
+  - type: JSONSchema
+    url: json-schema/leaseweb-load-balancer-details-schema.json
+  - type: JSONSchema
+    url: json-schema/leaseweb-load-balancers-schema.json
+x-enrichment:
+  date: '2026-10-13'
+  status: enriched
+  artifacts_added: 20
+  pass: local-v5

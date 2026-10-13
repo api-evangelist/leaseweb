@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/leaseweb/main/json-schema/leaseweb-group-schema.json",
+  "title": "group",
+  "description": "Object Storage tenant group.",
+  "x-generated": "2026-10-13",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/leaseweb-objectstorage-openapi.yml#/components/schemas/group",
+  "properties": {
+    "id": {
+      "description": "The group id.",
+      "type": "string"
+    },
+    "displayName": {
+      "description": "The group name.",
+      "type": "string"
+    },
+    "uniqueName": {
+      "description": "The group unique name.",
+      "type": "string"
+    },
+    "s3Policies": {
+      "description": "A JSON-encoded IAM-style policy document (e.g. `{\"Statement\":[{\"Effect\":\"Allow\",\"Action\":\"s3:*\",\"Resource\":\"arn:aws:s3:::*\"}]}`), or null if no policy is set.",
+      "type": [
+        "string",
+        "null"
+      ]
+    }
+  },
+  "type": "object"
+}

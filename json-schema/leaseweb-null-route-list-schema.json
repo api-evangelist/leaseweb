@@ -1,0 +1,85 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/leaseweb/main/json-schema/leaseweb-null-route-list-schema.json",
+  "title": "nullRouteList",
+  "x-generated": "2026-10-13",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/leaseweb-networkequipment-openapi.yml#/components/schemas/nullRouteList",
+  "properties": {
+    "_metadata": {
+      "$ref": "#/$defs/_metadata"
+    },
+    "nullRoutes": {
+      "description": "An array of server null route events",
+      "items": {
+        "$ref": "#/$defs/nullRoute"
+      },
+      "type": "array"
+    }
+  },
+  "type": "object",
+  "$defs": {
+    "_metadata": {
+      "description": "Metadata about the collection",
+      "properties": {
+        "totalCount": {
+          "description": "Total amount of elements in this collection",
+          "minimum": 0,
+          "type": "integer"
+        },
+        "offset": {
+          "default": 0,
+          "description": "The offset used to generate this response",
+          "minimum": 0,
+          "type": "integer"
+        },
+        "limit": {
+          "default": 5,
+          "description": "The limit used to generate this response",
+          "minimum": 0,
+          "type": "integer"
+        }
+      },
+      "required": [
+        "limit",
+        "offset",
+        "totalCount"
+      ],
+      "title": "metadata",
+      "type": "object"
+    },
+    "nullRoute": {
+      "properties": {
+        "automatedUnnullingAt": {
+          "description": "The time the null route was removed or will be removed.",
+          "format": "date-time",
+          "type": "string"
+        },
+        "comment": {
+          "description": "An optional comment for the reason of the null route",
+          "type": "string"
+        },
+        "ip": {
+          "description": "The ip address that was null routed",
+          "type": "string"
+        },
+        "nullLevel": {
+          "description": "The level of the null route",
+          "type": "integer"
+        },
+        "nulledAt": {
+          "description": "The time the null route was created",
+          "format": "date-time",
+          "type": "string"
+        },
+        "ticketId": {
+          "description": "A ticket number if available",
+          "type": "string"
+        }
+      },
+      "title": "nullRoute",
+      "type": "object"
+    }
+  }
+}

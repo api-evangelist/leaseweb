@@ -1,0 +1,79 @@
+generated: '2026-10-13'
+method: derived
+generator: derive-problem-types.py
+source:
+- openapi/leaseweb-abuse-openapi.yml
+- openapi/leaseweb-aggregationpack-openapi.yml
+- openapi/leaseweb-dedicatedserver-openapi.yml
+- openapi/leaseweb-dns-openapi.yml
+- openapi/leaseweb-invoice-openapi.yml
+- openapi/leaseweb-ipmgmt-openapi.yml
+- openapi/leaseweb-networkequipment-openapi.yml
+- openapi/leaseweb-objectstorage-openapi.yml
+- openapi/leaseweb-ordering-openapi.yml
+- openapi/leaseweb-publiccloud-openapi.yml
+format: custom
+envelope:
+  media_type: application/json
+  schema: errorResult
+coverage:
+  operations: 254
+  statuses_declared: 8
+problems:
+- status: 400
+  title: Bad Request
+  description: Bad Request.
+  operations: 134
+  media_types:
+  - application/json
+  schema: errorResult
+- status: 401
+  title: Unauthorized
+  description: Not Authorized.
+  operations: 254
+  media_types:
+  - application/json
+  schema: errorResult
+- status: 403
+  title: Forbidden
+  description: Forbidden.
+  operations: 254
+  media_types:
+  - application/json
+  schema: errorResult
+- status: 404
+  title: Not Found
+  description: Not Found.
+  operations: 142
+  media_types:
+  - application/json
+  schema: errorResult
+- status: 409
+  title: Conflict
+  description: If there is a conflict (for example item is already in processing state), you will receive a 409
+    Conflict.
+  operations: 1
+  media_types:
+  - application/json
+  schema: errorResult
+- status: 423
+  title: Locked
+  description: Locked.
+  operations: 2
+  media_types:
+  - application/json
+  schema: errorResult
+- status: 500
+  title: Internal Server Error
+  description: Internal Server Error.
+  operations: 254
+  media_types:
+  - application/json
+  schema: errorResult
+- status: 503
+  title: Service Unavailable
+  description: Service Unavailable.
+  operations: 254
+  media_types:
+  - application/json
+  schema: errorResult

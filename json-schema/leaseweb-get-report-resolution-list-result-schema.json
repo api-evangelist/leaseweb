@@ -1,0 +1,47 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/leaseweb/main/json-schema/leaseweb-get-report-resolution-list-result-schema.json",
+  "title": "getReportResolutionListResult",
+  "x-generated": "2026-10-13",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/leaseweb-abuse-openapi.yml#/components/schemas/getReportResolutionListResult",
+  "properties": {
+    "resolutions": {
+      "description": "Possible resolutions to resolve this report with.",
+      "items": {
+        "$ref": "#/$defs/resolutionList"
+      },
+      "type": "array"
+    },
+    "isMessageRequired": {
+      "description": "`true`, if any of the IP(s) related to this report are null routed",
+      "type": "boolean"
+    }
+  },
+  "required": [
+    "isMessageRequired",
+    "resolutions"
+  ],
+  "type": "object",
+  "$defs": {
+    "resolutionList": {
+      "properties": {
+        "id": {
+          "description": "The resolution ID to be used when calling /resolve.",
+          "type": "string"
+        },
+        "description": {
+          "description": "The actual text the report will be resolved with when resolving with this resolution.",
+          "type": "string"
+        }
+      },
+      "required": [
+        "description",
+        "id"
+      ],
+      "title": "resolutionList",
+      "type": "object"
+    }
+  }
+}

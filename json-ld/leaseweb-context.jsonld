@@ -1,0 +1,1139 @@
+{
+  "@context": {
+    "@vocab": "https://leaseweb.com/schema#",
+    "schema": "https://schema.org/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "dcterms": "http://purl.org/dc/terms/",
+    "leaseweb": "https://leaseweb.com/schema#",
+    "statusValue": "leaseweb:statusValue",
+    "_metadata": "leaseweb:_metadata",
+    "totalCount": {
+      "@id": "leaseweb:totalCount",
+      "@type": "xsd:integer"
+    },
+    "offset": {
+      "@id": "leaseweb:offset",
+      "@type": "xsd:integer"
+    },
+    "limit": {
+      "@id": "leaseweb:limit",
+      "@type": "xsd:integer"
+    },
+    "getReportListResult": "leaseweb:getReportListResult",
+    "reports": {
+      "@id": "leaseweb:reports",
+      "@container": "@list"
+    },
+    "errorResult": "leaseweb:errorResult",
+    "correlationId": {
+      "@id": "leaseweb:correlationId",
+      "@type": "xsd:string"
+    },
+    "errorCode": {
+      "@id": "leaseweb:errorCode",
+      "@type": "xsd:string"
+    },
+    "errorMessage": {
+      "@id": "leaseweb:errorMessage",
+      "@type": "xsd:string"
+    },
+    "errorDetails": {
+      "@id": "leaseweb:errorDetails"
+    },
+    "attachment": "leaseweb:attachment",
+    "id": {
+      "@id": "leaseweb:id",
+      "@type": "xsd:string"
+    },
+    "mimeType": {
+      "@id": "leaseweb:mimeType",
+      "@type": "xsd:string"
+    },
+    "filename": {
+      "@id": "leaseweb:filename",
+      "@type": "xsd:string"
+    },
+    "message": "leaseweb:message",
+    "postedBy": {
+      "@id": "leaseweb:postedBy",
+      "@type": "xsd:string"
+    },
+    "postedAt": {
+      "@id": "leaseweb:postedAt",
+      "@type": "xsd:string"
+    },
+    "body": {
+      "@id": "leaseweb:body",
+      "@type": "xsd:string"
+    },
+    "getReportResult": "leaseweb:getReportResult",
+    "subject": {
+      "@id": "leaseweb:subject",
+      "@type": "xsd:string"
+    },
+    "status": {
+      "@id": "leaseweb:status",
+      "@type": "xsd:string"
+    },
+    "abuseType": {
+      "@id": "leaseweb:abuseType",
+      "@type": "xsd:string"
+    },
+    "reopened": {
+      "@id": "leaseweb:reopened",
+      "@type": "xsd:boolean"
+    },
+    "reportedAt": {
+      "@id": "leaseweb:reportedAt",
+      "@type": "xsd:string"
+    },
+    "updatedAt": {
+      "@id": "leaseweb:updatedAt",
+      "@type": "xsd:string"
+    },
+    "notifier": {
+      "@id": "leaseweb:notifier",
+      "@type": "xsd:string"
+    },
+    "customerId": {
+      "@id": "leaseweb:customerId",
+      "@type": "xsd:string"
+    },
+    "legalEntityId": {
+      "@id": "leaseweb:legalEntityId",
+      "@type": "xsd:string"
+    },
+    "deadline": {
+      "@id": "leaseweb:deadline",
+      "@type": "xsd:string"
+    },
+    "detectedIpAddresses": {
+      "@id": "leaseweb:detectedIpAddresses",
+      "@container": "@list"
+    },
+    "detectedDomainNames": {
+      "@id": "leaseweb:detectedDomainNames",
+      "@container": "@list"
+    },
+    "attachments": {
+      "@id": "leaseweb:attachments",
+      "@container": "@list"
+    },
+    "totalMessagesCount": {
+      "@id": "leaseweb:totalMessagesCount",
+      "@type": "xsd:integer"
+    },
+    "latestMessages": {
+      "@id": "leaseweb:latestMessages",
+      "@container": "@list"
+    },
+    "getReportMessageListResult": "leaseweb:getReportMessageListResult",
+    "messages": {
+      "@id": "leaseweb:messages",
+      "@container": "@list"
+    },
+    "createReportMessageOpts": "leaseweb:createReportMessageOpts",
+    "uploadId": {
+      "@id": "leaseweb:uploadId",
+      "@type": "xsd:string"
+    },
+    "getReportResolutionListResult": "leaseweb:getReportResolutionListResult",
+    "resolutions": {
+      "@id": "leaseweb:resolutions",
+      "@container": "@list"
+    },
+    "isMessageRequired": {
+      "@id": "leaseweb:isMessageRequired",
+      "@type": "xsd:boolean"
+    },
+    "resolveReportResult": "leaseweb:resolveReportResult",
+    "report": "leaseweb:report",
+    "detectedDomainNameList": "leaseweb:detectedDomainNameList",
+    "name": {
+      "@id": "leaseweb:name",
+      "@type": "xsd:string"
+    },
+    "ipAddresses": {
+      "@id": "leaseweb:ipAddresses",
+      "@container": "@list"
+    },
+    "resolutionList": "leaseweb:resolutionList",
+    "description": {
+      "@id": "leaseweb:description",
+      "@type": "xsd:string"
+    },
+    "dataTrafficCommitUnit": "leaseweb:dataTrafficCommitUnit",
+    "networkPerformanceType": "leaseweb:networkPerformanceType",
+    "aggregationType": "leaseweb:aggregationType",
+    "aggregationPack": "leaseweb:aggregationPack",
+    "salesOrgId": {
+      "@id": "leaseweb:salesOrgId",
+      "@type": "xsd:string"
+    },
+    "contractStartDate": {
+      "@id": "leaseweb:contractStartDate",
+      "@type": "xsd:dateTime"
+    },
+    "billingType": {
+      "@id": "leaseweb:billingType",
+      "@type": "xsd:string"
+    },
+    "connectivityType": {
+      "@id": "leaseweb:connectivityType",
+      "@type": "xsd:string"
+    },
+    "contractTerm": {
+      "@id": "leaseweb:contractTerm",
+      "@type": "xsd:integer"
+    },
+    "dataTrafficCommit": {
+      "@id": "leaseweb:dataTrafficCommit",
+      "@type": "xsd:integer"
+    },
+    "getAggregationPackListResult": "leaseweb:getAggregationPackListResult",
+    "connectContractItems": {
+      "@id": "leaseweb:connectContractItems",
+      "@container": "@list"
+    },
+    "networkType": "leaseweb:networkType",
+    "contract": "leaseweb:contract",
+    "deliveryStatus": {
+      "@id": "leaseweb:deliveryStatus",
+      "@type": "xsd:string"
+    },
+    "reference": {
+      "@id": "leaseweb:reference",
+      "@type": "xsd:string"
+    },
+    "privateNetworkPortSpeed": {
+      "@id": "leaseweb:privateNetworkPortSpeed",
+      "@type": "xsd:decimal"
+    },
+    "subnets": {
+      "@id": "leaseweb:subnets",
+      "@container": "@list"
+    },
+    "startsAt": {
+      "@id": "leaseweb:startsAt",
+      "@type": "xsd:dateTime"
+    },
+    "endsAt": {
+      "@id": "leaseweb:endsAt",
+      "@type": "xsd:dateTime"
+    },
+    "sla": {
+      "@id": "leaseweb:sla",
+      "@type": "xsd:string"
+    },
+    "contractType": {
+      "@id": "leaseweb:contractType",
+      "@type": "xsd:string"
+    },
+    "billingCycle": {
+      "@id": "leaseweb:billingCycle",
+      "@type": "xsd:integer"
+    },
+    "billingFrequency": {
+      "@id": "leaseweb:billingFrequency",
+      "@type": "xsd:string"
+    },
+    "pricePerFrequency": {
+      "@id": "leaseweb:pricePerFrequency",
+      "@type": "xsd:string"
+    },
+    "currency": {
+      "@id": "leaseweb:currency",
+      "@type": "xsd:string"
+    },
+    "networkTraffic": {
+      "@id": "leaseweb:networkTraffic",
+      "@type": "@id"
+    },
+    "softwareLicenses": {
+      "@id": "leaseweb:softwareLicenses",
+      "@container": "@list"
+    },
+    "managedServices": {
+      "@id": "leaseweb:managedServices",
+      "@container": "@list"
+    },
+    "aggregationPackId": {
+      "@id": "leaseweb:aggregationPackId",
+      "@type": "xsd:string"
+    },
+    "ipv4Quantity": {
+      "@id": "leaseweb:ipv4Quantity",
+      "@type": "xsd:integer"
+    },
+    "featureAvailability": "leaseweb:featureAvailability",
+    "automation": {
+      "@id": "leaseweb:automation",
+      "@type": "xsd:boolean"
+    },
+    "powerCycle": {
+      "@id": "leaseweb:powerCycle",
+      "@type": "xsd:boolean"
+    },
+    "ipmiReboot": {
+      "@id": "leaseweb:ipmiReboot",
+      "@type": "xsd:boolean"
+    },
+    "privateNetwork": {
+      "@id": "leaseweb:privateNetwork",
+      "@type": "xsd:boolean"
+    },
+    "remoteManagement": {
+      "@id": "leaseweb:remoteManagement",
+      "@type": "xsd:boolean"
+    },
+    "location": "leaseweb:location",
+    "site": {
+      "@id": "leaseweb:site",
+      "@type": "xsd:string"
+    },
+    "suite": {
+      "@id": "leaseweb:suite",
+      "@type": "xsd:string"
+    },
+    "rack": {
+      "@id": "leaseweb:rack",
+      "@type": "xsd:string"
+    },
+    "unit": {
+      "@id": "leaseweb:unit",
+      "@type": "xsd:string"
+    },
+    "port": "leaseweb:port",
+    "networkInterface": "leaseweb:networkInterface",
+    "mac": {
+      "@id": "leaseweb:mac",
+      "@type": "xsd:string"
+    },
+    "ip": {
+      "@id": "leaseweb:ip",
+      "@type": "xsd:string"
+    },
+    "nullRouted": {
+      "@id": "leaseweb:nullRouted",
+      "@type": "xsd:boolean"
+    },
+    "gateway": {
+      "@id": "leaseweb:gateway",
+      "@type": "xsd:string"
+    },
+    "ports": {
+      "@id": "leaseweb:ports",
+      "@container": "@list"
+    },
+    "locationId": {
+      "@id": "leaseweb:locationId",
+      "@type": "xsd:string"
+    },
+    "networkInterfaces": "leaseweb:networkInterfaces",
+    "public": {
+      "@id": "leaseweb:public",
+      "@type": "@id"
+    },
+    "internal": {
+      "@id": "leaseweb:internal",
+      "@type": "@id"
+    },
+    "linkSpeed": "leaseweb:linkSpeed",
+    "rackType": "leaseweb:rackType",
+    "server": "leaseweb:server",
+    "assetId": {
+      "@id": "leaseweb:assetId",
+      "@type": "xsd:string"
+    },
+    "isPrivateNetworkEnabled": {
+      "@id": "leaseweb:isPrivateNetworkEnabled",
+      "@type": "xsd:boolean"
+    },
+    "isPrivateNetworkCapable": {
+      "@id": "leaseweb:isPrivateNetworkCapable",
+      "@type": "xsd:boolean"
+    },
+    "isRedundantPrivateNetworkCapable": {
+      "@id": "leaseweb:isRedundantPrivateNetworkCapable",
+      "@type": "xsd:boolean"
+    },
+    "powerPorts": {
+      "@id": "leaseweb:powerPorts",
+      "@container": "@list"
+    },
+    "privateNetworks": {
+      "@id": "leaseweb:privateNetworks",
+      "@container": "@list"
+    },
+    "serialNumber": {
+      "@id": "leaseweb:serialNumber",
+      "@type": "xsd:string"
+    },
+    "specs": {
+      "@id": "leaseweb:specs",
+      "@type": "@id"
+    },
+    "getServerListResult": "leaseweb:getServerListResult",
+    "servers": {
+      "@id": "leaseweb:servers",
+      "@container": "@list"
+    },
+    "updateReferenceOpts": "leaseweb:updateReferenceOpts",
+    "ipList": "leaseweb:ipList",
+    "ips": {
+      "@id": "leaseweb:ips",
+      "@container": "@list"
+    },
+    "updateIpProfileOpts": "leaseweb:updateIpProfileOpts",
+    "detectionProfile": {
+      "@id": "leaseweb:detectionProfile",
+      "@type": "xsd:string"
+    },
+    "reverseLookup": {
+      "@id": "leaseweb:reverseLookup",
+      "@type": "xsd:string"
+    },
+    "nullRoute": "leaseweb:nullRoute",
+    "automatedUnnullingAt": {
+      "@id": "leaseweb:automatedUnnullingAt",
+      "@type": "xsd:dateTime"
+    },
+    "comment": {
+      "@id": "leaseweb:comment",
+      "@type": "xsd:string"
+    },
+    "nullLevel": {
+      "@id": "leaseweb:nullLevel",
+      "@type": "xsd:integer"
+    },
+    "nulledAt": {
+      "@id": "leaseweb:nulledAt",
+      "@type": "xsd:dateTime"
+    },
+    "ticketId": {
+      "@id": "leaseweb:ticketId",
+      "@type": "xsd:string"
+    },
+    "nullRouteList": "leaseweb:nullRouteList",
+    "nullRoutes": {
+      "@id": "leaseweb:nullRoutes",
+      "@container": "@list"
+    },
+    "addToPrivateNetworkOpts": "leaseweb:addToPrivateNetworkOpts",
+    "operationNetworkInterface": "leaseweb:operationNetworkInterface",
+    "operStatus": {
+      "@id": "leaseweb:operStatus",
+      "@type": "xsd:string"
+    },
+    "switchInterface": {
+      "@id": "leaseweb:switchInterface",
+      "@type": "xsd:string"
+    },
+    "switchName": {
+      "@id": "leaseweb:switchName",
+      "@type": "xsd:string"
+    },
+    "type": {
+      "@id": "leaseweb:type",
+      "@type": "xsd:string"
+    },
+    "getNetworkInterfaceListResult": "leaseweb:getNetworkInterfaceListResult",
+    "networkTypeURL": "leaseweb:networkTypeURL",
+    "getDdosNotificationSettingResult": "leaseweb:getDdosNotificationSettingResult",
+    "nulling": {
+      "@id": "leaseweb:nulling",
+      "@type": "xsd:string"
+    },
+    "scrubbing": {
+      "@id": "leaseweb:scrubbing",
+      "@type": "xsd:string"
+    },
+    "updateDdosNotificationSettingOpts": "leaseweb:updateDdosNotificationSettingOpts",
+    "metric": "leaseweb:metric",
+    "values": {
+      "@id": "leaseweb:values",
+      "@container": "@list"
+    },
+    "metrics": "leaseweb:metrics",
+    "notificationSetting": "leaseweb:notificationSetting",
+    "actions": {
+      "@id": "leaseweb:actions",
+      "@container": "@list"
+    },
+    "frequency": {
+      "@id": "leaseweb:frequency",
+      "@type": "xsd:string"
+    },
+    "lastCheckedAt": {
+      "@id": "leaseweb:lastCheckedAt",
+      "@type": "xsd:string"
+    },
+    "threshold": {
+      "@id": "leaseweb:threshold",
+      "@type": "xsd:string"
+    },
+    "thresholdExceededAt": {
+      "@id": "leaseweb:thresholdExceededAt",
+      "@type": "xsd:string"
+    },
+    "getBandwidthNotificationSettingListResult": "leaseweb:getBandwidthNotificationSettingListResult",
+    "bandwidthNotificationSettings": {
+      "@id": "leaseweb:bandwidthNotificationSettings",
+      "@container": "@list"
+    },
+    "bandwidthNotificationSettingOpts": "leaseweb:bandwidthNotificationSettingOpts",
+    "getDataTrafficNotificationSettingListResult": "leaseweb:getDataTrafficNotificationSettingListResult",
+    "datatrafficNotificationSettings": {
+      "@id": "leaseweb:datatrafficNotificationSettings",
+      "@container": "@list"
+    },
+    "dataTrafficNotificationSettingOpts": "leaseweb:dataTrafficNotificationSettingOpts",
+    "attribute": "leaseweb:attribute",
+    "flag": {
+      "@id": "leaseweb:flag",
+      "@type": "xsd:string"
+    },
+    "raw_value": {
+      "@id": "leaseweb:raw_value",
+      "@type": "xsd:string"
+    },
+    "thresh": {
+      "@id": "leaseweb:thresh",
+      "@type": "xsd:string"
+    },
+    "updated": {
+      "@id": "leaseweb:updated",
+      "@type": "xsd:string"
+    },
+    "value": {
+      "@id": "leaseweb:value",
+      "@type": "xsd:string"
+    },
+    "when_failed": {
+      "@id": "leaseweb:when_failed",
+      "@type": "xsd:string"
+    },
+    "worst": {
+      "@id": "leaseweb:worst",
+      "@type": "xsd:string"
+    },
+    "getHardwareResult": "leaseweb:getHardwareResult",
+    "parserVersion": {
+      "@id": "leaseweb:parserVersion",
+      "@type": "xsd:string"
+    },
+    "result": {
+      "@id": "leaseweb:result",
+      "@type": "@id"
+    },
+    "scannedAt": {
+      "@id": "leaseweb:scannedAt",
+      "@type": "xsd:dateTime"
+    },
+    "serverId": {
+      "@id": "leaseweb:serverId",
+      "@type": "xsd:string"
+    },
+    "getHardwareMonitoringResult": "leaseweb:getHardwareMonitoringResult",
+    "scrapedAt": {
+      "@id": "leaseweb:scrapedAt",
+      "@type": "xsd:dateTime"
+    },
+    "ipmiInfo": {
+      "@id": "leaseweb:ipmiInfo",
+      "@type": "@id"
+    },
+    "getHardwareMonitoringListResult": "leaseweb:getHardwareMonitoringListResult",
+    "controlPanelList": "leaseweb:controlPanelList",
+    "controlPanels": {
+      "@id": "leaseweb:controlPanels",
+      "@container": "@list"
+    },
+    "getOperatingSystemListResult": "leaseweb:getOperatingSystemListResult",
+    "operatingSystems": {
+      "@id": "leaseweb:operatingSystems",
+      "@container": "@list"
+    },
+    "partition": "leaseweb:partition",
+    "mountpoint": {
+      "@id": "leaseweb:mountpoint",
+      "@type": "xsd:string"
+    },
+    "filesystem": {
+      "@id": "leaseweb:filesystem",
+      "@type": "xsd:string"
+    },
+    "size": {
+      "@id": "leaseweb:size",
+      "@type": "xsd:string"
+    },
+    "getOperatingSystemResult": "leaseweb:getOperatingSystemResult",
+    "architecture": {
+      "@id": "leaseweb:architecture",
+      "@type": "xsd:string"
+    },
+    "configurable": {
+      "@id": "leaseweb:configurable",
+      "@type": "xsd:boolean"
+    },
+    "defaults": {
+      "@id": "leaseweb:defaults",
+      "@type": "@id"
+    },
+    "family": {
+      "@id": "leaseweb:family",
+      "@type": "xsd:string"
+    },
+    "version": {
+      "@id": "leaseweb:version",
+      "@type": "xsd:string"
+    },
+    "features": {
+      "@id": "leaseweb:features",
+      "@container": "@list"
+    },
+    "supportedFileSystems": {
+      "@id": "leaseweb:supportedFileSystems",
+      "@container": "@list"
+    },
+    "supportedBootDevices": {
+      "@id": "leaseweb:supportedBootDevices",
+      "@container": "@list"
+    },
+    "getRescueImageListResult": "leaseweb:getRescueImageListResult",
+    "rescueImages": {
+      "@id": "leaseweb:rescueImages",
+      "@container": "@list"
+    },
+    "jobType": "leaseweb:jobType",
+    "task": "leaseweb:task",
+    "uuid": {
+      "@id": "leaseweb:uuid",
+      "@type": "xsd:string"
+    },
+    "onError": {
+      "@id": "leaseweb:onError",
+      "@type": "xsd:string"
+    },
+    "flow": {
+      "@id": "leaseweb:flow",
+      "@type": "xsd:string"
+    },
+    "statusTimestamps": {
+      "@id": "leaseweb:statusTimestamps",
+      "@type": "@id"
+    },
+    "actor": {
+      "@id": "leaseweb:actor",
+      "@type": "xsd:string"
+    },
+    "createdAt": {
+      "@id": "leaseweb:createdAt",
+      "@type": "xsd:dateTime"
+    },
+    "timeout": {
+      "@id": "leaseweb:timeout",
+      "@type": "xsd:integer"
+    },
+    "currentTask": "leaseweb:currentTask",
+    "payload": "leaseweb:payload",
+    "network": {
+      "@id": "leaseweb:network",
+      "@type": "@id"
+    },
+    "initiatedBy": {
+      "@id": "leaseweb:initiatedBy",
+      "@type": "xsd:string"
+    },
+    "serverBrand": {
+      "@id": "leaseweb:serverBrand",
+      "@type": "xsd:string"
+    },
+    "serverChassis": {
+      "@id": "leaseweb:serverChassis",
+      "@type": "xsd:string"
+    },
+    "fileserverBaseUrl": {
+      "@id": "leaseweb:fileserverBaseUrl",
+      "@type": "xsd:string"
+    },
+    "serverHardwareRaid": {
+      "@id": "leaseweb:serverHardwareRaid",
+      "@type": "xsd:boolean"
+    },
+    "job": "leaseweb:job",
+    "bareMetalId": {
+      "@id": "leaseweb:bareMetalId",
+      "@type": "xsd:string"
+    },
+    "node": {
+      "@id": "leaseweb:node",
+      "@type": "xsd:string"
+    },
+    "progress": {
+      "@id": "leaseweb:progress",
+      "@type": "@id"
+    },
+    "isRunning": {
+      "@id": "leaseweb:isRunning",
+      "@type": "xsd:boolean"
+    },
+    "metadata": {
+      "@id": "leaseweb:metadata",
+      "@type": "@id"
+    },
+    "tasks": {
+      "@id": "leaseweb:tasks",
+      "@container": "@list"
+    },
+    "credentialType": "leaseweb:credentialType",
+    "credentialWithoutPassword": "leaseweb:credentialWithoutPassword",
+    "username": {
+      "@id": "leaseweb:username",
+      "@type": "xsd:string"
+    },
+    "credentialList": "leaseweb:credentialList",
+    "credentials": {
+      "@id": "leaseweb:credentials",
+      "@container": "@list"
+    },
+    "createCredentialOpts": "leaseweb:createCredentialOpts",
+    "password": {
+      "@id": "leaseweb:password",
+      "@type": "xsd:string"
+    },
+    "credential": "leaseweb:credential",
+    "updateCredentialOpts": "leaseweb:updateCredentialOpts",
+    "scanHardwareOpts": "leaseweb:scanHardwareOpts",
+    "callbackUrl": {
+      "@id": "leaseweb:callbackUrl",
+      "@type": "@id"
+    },
+    "raidLevel": "leaseweb:raidLevel",
+    "raidType": "leaseweb:raidType",
+    "installOperatingSystemOpts": "leaseweb:installOperatingSystemOpts",
+    "controlPanelId": {
+      "@id": "leaseweb:controlPanelId",
+      "@type": "xsd:string"
+    },
+    "device": {
+      "@id": "leaseweb:device",
+      "@type": "xsd:string"
+    },
+    "hostname": {
+      "@id": "leaseweb:hostname",
+      "@type": "xsd:string"
+    },
+    "operatingSystemId": {
+      "@id": "leaseweb:operatingSystemId",
+      "@type": "xsd:string"
+    },
+    "partitions": {
+      "@id": "leaseweb:partitions",
+      "@container": "@list"
+    },
+    "postInstallScript": {
+      "@id": "leaseweb:postInstallScript",
+      "@type": "xsd:string"
+    },
+    "raid": {
+      "@id": "leaseweb:raid",
+      "@type": "@id"
+    },
+    "sshKeys": {
+      "@id": "leaseweb:sshKeys",
+      "@type": "xsd:string"
+    },
+    "aiFrameworks": {
+      "@id": "leaseweb:aiFrameworks",
+      "@container": "@list"
+    },
+    "timezone": {
+      "@id": "leaseweb:timezone",
+      "@type": "xsd:string"
+    },
+    "serverJob": "leaseweb:serverJob",
+    "ipmiResetOpts": "leaseweb:ipmiResetOpts",
+    "jobList": "leaseweb:jobList",
+    "jobs": {
+      "@id": "leaseweb:jobs",
+      "@container": "@list"
+    },
+    "getDhcpReservationListResult": "leaseweb:getDhcpReservationListResult",
+    "leases": {
+      "@id": "leaseweb:leases",
+      "@container": "@list"
+    },
+    "createDhcpReservationOpts": "leaseweb:createDhcpReservationOpts",
+    "bootfile": {
+      "@id": "leaseweb:bootfile",
+      "@type": "xsd:string"
+    },
+    "pdu": "leaseweb:pdu",
+    "getPowerStatusResult": "leaseweb:getPowerStatusResult",
+    "ipmi": {
+      "@id": "leaseweb:ipmi",
+      "@type": "@id"
+    },
+    "enableRescueModeOpts": "leaseweb:enableRescueModeOpts",
+    "rescueImageId": {
+      "@id": "leaseweb:rescueImageId",
+      "@type": "xsd:string"
+    },
+    "subnet": "leaseweb:subnet",
+    "quantity": {
+      "@id": "leaseweb:quantity",
+      "@type": "xsd:integer"
+    },
+    "subnetSize": {
+      "@id": "leaseweb:subnetSize",
+      "@type": "xsd:string"
+    },
+    "softwareLicense": "leaseweb:softwareLicense",
+    "price": {
+      "@id": "leaseweb:price",
+      "@type": "xsd:decimal"
+    },
+    "cpu": "leaseweb:cpu",
+    "hdd": "leaseweb:hdd",
+    "amount": {
+      "@id": "leaseweb:amount",
+      "@type": "xsd:integer"
+    },
+    "performanceType": {
+      "@id": "leaseweb:performanceType",
+      "@type": "xsd:string"
+    },
+    "pciCard": "leaseweb:pciCard",
+    "ram": "leaseweb:ram",
+    "serverSpecs": "leaseweb:serverSpecs",
+    "brand": {
+      "@id": "leaseweb:brand",
+      "@type": "xsd:string"
+    },
+    "chassis": {
+      "@id": "leaseweb:chassis",
+      "@type": "xsd:string"
+    },
+    "hardwareRaidCapable": {
+      "@id": "leaseweb:hardwareRaidCapable",
+      "@type": "xsd:boolean"
+    },
+    "pciCards": {
+      "@id": "leaseweb:pciCards",
+      "@container": "@list"
+    },
+    "dDos": "leaseweb:dDos",
+    "protectionType": {
+      "@id": "leaseweb:protectionType",
+      "@type": "xsd:string"
+    },
+    "metricValue": "leaseweb:metricValue",
+    "timestamp": {
+      "@id": "leaseweb:timestamp",
+      "@type": "xsd:dateTime"
+    },
+    "metricsMetadata": "leaseweb:metricsMetadata",
+    "aggregation": {
+      "@id": "leaseweb:aggregation",
+      "@type": "xsd:string"
+    },
+    "from": {
+      "@id": "leaseweb:from",
+      "@type": "xsd:dateTime"
+    },
+    "granularity": {
+      "@id": "leaseweb:granularity",
+      "@type": "xsd:string"
+    },
+    "to": {
+      "@id": "leaseweb:to",
+      "@type": "xsd:dateTime"
+    },
+    "metricValues": "leaseweb:metricValues",
+    "UP_PUBLIC": {
+      "@id": "leaseweb:UP_PUBLIC",
+      "@type": "@id"
+    },
+    "DOWN_PUBLIC": {
+      "@id": "leaseweb:DOWN_PUBLIC",
+      "@type": "@id"
+    },
+    "firmware": "leaseweb:firmware",
+    "date": {
+      "@id": "leaseweb:date",
+      "@type": "xsd:date"
+    },
+    "vendor": {
+      "@id": "leaseweb:vendor",
+      "@type": "xsd:string"
+    },
+    "motherboard": "leaseweb:motherboard",
+    "product": {
+      "@id": "leaseweb:product",
+      "@type": "xsd:string"
+    },
+    "serial": {
+      "@id": "leaseweb:serial",
+      "@type": "xsd:string"
+    },
+    "cpuCapabilities": "leaseweb:cpuCapabilities",
+    "cpufreq": {
+      "@id": "leaseweb:cpufreq",
+      "@type": "@id"
+    },
+    "ht": {
+      "@id": "leaseweb:ht",
+      "@type": "xsd:string"
+    },
+    "vmx": {
+      "@id": "leaseweb:vmx",
+      "@type": "xsd:boolean"
+    },
+    "x86-64": {
+      "@id": "leaseweb:x86-64",
+      "@type": "xsd:string"
+    },
+    "cpuSettings": "leaseweb:cpuSettings",
+    "cores": {
+      "@id": "leaseweb:cores",
+      "@type": "xsd:string"
+    },
+    "enabledcores": {
+      "@id": "leaseweb:enabledcores",
+      "@type": "xsd:string"
+    },
+    "threads": {
+      "@id": "leaseweb:threads",
+      "@type": "xsd:string"
+    },
+    "hardwareCpu": "leaseweb:hardwareCpu",
+    "capabilities": {
+      "@id": "leaseweb:capabilities",
+      "@type": "@id"
+    },
+    "hz": {
+      "@id": "leaseweb:hz",
+      "@type": "xsd:string"
+    },
+    "serial_number": {
+      "@id": "leaseweb:serial_number",
+      "@type": "xsd:string"
+    },
+    "settings": {
+      "@id": "leaseweb:settings",
+      "@type": "@id"
+    },
+    "slot": {
+      "@id": "leaseweb:slot",
+      "@type": "xsd:string"
+    },
+    "attributes": "leaseweb:attributes",
+    "Power_On_Hours": {
+      "@id": "leaseweb:Power_On_Hours",
+      "@type": "@id"
+    },
+    "Reallocated_Sector_Ct": {
+      "@id": "leaseweb:Reallocated_Sector_Ct",
+      "@type": "@id"
+    },
+    "smartSupport": "leaseweb:smartSupport",
+    "available": {
+      "@id": "leaseweb:available",
+      "@type": "xsd:boolean"
+    },
+    "enabled": {
+      "@id": "leaseweb:enabled",
+      "@type": "xsd:boolean"
+    },
+    "disk": "leaseweb:disk",
+    "smartctl": {
+      "@id": "leaseweb:smartctl",
+      "@type": "@id"
+    },
+    "hardwareIpmi": "leaseweb:hardwareIpmi",
+    "defgateway": {
+      "@id": "leaseweb:defgateway",
+      "@type": "xsd:string"
+    },
+    "ipaddress": {
+      "@id": "leaseweb:ipaddress",
+      "@type": "xsd:string"
+    },
+    "ipsource": {
+      "@id": "leaseweb:ipsource",
+      "@type": "xsd:string"
+    },
+    "macaddress": {
+      "@id": "leaseweb:macaddress",
+      "@type": "xsd:string"
+    },
+    "subnetmask": {
+      "@id": "leaseweb:subnetmask",
+      "@type": "xsd:string"
+    },
+    "memoryBank": "leaseweb:memoryBank",
+    "clock_hz": {
+      "@id": "leaseweb:clock_hz",
+      "@type": "xsd:string"
+    },
+    "size_bytes": {
+      "@id": "leaseweb:size_bytes",
+      "@type": "xsd:string"
+    },
+    "linkSpeeds": "leaseweb:linkSpeeds",
+    "networkCapabilities": "leaseweb:networkCapabilities",
+    "autonegotiation": {
+      "@id": "leaseweb:autonegotiation",
+      "@type": "xsd:string"
+    },
+    "bus_master": {
+      "@id": "leaseweb:bus_master",
+      "@type": "xsd:string"
+    },
+    "cap_list": {
+      "@id": "leaseweb:cap_list",
+      "@type": "xsd:string"
+    },
+    "ethernet": {
+      "@id": "leaseweb:ethernet",
+      "@type": "xsd:string"
+    },
+    "link_speeds": {
+      "@id": "leaseweb:link_speeds",
+      "@type": "@id"
+    },
+    "msi": {
+      "@id": "leaseweb:msi",
+      "@type": "xsd:string"
+    },
+    "msix": {
+      "@id": "leaseweb:msix",
+      "@type": "xsd:string"
+    },
+    "pciexpress": {
+      "@id": "leaseweb:pciexpress",
+      "@type": "xsd:string"
+    },
+    "physical": {
+      "@id": "leaseweb:physical",
+      "@type": "xsd:string"
+    },
+    "pm": {
+      "@id": "leaseweb:pm",
+      "@type": "xsd:string"
+    },
+    "tp": {
+      "@id": "leaseweb:tp",
+      "@type": "xsd:string"
+    },
+    "lldpChassis": "leaseweb:lldpChassis",
+    "mac_address": {
+      "@id": "leaseweb:mac_address",
+      "@type": "xsd:string"
+    },
+    "autoNegotiation": "leaseweb:autoNegotiation",
+    "supported": {
+      "@id": "leaseweb:supported",
+      "@type": "xsd:string"
+    },
+    "hardwarePort": "leaseweb:hardwarePort",
+    "auto_negotiation": {
+      "@id": "leaseweb:auto_negotiation",
+      "@type": "@id"
+    },
+    "vlan": "leaseweb:vlan",
+    "label": {
+      "@id": "leaseweb:label",
+      "@type": "xsd:string"
+    },
+    "lldp": "leaseweb:lldp",
+    "networkSettings": "leaseweb:networkSettings",
+    "broadcast": {
+      "@id": "leaseweb:broadcast",
+      "@type": "xsd:string"
+    },
+    "driver": {
+      "@id": "leaseweb:driver",
+      "@type": "xsd:string"
+    },
+    "driverversion": {
+      "@id": "leaseweb:driverversion",
+      "@type": "xsd:string"
+    },
+    "duplex": {
+      "@id": "leaseweb:duplex",
+      "@type": "xsd:string"
+    },
+    "latency": {
+      "@id": "leaseweb:latency",
+      "@type": "xsd:string"
+    },
+    "link": {
+      "@id": "leaseweb:link",
+      "@type": "xsd:string"
+    },
+    "multicast": {
+      "@id": "leaseweb:multicast",
+      "@type": "xsd:string"
+    },
+    "speed": {
+      "@id": "leaseweb:speed",
+      "@type": "xsd:string"
+    },
+    "ipmiMonitoringMetric": "leaseweb:ipmiMonitoringMetric",
+    "controlPanel": "leaseweb:controlPanel",
+    "operatingSystem": "leaseweb:operatingSystem",
+    "rescueImage": "leaseweb:rescueImage",
+    "defaultPayloadNetwork": "leaseweb:defaultPayloadNetwork",
+    "os": "leaseweb:os",
+    "engine": {
+      "@id": "leaseweb:engine",
+      "@type": "xsd:string"
+    },
+    "raidPayload": "leaseweb:raidPayload",
+    "level": {
+      "@id": "leaseweb:level",
+      "@type": "xsd:integer"
+    },
+    "numberOfDisks": {
+      "@id": "leaseweb:numberOfDisks",
+      "@type": "xsd:integer"
+    },
+    "database": "leaseweb:database",
+    "dbName": {
+      "@id": "leaseweb:dbName",
+      "@type": "xsd:string"
+    },
+    "lastClientRequest": "leaseweb:lastClientRequest",
+    "relayAgent": {
+      "@id": "leaseweb:relayAgent",
+      "@type": "xsd:string"
+    },
+    "userAgent": {
+      "@id": "leaseweb:userAgent",
+      "@type": "xsd:string"
+    },
+    "lease": "leaseweb:lease",
+    "netmask": {
+      "@id": "leaseweb:netmask",
+      "@type": "xsd:string"
+    },
+    "getQueryMetricsResult": "leaseweb:getQueryMetricsResult",
+    "dnsQuery": {
+      "@id": "leaseweb:dnsQuery",
+      "@type": "@id"
+    }
+  },
+  "@type": "schema:Dataset",
+  "schema:name": "Leaseweb API JSON-LD context",
+  "schema:description": "A JSON-LD @context for the objects Leaseweb's own API contract declares: one class per component schema, one property per declared field, typed from the contract. Derived by script (derive-json-ld.py, 2026-10-13) from openapi/leaseweb-abuse-openapi.yml, openapi/leaseweb-aggregationpack-openapi.yml, openapi/leaseweb-dedicatedserver-openapi.yml.",
+  "dcterms:created": "2026-10-13",
+  "dcterms:source": [
+    "openapi/leaseweb-abuse-openapi.yml",
+    "openapi/leaseweb-aggregationpack-openapi.yml",
+    "openapi/leaseweb-dedicatedserver-openapi.yml",
+    "openapi/leaseweb-dns-openapi.yml",
+    "openapi/leaseweb-invoice-openapi.yml"
+  ]
+}

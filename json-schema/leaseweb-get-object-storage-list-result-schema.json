@@ -1,0 +1,75 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/leaseweb/main/json-schema/leaseweb-get-object-storage-list-result-schema.json",
+  "title": "objectStorageList",
+  "x-generated": "2026-10-13",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/leaseweb-objectstorage-openapi.yml#/components/schemas/getObjectStorageListResult",
+  "properties": {
+    "objectStorages": {
+      "description": "A list of object storage products.",
+      "items": {
+        "$ref": "#/$defs/objectStorageListItem"
+      },
+      "type": "array"
+    },
+    "_metadata": {
+      "$ref": "#/$defs/objectStorageListMetadata"
+    }
+  },
+  "type": "object",
+  "$defs": {
+    "objectStorageListItem": {
+      "description": "An objectStorage product.",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "customerId": {
+          "type": "string"
+        },
+        "salesOrgId": {
+          "type": "string"
+        },
+        "contractId": {
+          "type": "string"
+        },
+        "quantity": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "regionUrl": {
+          "description": "The region-specific endpoint URL for this Object Storage product.",
+          "format": "uri",
+          "type": "string"
+        }
+      },
+      "title": "objectStorageListItem",
+      "type": "object"
+    },
+    "objectStorageListMetadata": {
+      "description": "Metadata about the collection.",
+      "properties": {
+        "limit": {
+          "default": 10,
+          "description": "The maximum number of results returned.",
+          "type": "integer"
+        },
+        "offset": {
+          "default": 0,
+          "description": "Results are returned starting at the given offset.",
+          "type": "integer"
+        },
+        "totalCount": {
+          "description": "The total amount of results.",
+          "type": "integer"
+        }
+      },
+      "title": "objectStorageListMetadata",
+      "type": "object"
+    }
+  }
+}

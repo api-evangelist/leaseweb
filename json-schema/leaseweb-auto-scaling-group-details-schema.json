@@ -1,0 +1,259 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/leaseweb/main/json-schema/leaseweb-auto-scaling-group-details-schema.json",
+  "title": "autoScalingGroupDetails",
+  "x-generated": "2026-10-13",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/leaseweb-publiccloud-openapi.yml#/components/schemas/autoScalingGroupDetails",
+  "properties": {
+    "id": {
+      "description": "The Auto Scaling Group unique identifier",
+      "format": "uuid",
+      "type": "string"
+    },
+    "type": {
+      "$ref": "#/$defs/autoScalingGroupType"
+    },
+    "state": {
+      "$ref": "#/$defs/autoScalingGroupState"
+    },
+    "desiredAmount": {
+      "description": "Number of instances that should be running",
+      "type": [
+        "integer",
+        "null"
+      ]
+    },
+    "region": {
+      "$ref": "#/$defs/regionName"
+    },
+    "reference": {
+      "description": "The identifying name set to the auto scaling group",
+      "maxLength": 255,
+      "type": "string"
+    },
+    "createdAt": {
+      "description": "Date and time when the Auto Scaling Group was created",
+      "format": "date-time",
+      "type": "string"
+    },
+    "updatedAt": {
+      "description": "Date and time when the Auto Scaling Group was last updated",
+      "format": "date-time",
+      "type": "string"
+    },
+    "startsAt": {
+      "description": "Only for \"SCHEDULED\" auto scaling group. Date and time (UTC) that the instances need to be launched",
+      "format": "date-time",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "endsAt": {
+      "description": "Only for \"SCHEDULED\" auto scaling group. Date and time (UTC) that the instances need to be terminated",
+      "format": "date-time",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "minimumAmount": {
+      "description": "The minimum number of instances that should be running",
+      "type": [
+        "integer",
+        "null"
+      ]
+    },
+    "maximumAmount": {
+      "description": "Only for \"CPU_BASED\" auto scaling group. The maximum number of instances that can be running",
+      "type": [
+        "integer",
+        "null"
+      ]
+    },
+    "cpuThreshold": {
+      "description": "Only for \"CPU_BASED\" auto scaling group. The target average CPU utilization for scaling",
+      "type": [
+        "integer",
+        "null"
+      ]
+    },
+    "warmupTime": {
+      "description": "Only for \"CPU_BASED\" auto scaling group. Warm-up time in seconds for new instances",
+      "type": [
+        "integer",
+        "null"
+      ]
+    },
+    "cooldownTime": {
+      "description": "Only for \"CPU_BASED\" auto scaling group. Cool-down time in seconds for new instances",
+      "type": [
+        "integer",
+        "null"
+      ]
+    },
+    "targetGroups": {
+      "items": {
+        "$ref": "#/$defs/targetGroup"
+      },
+      "type": "array"
+    }
+  },
+  "required": [
+    "cooldownTime",
+    "cpuThreshold",
+    "createdAt",
+    "desiredAmount",
+    "endsAt",
+    "id",
+    "maximumAmount",
+    "minimumAmount",
+    "reference",
+    "region",
+    "startsAt",
+    "state",
+    "targetGroups",
+    "type",
+    "updatedAt",
+    "warmupTime"
+  ],
+  "type": [
+    "object",
+    "null"
+  ],
+  "$defs": {
+    "autoScalingGroupState": {
+      "description": "The Auto Scaling Group's current state.",
+      "enum": [
+        "ACTIVE",
+        "CREATING",
+        "CREATED",
+        "DESTROYED",
+        "DESTROYING",
+        "SCALING",
+        "UPDATING"
+      ],
+      "type": "string"
+    },
+    "autoScalingGroupType": {
+      "description": "Auto Scaling Group type",
+      "enum": [
+        "MANUAL",
+        "SCHEDULED",
+        "CPU_BASED"
+      ],
+      "title": "autoScalingGroupType",
+      "type": "string"
+    },
+    "healthCheck": {
+      "properties": {
+        "protocol": {
+          "$ref": "#/$defs/protocol"
+        },
+        "method": {
+          "$ref": "#/$defs/httpMethod"
+        },
+        "uri": {
+          "description": "URI to check in the target instances",
+          "type": "string"
+        },
+        "host": {
+          "description": "Host for the health check if any",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "port": {
+          "description": "Port number",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "host",
+        "method",
+        "port",
+        "protocol",
+        "uri"
+      ],
+      "title": "healthCheck",
+      "type": [
+        "object",
+        "null"
+      ]
+    },
+    "httpMethod": {
+      "description": "HTTP method to be used for health check - Required if `protocol` is HTTP or HTTPS. Not allowed if `protocol` is TCP",
+      "enum": [
+        "GET",
+        "HEAD",
+        "POST",
+        "OPTIONS"
+      ],
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "protocol": {
+      "enum": [
+        "HTTP",
+        "HTTPS",
+        "TCP"
+      ],
+      "type": "string"
+    },
+    "regionName": {
+      "description": "region name",
+      "enum": [
+        "eu-west-3",
+        "us-east-1",
+        "eu-central-1",
+        "ap-southeast-1",
+        "us-west-1",
+        "eu-west-2",
+        "ca-central-1",
+        "ap-northeast-1"
+      ],
+      "title": "regionName",
+      "type": "string"
+    },
+    "targetGroup": {
+      "properties": {
+        "id": {
+          "format": "uuid",
+          "type": "string"
+        },
+        "name": {
+          "description": "The name of the target group",
+          "type": "string"
+        },
+        "protocol": {
+          "$ref": "#/$defs/protocol"
+        },
+        "port": {
+          "description": "The port of the target group",
+          "type": "integer"
+        },
+        "region": {
+          "$ref": "#/$defs/regionName"
+        },
+        "healthCheck": {
+          "$ref": "#/$defs/healthCheck"
+        }
+      },
+      "required": [
+        "healthCheck",
+        "id",
+        "name",
+        "port",
+        "protocol",
+        "region"
+      ],
+      "title": "targetGroup",
+      "type": "object"
+    }
+  }
+}

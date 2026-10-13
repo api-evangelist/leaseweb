@@ -1,0 +1,15 @@
+generated: '2026-10-13'
+method: searched
+source: https://developer.leaseweb.com/docs/
+docs: https://developer.leaseweb.com/docs/
+schemes:
+- name: X-LSW-Auth
+  type: apiKey
+  in: header
+  parameter: X-LSW-Auth
+  description: "Authentication for the APIs is required. To authenticate your call, you will need to sent your API key as X-LSW-Auth header. You can generate API keys in the Customer Portal."
+  key_management: https://secure.leaseweb.com/api-client-management/
+- name: BearerAuth
+  type: http
+  scheme: bearer
+  description: Declared as a securityScheme in every Leaseweb OpenAPI definition.

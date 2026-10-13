@@ -1,0 +1,127 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/leaseweb/main/json-schema/leaseweb-get-aggregation-pack-list-result-schema.json",
+  "title": "getAggregationPackListResult",
+  "x-generated": "2026-10-13",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/leaseweb-aggregationpack-openapi.yml#/components/schemas/getAggregationPackListResult",
+  "properties": {
+    "_metadata": {
+      "$ref": "#/$defs/_metadata"
+    },
+    "connectContractItems": {
+      "description": "An array of aggregation packs",
+      "items": {
+        "$ref": "#/$defs/aggregationPack"
+      },
+      "type": "array"
+    }
+  },
+  "type": "object",
+  "$defs": {
+    "_metadata": {
+      "description": "Metadata about the collection",
+      "properties": {
+        "totalCount": {
+          "description": "Total amount of elements in this collection",
+          "minimum": 0,
+          "type": "integer"
+        },
+        "offset": {
+          "default": 0,
+          "description": "The offset used to generate this response",
+          "minimum": 0,
+          "type": "integer"
+        },
+        "limit": {
+          "default": 5,
+          "description": "The limit used to generate this response",
+          "minimum": 0,
+          "type": "integer"
+        }
+      },
+      "required": [
+        "limit",
+        "offset",
+        "totalCount"
+      ],
+      "title": "metadata",
+      "type": "object"
+    },
+    "aggregationPack": {
+      "properties": {
+        "id": {
+          "description": "Id of the aggregation pack",
+          "type": "string"
+        },
+        "customerId": {
+          "type": "string"
+        },
+        "salesOrgId": {
+          "type": "string"
+        },
+        "contractStartDate": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "billingType": {
+          "type": "string"
+        },
+        "connectivityType": {
+          "type": "string"
+        },
+        "contractTerm": {
+          "type": "integer"
+        },
+        "dataTrafficCommit": {
+          "type": "integer"
+        },
+        "dataTrafficCommitUnit": {
+          "$ref": "#/$defs/dataTrafficCommitUnit"
+        },
+        "networkPerformanceType": {
+          "$ref": "#/$defs/networkPerformanceType"
+        },
+        "aggregationType": {
+          "$ref": "#/$defs/aggregationType"
+        }
+      },
+      "required": [
+        "aggregationType",
+        "billingType",
+        "connectivityType",
+        "contractStartDate",
+        "contractTerm",
+        "customerId",
+        "dataTrafficCommit",
+        "dataTrafficCommitUnit",
+        "id",
+        "networkPerformanceType",
+        "salesOrgId"
+      ],
+      "type": "object"
+    },
+    "aggregationType": {
+      "enum": [
+        "Hybrid"
+      ],
+      "type": "string"
+    },
+    "dataTrafficCommitUnit": {
+      "enum": [
+        "Gbps",
+        "Mbps",
+        "TB"
+      ],
+      "type": "string"
+    },
+    "networkPerformanceType": {
+      "enum": [
+        "VOLUME",
+        "PREMIUM"
+      ],
+      "type": "string"
+    }
+  }
+}

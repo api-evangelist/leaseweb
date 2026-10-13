@@ -1,0 +1,12 @@
+generated: '2026-10-13'
+method: searched
+source: https://proxy.golang.org/github.com/leaseweb/leaseweb-go-sdk/@latest
+packages:
+- name: github.com/leaseweb/leaseweb-go-sdk
+  registry: go
+  url: https://pkg.go.dev/github.com/leaseweb/leaseweb-go-sdk
+  language: go
+  official: true
+  version: v1.5.0
+  published: '2024-12-30'
+  repository: https://github.com/leaseweb/leaseweb-go-sdk

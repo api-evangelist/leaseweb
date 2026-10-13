@@ -1,0 +1,531 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/leaseweb/main/json-schema/leaseweb-get-hardware-result-schema.json",
+  "title": "getHardwareResult",
+  "x-generated": "2026-10-13",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/leaseweb-dedicatedserver-openapi.yml#/components/schemas/getHardwareResult",
+  "properties": {
+    "id": {
+      "description": "Id of this hardware scan result",
+      "type": "string"
+    },
+    "parserVersion": {
+      "description": "Version of the parser used for this hardware info",
+      "type": "string"
+    },
+    "result": {
+      "$ref": "#/$defs/result"
+    },
+    "scannedAt": {
+      "description": "Timestamp of hardware scan, the ISO-8601 format",
+      "format": "date-time",
+      "type": "string"
+    },
+    "serverId": {
+      "description": "Id of the server",
+      "type": "string"
+    }
+  },
+  "type": "object",
+  "$defs": {
+    "autoNegotiation": {
+      "properties": {
+        "enabled": {
+          "enum": [
+            "yes",
+            "no"
+          ],
+          "type": "string"
+        },
+        "supported": {
+          "enum": [
+            "yes",
+            "no"
+          ],
+          "type": "string"
+        }
+      },
+      "title": "autoNegotiation",
+      "type": "object"
+    },
+    "chassis": {
+      "properties": {
+        "description": {
+          "type": "string"
+        },
+        "firmware": {
+          "$ref": "#/$defs/firmware"
+        },
+        "motherboard": {
+          "$ref": "#/$defs/motherboard"
+        },
+        "product": {
+          "type": "string"
+        },
+        "serial": {
+          "description": "Serial number of the server",
+          "type": "string"
+        },
+        "vendor": {
+          "description": "Vendor of the server",
+          "type": "string"
+        }
+      },
+      "title": "chassis",
+      "type": "object"
+    },
+    "cpuCapabilities": {
+      "properties": {
+        "cpufreq": {
+          "$ref": "#/$defs/cpuFreq"
+        },
+        "ht": {
+          "type": "string"
+        },
+        "vmx": {
+          "type": "boolean"
+        },
+        "x86-64": {
+          "type": "string"
+        }
+      },
+      "title": "cpuCapabilities",
+      "type": "object"
+    },
+    "cpuFreq": {
+      "oneOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "boolean"
+        }
+      ],
+      "title": "cpuFreq"
+    },
+    "cpuSettings": {
+      "properties": {
+        "cores": {
+          "type": "string"
+        },
+        "enabledcores": {
+          "type": "string"
+        },
+        "threads": {
+          "type": "string"
+        }
+      },
+      "title": "cpuSettings",
+      "type": "object"
+    },
+    "disk": {
+      "properties": {
+        "description": {
+          "type": "string"
+        },
+        "id": {
+          "description": "ID of the disk",
+          "type": "string"
+        },
+        "product": {
+          "type": "string"
+        },
+        "serial_number": {
+          "description": "Serial number of the server",
+          "type": "string"
+        },
+        "size": {
+          "type": "string"
+        },
+        "smartctl": {
+          "$ref": "#/$defs/smartctl"
+        },
+        "vendor": {
+          "description": "Vendor of the server",
+          "type": "string"
+        }
+      },
+      "title": "disk"
+    },
+    "firmware": {
+      "properties": {
+        "date": {
+          "format": "date",
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "vendor": {
+          "description": "Vendor of the server",
+          "type": "string"
+        },
+        "version": {
+          "type": "string"
+        }
+      },
+      "title": "firmware",
+      "type": "object"
+    },
+    "hardwareCpu": {
+      "properties": {
+        "capabilities": {
+          "$ref": "#/$defs/cpuCapabilities"
+        },
+        "description": {
+          "type": "string"
+        },
+        "hz": {
+          "type": "string"
+        },
+        "serial_number": {
+          "description": "Serial number of the server",
+          "type": "string"
+        },
+        "settings": {
+          "$ref": "#/$defs/cpuSettings"
+        },
+        "slot": {
+          "type": "string"
+        },
+        "vendor": {
+          "description": "Vendor of the server",
+          "type": "string"
+        }
+      },
+      "title": "hardwareCpu"
+    },
+    "hardwareIpmi": {
+      "properties": {
+        "defgateway": {
+          "format": "ipv4",
+          "type": "string"
+        },
+        "firmware": {
+          "type": "string"
+        },
+        "ipaddress": {
+          "format": "ipv4",
+          "type": "string"
+        },
+        "ipsource": {
+          "type": "string"
+        },
+        "macaddress": {
+          "description": "Represents a MAC Address in the standard colon delimited format. Eg. `01:23:45:67:89:0A`",
+          "pattern": "([0-9A-Fa-f]{2}[:-]){5}([0-9A-Fa-f]{2})|([0-9a-fA-F]{4}\\.[0-9a-fA-F]{4}\\.[0-9a-fA-F]{4})$",
+          "type": "string"
+        },
+        "subnetmask": {
+          "format": "ipv4",
+          "type": "string"
+        },
+        "vendor": {
+          "description": "Vendor of the server",
+          "type": "string"
+        }
+      },
+      "title": "hardwareIpmi",
+      "type": "object"
+    },
+    "hardwarePort": {
+      "properties": {
+        "auto_negotiation": {
+          "$ref": "#/$defs/autoNegotiation"
+        },
+        "description": {
+          "type": "string"
+        }
+      },
+      "title": "hardwarePort",
+      "type": "object"
+    },
+    "linkSpeeds": {
+      "properties": {
+        "1000bt-fd": {
+          "type": "string"
+        },
+        "100bt": {
+          "type": "string"
+        },
+        "100bt-fd": {
+          "type": "string"
+        },
+        "10bt": {
+          "type": "string"
+        },
+        "10bt-fd": {
+          "type": "string"
+        }
+      },
+      "title": "linkSpeeds",
+      "type": "object"
+    },
+    "lldp": {
+      "properties": {
+        "chassis": {
+          "$ref": "#/$defs/lldpChassis"
+        },
+        "port": {
+          "$ref": "#/$defs/hardwarePort"
+        },
+        "vlan": {
+          "$ref": "#/$defs/vlan"
+        }
+      },
+      "title": "lldp",
+      "type": "object"
+    },
+    "lldpChassis": {
+      "properties": {
+        "description": {
+          "type": "string"
+        },
+        "mac_address": {
+          "description": "Represents a MAC Address in the standard colon delimited format. Eg. `01:23:45:67:89:0A`",
+          "pattern": "([0-9A-Fa-f]{2}[:-]){5}([0-9A-Fa-f]{2})|([0-9a-fA-F]{4}\\.[0-9a-fA-F]{4}\\.[0-9a-fA-F]{4})$",
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        }
+      },
+      "title": "lldpChassis",
+      "type": "object"
+    },
+    "memoryBank": {
+      "properties": {
+        "description": {
+          "type": "string"
+        },
+        "id": {
+          "description": "ID of the memory",
+          "type": "string"
+        },
+        "clock_hz": {
+          "type": "string"
+        },
+        "serial_number": {
+          "description": "Serial number of the server",
+          "type": "string"
+        },
+        "size_bytes": {
+          "type": "string"
+        }
+      },
+      "title": "memoryBank",
+      "type": "object"
+    },
+    "motherboard": {
+      "properties": {
+        "product": {
+          "type": "string"
+        },
+        "serial": {
+          "description": "Serial number of the server",
+          "type": "string"
+        },
+        "vendor": {
+          "description": "Vendor of the server",
+          "type": "string"
+        }
+      },
+      "title": "motherboard",
+      "type": "object"
+    },
+    "network": {
+      "properties": {
+        "capabilities": {
+          "$ref": "#/$defs/networkCapabilities"
+        },
+        "lldp": {
+          "$ref": "#/$defs/lldp"
+        },
+        "logical_name": {
+          "type": "string"
+        },
+        "mac_address": {
+          "description": "Represents a MAC Address in the standard colon delimited format. Eg. `01:23:45:67:89:0A`",
+          "pattern": "([0-9A-Fa-f]{2}[:-]){5}([0-9A-Fa-f]{2})|([0-9a-fA-F]{4}\\.[0-9a-fA-F]{4}\\.[0-9a-fA-F]{4})$",
+          "type": "string"
+        },
+        "product": {
+          "type": "string"
+        },
+        "settings": {
+          "$ref": "#/$defs/networkSettings"
+        },
+        "vendor": {
+          "description": "Vendor of the server",
+          "type": "string"
+        }
+      },
+      "title": "network"
+    },
+    "networkCapabilities": {
+      "properties": {
+        "autonegotiation": {
+          "type": "string"
+        },
+        "bus_master": {
+          "type": "string"
+        },
+        "cap_list": {
+          "type": "string"
+        },
+        "ethernet": {
+          "type": "string"
+        },
+        "link_speeds": {
+          "$ref": "#/$defs/linkSpeeds"
+        },
+        "msi": {
+          "type": "string"
+        },
+        "msix": {
+          "type": "string"
+        },
+        "pciexpress": {
+          "type": "string"
+        },
+        "physical": {
+          "type": "string"
+        },
+        "pm": {
+          "type": "string"
+        },
+        "tp": {
+          "type": "string"
+        }
+      },
+      "title": "networkCapabilities",
+      "type": "object"
+    },
+    "networkSettings": {
+      "properties": {
+        "autonegotiation": {
+          "enum": [
+            "on",
+            "off"
+          ],
+          "type": "string"
+        },
+        "broadcast": {
+          "enum": [
+            "yes",
+            "no"
+          ],
+          "type": "string"
+        },
+        "driver": {
+          "type": "string"
+        },
+        "driverversion": {
+          "type": "string"
+        },
+        "duplex": {
+          "type": "string"
+        },
+        "firmware": {
+          "type": "string"
+        },
+        "ip": {
+          "format": "ipv4",
+          "type": "string"
+        },
+        "latency": {
+          "type": "string"
+        },
+        "link": {
+          "enum": [
+            "yes",
+            "no"
+          ],
+          "type": "string"
+        },
+        "multicast": {
+          "enum": [
+            "yes",
+            "no"
+          ],
+          "type": "string"
+        },
+        "port": {
+          "type": "string"
+        },
+        "speed": {
+          "type": "string"
+        }
+      },
+      "title": "networkSettings",
+      "type": "object"
+    },
+    "result": {
+      "description": "Hardware info e.g. chassis, cpu, memory and etc.",
+      "properties": {
+        "chassis": {
+          "$ref": "#/$defs/chassis"
+        },
+        "cpu": {
+          "items": {
+            "$ref": "#/$defs/hardwareCpu"
+          },
+          "type": "array"
+        },
+        "disks": {
+          "items": {
+            "$ref": "#/$defs/disk"
+          },
+          "minItems": 1,
+          "type": "array"
+        },
+        "ipmi": {
+          "$ref": "#/$defs/hardwareIpmi"
+        },
+        "memory": {
+          "items": {
+            "$ref": "#/$defs/memoryBank"
+          },
+          "minItems": 1,
+          "type": "array"
+        },
+        "network": {
+          "items": {
+            "$ref": "#/$defs/network"
+          },
+          "title": "network",
+          "type": "array"
+        }
+      },
+      "title": "result"
+    },
+    "smartctl": {
+      "oneOf": [
+        {
+          "$ref": "#/$defs/smartctl"
+        },
+        {
+          "type": "boolean"
+        }
+      ],
+      "title": "smartctl"
+    },
+    "vlan": {
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "label": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        }
+      },
+      "title": "vlan",
+      "type": "object"
+    }
+  }
+}

@@ -1,0 +1,604 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/leaseweb/main/json-schema/leaseweb-get-server-list-result-schema.json",
+  "title": "getServerListResult",
+  "x-generated": "2026-10-13",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/leaseweb-dedicatedserver-openapi.yml#/components/schemas/getServerListResult",
+  "properties": {
+    "_metadata": {
+      "$ref": "#/$defs/_metadata"
+    },
+    "servers": {
+      "description": "An array of servers",
+      "items": {
+        "$ref": "#/$defs/server"
+      },
+      "type": "array"
+    }
+  },
+  "type": "object",
+  "$defs": {
+    "_metadata": {
+      "description": "Metadata about the collection",
+      "properties": {
+        "totalCount": {
+          "description": "Total amount of elements in this collection",
+          "minimum": 0,
+          "type": "integer"
+        },
+        "offset": {
+          "default": 0,
+          "description": "The offset used to generate this response",
+          "minimum": 0,
+          "type": "integer"
+        },
+        "limit": {
+          "default": 5,
+          "description": "The limit used to generate this response",
+          "minimum": 0,
+          "type": "integer"
+        }
+      },
+      "required": [
+        "limit",
+        "offset",
+        "totalCount"
+      ],
+      "title": "metadata",
+      "type": "object"
+    },
+    "contract": {
+      "description": "Contract information",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "customerId": {
+          "type": "string"
+        },
+        "salesOrgId": {
+          "type": "string"
+        },
+        "deliveryStatus": {
+          "type": "string"
+        },
+        "reference": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "privateNetworkPortSpeed": {
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "subnets": {
+          "items": {
+            "$ref": "#/$defs/subnet"
+          },
+          "type": "array"
+        },
+        "status": {
+          "type": "string"
+        },
+        "startsAt": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "endsAt": {
+          "format": "date-time",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "sla": {
+          "description": "Service Level Agreement",
+          "type": "string"
+        },
+        "contractTerm": {
+          "type": "integer"
+        },
+        "contractType": {
+          "enum": [
+            "NORMAL"
+          ],
+          "type": "string"
+        },
+        "billingCycle": {
+          "description": "Applied billing cycle",
+          "type": "integer"
+        },
+        "billingFrequency": {
+          "description": "The interval for which billing will be done",
+          "type": "string"
+        },
+        "pricePerFrequency": {
+          "description": "Price per billing frequency",
+          "type": "string"
+        },
+        "currency": {
+          "type": "string"
+        },
+        "networkTraffic": {
+          "$ref": "#/$defs/networkTraffic"
+        },
+        "softwareLicenses": {
+          "items": {
+            "$ref": "#/$defs/softwareLicense"
+          },
+          "type": "array"
+        },
+        "managedServices": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "aggregationPackId": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "ipv4Quantity": {
+          "type": [
+            "integer",
+            "null"
+          ]
+        }
+      },
+      "type": "object"
+    },
+    "cpu": {
+      "description": "CPU of the server",
+      "properties": {
+        "quantity": {
+          "description": "The quantity of CPUs in the server",
+          "type": "integer"
+        },
+        "type": {
+          "description": "The type of CPUs in the server",
+          "type": "string"
+        }
+      },
+      "title": "cpu",
+      "type": "object"
+    },
+    "featureAvailability": {
+      "description": "List of features that are available for this device",
+      "properties": {
+        "automation": {
+          "type": "boolean"
+        },
+        "powerCycle": {
+          "type": "boolean"
+        },
+        "ipmiReboot": {
+          "type": "boolean"
+        },
+        "privateNetwork": {
+          "type": "boolean"
+        },
+        "remoteManagement": {
+          "type": "boolean"
+        }
+      },
+      "title": "featureAvailability",
+      "type": "object"
+    },
+    "hdd": {
+      "description": "A single object of the hard disk drive",
+      "properties": {
+        "id": {
+          "description": "Id of the hard disk drive",
+          "type": "string"
+        },
+        "amount": {
+          "description": "The total amount of hard disk drives",
+          "type": "integer"
+        },
+        "size": {
+          "description": "The size number of the hard disk drive",
+          "type": "number"
+        },
+        "type": {
+          "description": "The type of the hard disk drive",
+          "type": "string"
+        },
+        "unit": {
+          "description": "The unit of the hard disk drive",
+          "type": "string"
+        },
+        "performanceType": {
+          "description": "Hard disk drive performance type",
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "title": "hdd",
+      "type": "object"
+    },
+    "linkSpeed": {
+      "description": "The port speed in Mbps",
+      "enum": [
+        100,
+        1000,
+        10000,
+        25000,
+        40000,
+        100000
+      ],
+      "type": "integer"
+    },
+    "location": {
+      "description": "Device location",
+      "properties": {
+        "site": {
+          "type": "string"
+        },
+        "suite": {
+          "type": "string"
+        },
+        "rack": {
+          "type": "string"
+        },
+        "unit": {
+          "type": "string"
+        }
+      },
+      "title": "location",
+      "type": "object"
+    },
+    "networkInterface": {
+      "properties": {
+        "mac": {
+          "description": "Represents a MAC Address in the standard colon delimited format. Eg. `01:23:45:67:89:0A`",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "ip": {
+          "format": "ipv4",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "nullRouted": {
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "gateway": {
+          "format": "ipv4",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "ports": {
+          "items": {
+            "$ref": "#/$defs/port"
+          },
+          "type": "array"
+        },
+        "locationId": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "title": "networkInterface",
+      "type": "object"
+    },
+    "networkInterfaces": {
+      "description": "Network interface information grouped by type",
+      "properties": {
+        "public": {
+          "$ref": "#/$defs/networkInterface"
+        },
+        "internal": {
+          "$ref": "#/$defs/networkInterface"
+        },
+        "remoteManagement": {
+          "$ref": "#/$defs/networkInterface"
+        }
+      },
+      "title": "networkInterfaces",
+      "type": "object"
+    },
+    "networkTraffic": {
+      "description": "Network traffic associated to the server",
+      "properties": {
+        "type": {
+          "description": "Type of network traffic",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "connectivityType": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "trafficType": {
+          "description": "Type of traffic",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "datatrafficUnit": {
+          "description": "Unit in which the data traffic limit is represented",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "datatrafficLimit": {
+          "description": "Data traffic limit",
+          "type": [
+            "number",
+            "null"
+          ]
+        }
+      },
+      "title": "networkTraffic",
+      "type": "object"
+    },
+    "networkType": {
+      "description": "Type of network",
+      "enum": [
+        "INTERNAL",
+        "PUBLIC",
+        "REMOTE_MANAGEMENT"
+      ],
+      "type": "string"
+    },
+    "pciCard": {
+      "description": "A single object of the PCI card",
+      "properties": {
+        "description": {
+          "description": "The description of the PCI card of the server",
+          "type": "string"
+        }
+      },
+      "title": "pciCard",
+      "type": "object"
+    },
+    "port": {
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "port": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "privateNetwork": {
+      "properties": {
+        "id": {
+          "description": "Private network id",
+          "type": "string"
+        },
+        "linkSpeed": {
+          "$ref": "#/$defs/linkSpeed"
+        },
+        "status": {
+          "description": "Configuration status",
+          "type": "string"
+        },
+        "dhcp": {
+          "description": "dhcp status",
+          "type": "string"
+        },
+        "subnet": {
+          "type": "string"
+        },
+        "vlanId": {
+          "description": "VLAN id",
+          "type": "string"
+        }
+      },
+      "title": "privateNetwork",
+      "type": "object"
+    },
+    "rack": {
+      "description": "Rack details where this network equipment is located at",
+      "properties": {
+        "id": {
+          "description": "Rack id",
+          "type": "string"
+        },
+        "capacity": {
+          "description": "Rack capacity",
+          "type": "string"
+        },
+        "type": {
+          "$ref": "#/$defs/rackType"
+        }
+      },
+      "title": "rack",
+      "type": "object"
+    },
+    "rackType": {
+      "description": "rack type",
+      "enum": [
+        "SHARED",
+        "DEDICATED",
+        "SHARED_10GE",
+        "SHARED_40GE",
+        "SHARED_100GE",
+        "SHARED_200GE",
+        "SHARED_400GE"
+      ],
+      "title": "rackType",
+      "type": "string"
+    },
+    "ram": {
+      "description": "RAM of the server",
+      "properties": {
+        "size": {
+          "description": "The total RAM size of the server",
+          "type": "integer"
+        },
+        "unit": {
+          "description": "RAM type of the server",
+          "type": "string"
+        }
+      },
+      "title": "ram",
+      "type": "object"
+    },
+    "server": {
+      "properties": {
+        "assetId": {
+          "description": "The Asset Id of the server",
+          "type": "string"
+        },
+        "contract": {
+          "$ref": "#/$defs/contract"
+        },
+        "featureAvailability": {
+          "$ref": "#/$defs/featureAvailability"
+        },
+        "id": {
+          "description": "Id of the server",
+          "type": "string"
+        },
+        "isPrivateNetworkEnabled": {
+          "description": "Whether private network enabled or not",
+          "type": "boolean"
+        },
+        "isPrivateNetworkCapable": {
+          "description": "Whether capable of private network or not",
+          "type": "boolean"
+        },
+        "isRedundantPrivateNetworkCapable": {
+          "description": "Whether capable of redundant private network or not",
+          "type": "boolean"
+        },
+        "location": {
+          "$ref": "#/$defs/location"
+        },
+        "networkInterfaces": {
+          "$ref": "#/$defs/networkInterfaces"
+        },
+        "powerPorts": {
+          "description": "List of ports that can be used to manage power of the server",
+          "items": {
+            "$ref": "#/$defs/port"
+          },
+          "type": "array"
+        },
+        "privateNetworks": {
+          "description": "An array of private networks",
+          "items": {
+            "$ref": "#/$defs/privateNetwork"
+          },
+          "type": "array"
+        },
+        "rack": {
+          "$ref": "#/$defs/rack"
+        },
+        "serialNumber": {
+          "description": "Serial number of server",
+          "type": "string"
+        },
+        "specs": {
+          "$ref": "#/$defs/serverSpecs"
+        }
+      },
+      "type": "object"
+    },
+    "serverSpecs": {
+      "description": "Hardware information of the server",
+      "properties": {
+        "brand": {
+          "description": "The brand description of the server",
+          "type": "string"
+        },
+        "chassis": {
+          "description": "The chassis description of the server",
+          "type": "string"
+        },
+        "cpu": {
+          "$ref": "#/$defs/cpu"
+        },
+        "hardwareRaidCapable": {
+          "description": "Hardware RAID capability of the server",
+          "type": "boolean"
+        },
+        "hdd": {
+          "description": "List of hard disk drives of the server",
+          "items": {
+            "$ref": "#/$defs/hdd"
+          },
+          "type": "array"
+        },
+        "pciCards": {
+          "description": "List of PCI cards of the server",
+          "items": {
+            "$ref": "#/$defs/pciCard"
+          },
+          "type": "array"
+        },
+        "ram": {
+          "$ref": "#/$defs/ram"
+        }
+      },
+      "title": "serverSpecs",
+      "type": "object"
+    },
+    "softwareLicense": {
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "price": {
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "currency": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string"
+        }
+      },
+      "title": "softwareLicense",
+      "type": "object"
+    },
+    "subnet": {
+      "properties": {
+        "quantity": {
+          "type": "integer"
+        },
+        "subnetSize": {
+          "type": "string"
+        },
+        "networkType": {
+          "$ref": "#/$defs/networkType"
+        }
+      },
+      "title": "subnet",
+      "type": "object"
+    }
+  }
+}

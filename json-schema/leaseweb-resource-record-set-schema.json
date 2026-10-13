@@ -1,0 +1,70 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/leaseweb/main/json-schema/leaseweb-resource-record-set-schema.json",
+  "title": "resourceRecordSet",
+  "x-generated": "2026-10-13",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/leaseweb-dns-openapi.yml#/components/schemas/resourceRecordSet",
+  "properties": {
+    "name": {
+      "description": "Name of the resource record set",
+      "type": "string"
+    },
+    "type": {
+      "$ref": "#/$defs/resourceRecordSetType"
+    },
+    "content": {
+      "description": "Array of resource record set content entries",
+      "items": {
+        "description": "Content entries for the resource record set",
+        "type": "string"
+      },
+      "title": "resourceRecordSetContent",
+      "type": "array"
+    },
+    "ttl": {
+      "$ref": "#/$defs/ttl"
+    }
+  },
+  "required": [
+    "content",
+    "name",
+    "ttl",
+    "type"
+  ],
+  "type": "object",
+  "$defs": {
+    "resourceRecordSetType": {
+      "description": "Type of the resource record set",
+      "enum": [
+        "A",
+        "AAAA",
+        "CAA",
+        "CNAME",
+        "MX",
+        "NS",
+        "SRV",
+        "TXT",
+        "SOA",
+        "DS",
+        "TLSA"
+      ],
+      "type": "string"
+    },
+    "ttl": {
+      "description": "Time to live of the resource record set",
+      "enum": [
+        60,
+        300,
+        1800,
+        3600,
+        14400,
+        28800,
+        43200,
+        86400
+      ],
+      "type": "integer"
+    }
+  }
+}

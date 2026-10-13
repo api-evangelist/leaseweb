@@ -1,0 +1,313 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/leaseweb/main/json-schema/leaseweb-vps-schema.json",
+  "title": "vps",
+  "x-generated": "2026-10-13",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/leaseweb-ordering-openapi.yml#/components/schemas/vps",
+  "allOf": [
+    {
+      "$ref": "#/$defs/vpsDetail"
+    },
+    {
+      "$ref": "#/$defs/productPrice"
+    },
+    {
+      "$ref": "#/$defs/vpsConfigurationOptions"
+    }
+  ],
+  "$defs": {
+    "billingCycleItem": {
+      "properties": {
+        "key": {
+          "description": "Billing cycle key",
+          "enum": [
+            "1_MONTH",
+            "3_MONTHS",
+            "6_MONTHS",
+            "1_YEAR",
+            "2_YEARS",
+            "3_YEARS"
+          ],
+          "type": "string"
+        },
+        "description": {
+          "description": "Billing cycle description",
+          "type": "string"
+        },
+        "discountText": {
+          "description": "Discount in percentage",
+          "type": "string"
+        },
+        "discountValue": {
+          "description": "Discount value",
+          "type": "number"
+        },
+        "total": {
+          "description": "Total price with discount",
+          "type": "number"
+        }
+      },
+      "title": "billingCycleItem",
+      "type": "object"
+    },
+    "configurationOptions": {
+      "description": "Available configuration options for the VPS",
+      "properties": {
+        "diskUpgrade": {
+          "description": "Available disk upgrade options. Note: This will add additional storage on top of the base NVMe Storage included with your package",
+          "items": {
+            "$ref": "#/$defs/vpsConfigurationOption"
+          },
+          "type": "array"
+        },
+        "operatingSystem": {
+          "description": "Available operating system options",
+          "items": {
+            "$ref": "#/$defs/vpsConfigurationOption"
+          },
+          "type": "array"
+        },
+        "controlPanel": {
+          "description": "Available control panel options",
+          "items": {
+            "$ref": "#/$defs/vpsConfigurationOption"
+          },
+          "type": "array"
+        },
+        "serviceLevelAgreement": {
+          "description": "Available SLA options",
+          "items": {
+            "$ref": "#/$defs/vpsConfigurationOption"
+          },
+          "type": "array"
+        }
+      },
+      "title": "configurationOptions",
+      "type": "object"
+    },
+    "contractTermItem": {
+      "properties": {
+        "key": {
+          "description": "Contract term key",
+          "enum": [
+            "1_MONTH",
+            "3_MONTHS",
+            "6_MONTHS",
+            "1_YEAR",
+            "2_YEARS",
+            "3_YEARS"
+          ],
+          "type": "string"
+        },
+        "description": {
+          "description": "Contract term description",
+          "type": "string"
+        },
+        "discountText": {
+          "description": "Discount in percentage",
+          "type": "string"
+        },
+        "discountValue": {
+          "description": "Discount value",
+          "type": "number"
+        },
+        "total": {
+          "description": "Total price with discount",
+          "type": "number"
+        }
+      },
+      "title": "contractTermItem",
+      "type": "object"
+    },
+    "discountItems": {
+      "properties": {
+        "description": {
+          "description": "Discount description",
+          "type": "string"
+        },
+        "value": {
+          "description": "Discount value",
+          "type": "number"
+        }
+      },
+      "title": "discountItems",
+      "type": "object"
+    },
+    "productDiscounts": {
+      "description": "Discounts details",
+      "properties": {
+        "total": {
+          "description": "Total discounts",
+          "type": "number"
+        },
+        "details": {
+          "description": "Discount details",
+          "items": {
+            "$ref": "#/$defs/discountItems"
+          },
+          "type": "array"
+        }
+      },
+      "title": "productDiscounts",
+      "type": "object"
+    },
+    "productPrice": {
+      "properties": {
+        "price": {
+          "$ref": "#/$defs/productPrice_price"
+        }
+      }
+    },
+    "productPrice_price": {
+      "description": "Price details of the product",
+      "properties": {
+        "currency": {
+          "description": "Price's currency",
+          "type": "string"
+        },
+        "basePrice": {
+          "description": "Initial price",
+          "type": "number"
+        },
+        "tax": {
+          "description": "Tax",
+          "type": "number"
+        },
+        "setupFee": {
+          "description": "Setup Fee",
+          "type": "number"
+        },
+        "fee": {
+          "description": "Fee amount",
+          "type": "number"
+        },
+        "discounts": {
+          "$ref": "#/$defs/productDiscounts"
+        },
+        "total": {
+          "description": "Final price",
+          "type": "number"
+        },
+        "contractTerm": {
+          "description": "Selected contract term",
+          "enum": [
+            "1 month",
+            "3 months",
+            "6 months",
+            "1 year",
+            "2 years",
+            "3 years"
+          ],
+          "type": "string"
+        },
+        "contractTerms": {
+          "description": "Available contract terms",
+          "items": {
+            "$ref": "#/$defs/contractTermItem"
+          },
+          "title": "contractTerms",
+          "type": "array"
+        },
+        "billingCycle": {
+          "description": "Selected billing cycle",
+          "enum": [
+            "1 month",
+            "3 months",
+            "6 months",
+            "1 year",
+            "2 years",
+            "3 years"
+          ],
+          "type": "string"
+        },
+        "billingCycles": {
+          "description": "Available billing cycles",
+          "items": {
+            "$ref": "#/$defs/billingCycleItem"
+          },
+          "title": "billingCycles",
+          "type": "array"
+        },
+        "details": {
+          "additionalProperties": {
+            "additionalProperties": {
+              "type": "string"
+            },
+            "type": "object"
+          },
+          "description": "Per-component price breakdown grouped by section (e.g. Server, Connectivity, Software, Services, Discounts). Each section maps a line description to its formatted price (e.g. \"incl.\" or \"€ 513.00\").",
+          "title": "priceDetails",
+          "type": "object"
+        }
+      },
+      "type": "object"
+    },
+    "vpsConfigurationOption": {
+      "properties": {
+        "name": {
+          "description": "Option name",
+          "type": "string"
+        },
+        "selected": {
+          "description": "Whether this option is selected",
+          "type": "boolean"
+        },
+        "price": {
+          "description": "Price for this option",
+          "type": "number"
+        },
+        "currency": {
+          "description": "Currency for the price",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "vpsConfigurationOptions": {
+      "properties": {
+        "configurationOptions": {
+          "$ref": "#/$defs/configurationOptions"
+        }
+      },
+      "type": "object"
+    },
+    "vpsDetail": {
+      "properties": {
+        "id": {
+          "description": "Id of the VPS",
+          "type": "string"
+        },
+        "name": {
+          "description": "Name of the VPS",
+          "type": "string"
+        },
+        "vCpu": {
+          "description": "Number of virtual CPUs",
+          "type": "string"
+        },
+        "vRam": {
+          "description": "Virtual RAM in GB",
+          "type": "string"
+        },
+        "nvmeStorage": {
+          "description": "Included NVMe storage",
+          "type": "string"
+        },
+        "traffic": {
+          "description": "Traffic allowance",
+          "type": "string"
+        },
+        "location": {
+          "description": "All locations where the VPS is available, regardless of the API key's entity",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    }
+  }
+}

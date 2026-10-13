@@ -1,0 +1,79 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/leaseweb/main/json-schema/leaseweb-order-vps-opts-schema.json",
+  "title": "orderVpsOpts",
+  "x-generated": "2026-10-13",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/leaseweb-ordering-openapi.yml#/components/schemas/orderVpsOpts",
+  "properties": {
+    "location": {
+      "description": "The datacenter location",
+      "type": "string"
+    },
+    "diskUpgrade": {
+      "description": "Disk upgrade option",
+      "type": "string"
+    },
+    "operatingSystem": {
+      "description": "Operating system option. Matched case-insensitively and ignoring the licensing/core suffix, so \"windows server 2022 datacenter\" matches \"Windows Server 2022 Datacenter (2-Cores)\".",
+      "type": "string"
+    },
+    "controlPanel": {
+      "description": "Control panel option",
+      "type": "string"
+    },
+    "serviceLevelAgreement": {
+      "$ref": "#/$defs/serviceLevelAgreement"
+    },
+    "contractTerm": {
+      "$ref": "#/$defs/contractTerm"
+    },
+    "billingCycle": {
+      "$ref": "#/$defs/billingCycle"
+    }
+  },
+  "required": [
+    "location"
+  ],
+  "type": "object",
+  "$defs": {
+    "billingCycle": {
+      "default": "1_MONTH",
+      "description": "Billing cycle period",
+      "enum": [
+        "1_MONTH",
+        "3_MONTHS",
+        "6_MONTHS",
+        "1_YEAR",
+        "2_YEARS",
+        "3_YEARS"
+      ],
+      "type": "string"
+    },
+    "contractTerm": {
+      "default": "1_YEAR",
+      "description": "Order contract term",
+      "enum": [
+        "1_MONTH",
+        "3_MONTHS",
+        "6_MONTHS",
+        "1_YEAR",
+        "2_YEARS",
+        "3_YEARS"
+      ],
+      "type": "string"
+    },
+    "serviceLevelAgreement": {
+      "description": "Service level agreement option",
+      "enum": [
+        "Basic",
+        "Bronze",
+        "Silver",
+        "Gold",
+        "Platinum"
+      ],
+      "type": "string"
+    }
+  }
+}

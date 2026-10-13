@@ -1,0 +1,109 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/leaseweb/main/json-schema/leaseweb-get-query-metrics-result-schema.json",
+  "title": "getQueryMetricsResult",
+  "x-generated": "2026-10-13",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/leaseweb-dns-openapi.yml#/components/schemas/getQueryMetricsResult",
+  "properties": {
+    "dnsQuery": {
+      "$ref": "#/$defs/dnsQuery"
+    },
+    "_metadata": {
+      "$ref": "#/$defs/metricsMetaData"
+    }
+  },
+  "required": [
+    "_metadata",
+    "dnsQuery"
+  ],
+  "type": "object",
+  "$defs": {
+    "aggregation": {
+      "enum": [
+        "SUM"
+      ],
+      "type": "string"
+    },
+    "dnsQuery": {
+      "properties": {
+        "unit": {
+          "description": "The metric unit that's used",
+          "type": "string"
+        },
+        "values": {
+          "items": {
+            "$ref": "#/$defs/metricValue"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "unit",
+        "values"
+      ],
+      "title": "dnsQuery",
+      "type": "object"
+    },
+    "granularity": {
+      "enum": [
+        "5MIN",
+        "HOUR",
+        "DAY",
+        "WEEK",
+        "MONTH"
+      ],
+      "type": "string"
+    },
+    "metricValue": {
+      "description": "An array of metrics grouped by granularity",
+      "properties": {
+        "timestamp": {
+          "description": "The time of the current metric",
+          "format": "date-time",
+          "type": "string"
+        },
+        "value": {
+          "description": "The value of the current metric",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "timestamp",
+        "value"
+      ],
+      "title": "metricValue",
+      "type": "object"
+    },
+    "metricsMetaData": {
+      "description": "Metadata about the collection",
+      "properties": {
+        "aggregation": {
+          "$ref": "#/$defs/aggregation"
+        },
+        "from": {
+          "description": "Start of date interval in ISO-8601 format",
+          "format": "date-time",
+          "type": "string"
+        },
+        "granularity": {
+          "$ref": "#/$defs/granularity"
+        },
+        "to": {
+          "description": "End of date interval in ISO-8601 format",
+          "format": "date-time",
+          "type": "string"
+        }
+      },
+      "required": [
+        "aggregation",
+        "from",
+        "granularity",
+        "to"
+      ],
+      "title": "metricsMetaData",
+      "type": "object"
+    }
+  }
+}

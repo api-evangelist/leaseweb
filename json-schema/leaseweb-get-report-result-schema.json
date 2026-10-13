@@ -1,0 +1,164 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/leaseweb/main/json-schema/leaseweb-get-report-result-schema.json",
+  "title": "getReportResult",
+  "x-generated": "2026-10-13",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/leaseweb-abuse-openapi.yml#/components/schemas/getReportResult",
+  "properties": {
+    "id": {
+      "description": "The ID of the abuse report.",
+      "type": "string"
+    },
+    "subject": {
+      "description": "The subject of the report.",
+      "type": "string"
+    },
+    "status": {
+      "description": "The current status of the report.",
+      "enum": [
+        "OPEN",
+        "WAITING",
+        "CLOSED"
+      ],
+      "type": "string"
+    },
+    "abuseType": {
+      "description": "The abuse type of the report.",
+      "enum": [
+        "CONTENT",
+        "MALLWARE",
+        "OTHER"
+      ],
+      "type": "string"
+    },
+    "reopened": {
+      "description": "When the report status is open, this indicates if the report was reopened.",
+      "type": "boolean"
+    },
+    "reportedAt": {
+      "description": "The date and time the report was reported at.",
+      "type": "string"
+    },
+    "updatedAt": {
+      "description": "When the report was updated last.",
+      "type": "string"
+    },
+    "notifier": {
+      "description": "The email address of the notifier who reported the abuse.",
+      "type": "string"
+    },
+    "customerId": {
+      "description": "The customer ID of your account.",
+      "type": "string"
+    },
+    "legalEntityId": {
+      "description": "The legal entity ID of the customer account.",
+      "type": "string"
+    },
+    "body": {
+      "description": "The report body content.",
+      "type": "string"
+    },
+    "deadline": {
+      "description": "The Deadline before when the report needs to be resolved.",
+      "type": "string"
+    },
+    "detectedIpAddresses": {
+      "description": "The IP-addresses detected in the report body.",
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "detectedDomainNames": {
+      "description": "The domains detected in the report body.",
+      "items": {
+        "$ref": "#/$defs/detectedDomainNameList"
+      },
+      "type": "array"
+    },
+    "attachments": {
+      "description": "All the files attached to the report.",
+      "items": {
+        "$ref": "#/$defs/attachment"
+      },
+      "type": "array"
+    },
+    "totalMessagesCount": {
+      "description": "Total amount of messages in the report.",
+      "type": "integer"
+    },
+    "latestMessages": {
+      "description": "Array of the last 5 messages in the report.",
+      "items": {
+        "$ref": "#/$defs/message"
+      },
+      "type": "array"
+    }
+  },
+  "type": "object",
+  "$defs": {
+    "attachment": {
+      "properties": {
+        "id": {
+          "description": "The file ID of the attachment.",
+          "type": "string"
+        },
+        "mimeType": {
+          "description": "The MIME type of the attachment.",
+          "type": "string"
+        },
+        "filename": {
+          "description": "The filename of the attachment.",
+          "type": "string"
+        }
+      },
+      "title": "attachment",
+      "type": "object"
+    },
+    "detectedDomainNameList": {
+      "properties": {
+        "name": {
+          "description": "The domain.",
+          "type": "string"
+        },
+        "ipAddresses": {
+          "description": "The IP-addresses the domain resolves to.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "title": "detectedDomainNameList",
+      "type": "object"
+    },
+    "message": {
+      "properties": {
+        "postedBy": {
+          "description": "A string to indicating if the message was posted by the customer or the abuse agent.",
+          "enum": [
+            "CUSTOMER",
+            "ABUSE_AGENT"
+          ],
+          "type": "string"
+        },
+        "postedAt": {
+          "description": "The timestamp when the message was posted.",
+          "type": "string"
+        },
+        "body": {
+          "description": "The posted message.",
+          "type": "string"
+        },
+        "attachment": {
+          "$ref": "#/$defs/attachment"
+        }
+      },
+      "title": "message",
+      "type": "object"
+    }
+  }
+}

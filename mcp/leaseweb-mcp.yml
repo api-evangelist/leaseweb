@@ -1,0 +1,223 @@
+generated: '2026-10-13'
+method: derived
+generator: derive-mcp-candidate.py
+source:
+- openapi/leaseweb-abuse-openapi.yml
+- openapi/leaseweb-aggregationpack-openapi.yml
+- openapi/leaseweb-dedicatedserver-openapi.yml
+- openapi/leaseweb-dns-openapi.yml
+- openapi/leaseweb-invoice-openapi.yml
+- openapi/leaseweb-ipmgmt-openapi.yml
+- openapi/leaseweb-networkequipment-openapi.yml
+- openapi/leaseweb-objectstorage-openapi.yml
+- openapi/leaseweb-ordering-openapi.yml
+- openapi/leaseweb-publiccloud-openapi.yml
+status: candidate
+deployment:
+  mode: none
+  auth: unknown
+  verified: probed
+note: No MCP server was found. The pre-flight posted tools/list to /mcp on www.leaseweb.com, api.leaseweb.com, blog.leaseweb.com, developer.leaseweb.com;
+  verdict absent. Candidate tools below are derived from the 232 operation(s) in the provider's own OpenAPI (40 listed); they describe what a
+  server WOULD expose, not one that exists.
+tools:
+- name: get_report_list
+  operationId: getReportList
+  method: GET
+  path: /reports
+  description: List reports
+- name: get_aggregation_pack_list
+  operationId: getAggregationPackList
+  method: GET
+  path: /aggregationPacks
+  description: List aggregation packs
+- name: get_server_list
+  operationId: getServerList
+  method: GET
+  path: /servers
+  description: List servers
+- name: get_query_metrics
+  operationId: getQueryMetrics
+  method: GET
+  path: /domains/{domainName}/metrics/dnsQuery
+  description: Show Dns Query Metrics
+- name: get_invoices
+  operationId: getInvoices
+  method: GET
+  path: /invoices
+  description: List Invoices
+- name: get_iplist
+  operationId: getIPList
+  method: GET
+  path: /ips
+  description: List IPs
+- name: get_network_equipment_list
+  operationId: getNetworkEquipmentList
+  method: GET
+  path: /networkEquipments
+  description: List network equipment
+- name: get_object_storage_list
+  operationId: getObjectStorageList
+  method: GET
+  path: /objectStorages
+  description: List all Object Storages
+- name: get_dedicated_server_list
+  operationId: getDedicatedServerList
+  method: GET
+  path: /products/dedicatedServers
+  description: List available dedicated server configurations.
+- name: get_region_list
+  operationId: getRegionList
+  method: GET
+  path: /regions
+  description: List regions
+- name: get_report
+  operationId: getReport
+  method: GET
+  path: /reports/{reportId}
+  description: Inspect a report
+- name: get_aggregation_pack
+  operationId: getAggregationPack
+  method: GET
+  path: /aggregationPacks/{aggregationPackId}
+  description: Get aggregation pack
+- name: get_server
+  operationId: getServer
+  method: GET
+  path: /servers/{serverId}
+  description: Get server
+- name: rollover_key
+  operationId: rolloverKey
+  method: POST
+  path: /domains/{domainName}/keyRollover
+  description: Key Rollover
+- name: get_invoices_export_csv
+  operationId: getInvoicesExportCsv
+  method: GET
+  path: /invoices/export/csv
+  description: Export Invoices (CSV)
+- name: inspect_ip
+  operationId: inspectIP
+  method: GET
+  path: /ips/{ip}
+  description: Inspect an IP
+- name: get_network_equipment
+  operationId: getNetworkEquipment
+  method: GET
+  path: /networkEquipments/{networkEquipmentId}
+  description: Get network equipment
+- name: get_object_storage_user_list
+  operationId: getObjectStorageUserList
+  method: GET
+  path: /objectStorages/{objectStorageId}/users
+  description: List object storage users
+- name: get_dedicated_server
+  operationId: getDedicatedServer
+  method: GET
+  path: /products/dedicatedServers/{dedicatedServerId}
+  description: Get a single dedicated server and its price.
+- name: get_instance_type_list
+  operationId: getInstanceTypeList
+  method: GET
+  path: /instanceTypes
+  description: List instance types
+- name: get_report_message_list
+  operationId: getReportMessageList
+  method: GET
+  path: /reports/{reportId}/messages
+  description: List report messages
+- name: update_reference
+  operationId: updateReference
+  method: PUT
+  path: /servers/{serverId}
+  description: Update server
+- name: delete_resource_record_sets
+  operationId: deleteResourceRecordSets
+  method: DELETE
+  path: /domains/{domainName}/resourceRecordSets
+  description: Delete all DNS records
+- name: get_invoice
+  operationId: getInvoice
+  method: GET
+  path: /invoices/{Id}
+  description: Inspect a invoice
+- name: update_ip
+  operationId: updateIP
+  method: PUT
+  path: /ips/{ip}
+  description: Update an IP
+- name: un_null_ip_route
+  operationId: unNullIpRoute
+  method: POST
+  path: /networkEquipments/{networkEquipmentId}/ips/{ip}/unnull
+  description: Remove a null route
+- name: create_object_storage_user
+  operationId: createObjectStorageUser
+  method: POST
+  path: /objectStorages/{objectStorageId}/users
+  description: Create an object storage user
+- name: order_dedicated_server
+  operationId: orderDedicatedServer
+  method: POST
+  path: /products/dedicatedServers/{dedicatedServerId}/order
+  description: Dedicated Server ordering.
+- name: get_instance_list
+  operationId: getInstanceList
+  method: GET
+  path: /instances
+  description: Get instance list
+- name: create_report_message
+  operationId: createReportMessage
+  method: POST
+  path: /reports/{reportId}/messages
+  description: Create new message
+- name: get_ip_list
+  operationId: getIpList
+  method: GET
+  path: /servers/{serverId}/ips
+  description: List IPs
+- name: get_resource_record_set_list
+  operationId: getResourceRecordSetList
+  method: GET
+  path: /domains/{domainName}/resourceRecordSets
+  description: List resource record sets
+- name: get_invoice_pdf
+  operationId: getInvoicePdf
+  method: GET
+  path: /invoices/{Id}/pdf
+  description: Get Invoice PDF
+- name: get_reverse_lookup_record_list
+  operationId: getReverseLookupRecordList
+  method: GET
+  path: /ips/{ip}/reverseLookup
+  description: List reverse lookup records for an IPv6 range
+- name: delete_object_storage_user
+  operationId: deleteObjectStorageUser
+  method: DELETE
+  path: /objectStorages/{objectStorageId}/users/{userId}
+  description: Delete an object storage user
+- name: get_vps_list
+  operationId: getVpsList
+  method: GET
+  path: /products/vps
+  description: Get a list of available VPS products and their prices.
+- name: launch_instance
+  operationId: launchInstance
+  method: POST
+  path: /instances
+  description: Launch instance
+- name: get_report_message_attachment_list
+  operationId: getReportMessageAttachmentList
+  method: GET
+  path: /reports/{reportId}/messageAttachments/{fileId}
+  description: Inspect a message attachment
+- name: get_ip
+  operationId: getIp
+  method: GET
+  path: /servers/{serverId}/ips/{ip}
+  description: Show a server IP
+- name: create_resource_record_set
+  operationId: createResourceRecordSet
+  method: POST
+  path: /domains/{domainName}/resourceRecordSets
+  description: Create a resource record set

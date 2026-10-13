@@ -1,0 +1,91 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/leaseweb/main/json-schema/leaseweb-bucket-schema.json",
+  "title": "bucket",
+  "description": "Object Storage tenant bucket.",
+  "x-generated": "2026-10-13",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/leaseweb-objectstorage-openapi.yml#/components/schemas/bucket",
+  "properties": {
+    "name": {
+      "description": "The bucket name.",
+      "type": "string"
+    },
+    "region": {
+      "description": "The bucket region.",
+      "type": "string"
+    },
+    "isVersioningEnabled": {
+      "description": "Indicates if the bucket versioning is enabled.",
+      "type": "boolean"
+    },
+    "quota": {
+      "$ref": "#/$defs/bucketQuota"
+    },
+    "objectCount": {
+      "description": "The bucket object count, null if not set.",
+      "type": [
+        "integer",
+        "null"
+      ]
+    },
+    "used": {
+      "$ref": "#/$defs/bucketUsedSpace"
+    },
+    "creationTime": {
+      "description": "The date and time the bucket was created, or null if not yet available.",
+      "format": "date-time",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "isBeingDeleted": {
+      "description": "Indicates if the bucket is currently being deleted.",
+      "type": "boolean"
+    }
+  },
+  "type": "object",
+  "$defs": {
+    "bucketQuota": {
+      "description": "The quota for the size of the bucket.",
+      "properties": {
+        "value": {
+          "description": "The value of the quota.",
+          "type": "number"
+        },
+        "unit": {
+          "description": "The unit of the quota, e.g., GB.",
+          "enum": [
+            "GB"
+          ],
+          "type": "string"
+        }
+      },
+      "title": "bucketQuota",
+      "type": [
+        "object",
+        "null"
+      ]
+    },
+    "bucketUsedSpace": {
+      "description": "The bucket used space.",
+      "properties": {
+        "value": {
+          "description": "The value of the used space.",
+          "type": "number"
+        },
+        "unit": {
+          "description": "The unit of the used space, e.g., GB.",
+          "enum": [
+            "GB"
+          ],
+          "type": "string"
+        }
+      },
+      "title": "bucketUsedSpace",
+      "type": "object"
+    }
+  }
+}

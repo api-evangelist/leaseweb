@@ -1,0 +1,107 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/leaseweb/main/json-schema/leaseweb-vps-list-schema.json",
+  "title": "vpsList",
+  "x-generated": "2026-10-13",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/leaseweb-ordering-openapi.yml#/components/schemas/vpsList",
+  "properties": {
+    "vpss": {
+      "items": {
+        "$ref": "#/$defs/vpsListItem"
+      },
+      "type": "array"
+    },
+    "_metadata": {
+      "$ref": "#/$defs/_metadata"
+    }
+  },
+  "type": "object",
+  "$defs": {
+    "_metadata": {
+      "description": "Metadata about the collection",
+      "properties": {
+        "totalCount": {
+          "description": "Total amount of elements in this collection",
+          "minimum": 0,
+          "type": "integer"
+        },
+        "offset": {
+          "default": 0,
+          "description": "The offset used to generate this response",
+          "minimum": 0,
+          "type": "integer"
+        },
+        "limit": {
+          "default": 5,
+          "description": "The limit used to generate this response",
+          "minimum": 0,
+          "type": "integer"
+        }
+      },
+      "required": [
+        "limit",
+        "offset",
+        "totalCount"
+      ],
+      "title": "metadata",
+      "type": "object"
+    },
+    "vpsListItem": {
+      "properties": {
+        "id": {
+          "description": "Id of the VPS",
+          "type": "string"
+        },
+        "name": {
+          "description": "Name of the VPS",
+          "type": "string"
+        },
+        "vCpu": {
+          "description": "Number of virtual CPUs",
+          "type": "string"
+        },
+        "vRam": {
+          "description": "Virtual RAM in GB",
+          "type": "string"
+        },
+        "nvmeStorage": {
+          "description": "NVMe storage capacity",
+          "type": "string"
+        },
+        "traffic": {
+          "description": "Traffic allowance",
+          "type": "string"
+        },
+        "price": {
+          "$ref": "#/$defs/vpsListItemPrice"
+        }
+      },
+      "type": "object"
+    },
+    "vpsListItemPrice": {
+      "description": "Price summary of the VPS",
+      "properties": {
+        "currency": {
+          "description": "Price's currency",
+          "type": "string"
+        },
+        "basePrice": {
+          "description": "Base price",
+          "type": "number"
+        },
+        "discount": {
+          "description": "Discount amount",
+          "type": "number"
+        },
+        "total": {
+          "description": "Final price",
+          "type": "number"
+        }
+      },
+      "title": "vpsListItemPrice",
+      "type": "object"
+    }
+  }
+}

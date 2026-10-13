@@ -1,0 +1,119 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/leaseweb/main/json-schema/leaseweb-load-balancer-listener-details-schema.json",
+  "title": "loadBalancerListenerDetails",
+  "x-generated": "2026-10-13",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/leaseweb-publiccloud-openapi.yml#/components/schemas/loadBalancerListenerDetails",
+  "allOf": [
+    {
+      "$ref": "#/$defs/loadBalancerListener"
+    },
+    {
+      "properties": {
+        "sslCertificates": {
+          "items": {
+            "$ref": "#/$defs/sslCertificate"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "sslCertificates"
+      ],
+      "title": "loadBalancerListener",
+      "type": "object"
+    }
+  ],
+  "$defs": {
+    "loadBalancerListener": {
+      "properties": {
+        "protocol": {
+          "$ref": "#/$defs/protocol"
+        },
+        "port": {
+          "description": "Port for the listener",
+          "type": "integer"
+        },
+        "id": {
+          "description": "The listener unique identifier",
+          "format": "uuid",
+          "type": "string"
+        },
+        "rules": {
+          "items": {
+            "$ref": "#/$defs/loadBalancerListenerRule"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "id",
+        "port",
+        "protocol",
+        "rules"
+      ],
+      "title": "loadBalancerListener",
+      "type": "object"
+    },
+    "loadBalancerListenerRule": {
+      "properties": {
+        "id": {
+          "description": "The listener unique identifier",
+          "format": "uuid",
+          "type": "string"
+        },
+        "default": {
+          "description": "Condition of the rule",
+          "type": "boolean"
+        },
+        "targetGroupId": {
+          "description": "The target group unique identifier",
+          "format": "uuid",
+          "type": "string"
+        }
+      },
+      "required": [
+        "default",
+        "id",
+        "targetGroupId"
+      ],
+      "title": "loadBalancerListenerRule",
+      "type": "object"
+    },
+    "protocol": {
+      "enum": [
+        "HTTP",
+        "HTTPS",
+        "TCP"
+      ],
+      "type": "string"
+    },
+    "sslCertificate": {
+      "properties": {
+        "privateKey": {
+          "description": "Client Private Key. Required only if protocol is HTTPS",
+          "minLength": 1,
+          "type": "string"
+        },
+        "certificate": {
+          "description": "Client Certificate. Required only if protocol is HTTPS",
+          "minLength": 1,
+          "type": "string"
+        },
+        "chain": {
+          "description": "CA certificate. Not required, but can be added if protocol is HTTPS",
+          "minLength": 1,
+          "type": "string"
+        }
+      },
+      "required": [
+        "certificate",
+        "privateKey"
+      ],
+      "title": "sslCertificate",
+      "type": "object"
+    }
+  }
+}

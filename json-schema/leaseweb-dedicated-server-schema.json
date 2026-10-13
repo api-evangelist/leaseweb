@@ -1,0 +1,417 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/leaseweb/main/json-schema/leaseweb-dedicated-server-schema.json",
+  "title": "dedicatedServer",
+  "x-generated": "2026-10-13",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/leaseweb-ordering-openapi.yml#/components/schemas/dedicatedServer",
+  "allOf": [
+    {
+      "$ref": "#/$defs/dedicatedServerDetail"
+    },
+    {
+      "$ref": "#/$defs/dedicatedServerConfiguration"
+    },
+    {
+      "$ref": "#/$defs/dedicatedServerConfigurationOptions"
+    },
+    {
+      "$ref": "#/$defs/productPrice"
+    }
+  ],
+  "$defs": {
+    "billingCycleItem": {
+      "properties": {
+        "key": {
+          "description": "Billing cycle key",
+          "enum": [
+            "1_MONTH",
+            "3_MONTHS",
+            "6_MONTHS",
+            "1_YEAR",
+            "2_YEARS",
+            "3_YEARS"
+          ],
+          "type": "string"
+        },
+        "description": {
+          "description": "Billing cycle description",
+          "type": "string"
+        },
+        "discountText": {
+          "description": "Discount in percentage",
+          "type": "string"
+        },
+        "discountValue": {
+          "description": "Discount value",
+          "type": "number"
+        },
+        "total": {
+          "description": "Total price with discount",
+          "type": "number"
+        }
+      },
+      "title": "billingCycleItem",
+      "type": "object"
+    },
+    "contractTermItem": {
+      "properties": {
+        "key": {
+          "description": "Contract term key",
+          "enum": [
+            "1_MONTH",
+            "3_MONTHS",
+            "6_MONTHS",
+            "1_YEAR",
+            "2_YEARS",
+            "3_YEARS"
+          ],
+          "type": "string"
+        },
+        "description": {
+          "description": "Contract term description",
+          "type": "string"
+        },
+        "discountText": {
+          "description": "Discount in percentage",
+          "type": "string"
+        },
+        "discountValue": {
+          "description": "Discount value",
+          "type": "number"
+        },
+        "total": {
+          "description": "Total price with discount",
+          "type": "number"
+        }
+      },
+      "title": "contractTermItem",
+      "type": "object"
+    },
+    "cpu": {
+      "description": "CPU info of the server",
+      "properties": {
+        "coresPerCPU": {
+          "description": "Quantity of cores per CPU",
+          "type": "string"
+        },
+        "totalCores": {
+          "description": "Sum of CPU cores",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "quantity": {
+          "description": "Quantity of CPUs",
+          "type": "string"
+        },
+        "speed": {
+          "description": "CPU speed",
+          "type": "string"
+        },
+        "type": {
+          "description": "CPU type",
+          "type": "string"
+        }
+      },
+      "title": "cpu",
+      "type": "object"
+    },
+    "dedicatedServerConfiguration": {
+      "description": "Selected configuration of the server",
+      "properties": {
+        "operatingSystem": {
+          "description": "Selected operating system",
+          "type": "string"
+        },
+        "installOsOnHdd": {
+          "description": "Disk set where the OS is installed",
+          "type": "string"
+        },
+        "controlPanel": {
+          "description": "Selected control panel",
+          "type": "string"
+        },
+        "ipConnectivityType": {
+          "description": "IP connectivity type",
+          "type": "string"
+        },
+        "dataPackConfiguration": {
+          "description": "Data pack configuration",
+          "type": "string"
+        },
+        "uplinkPortSpeed": {
+          "description": "Uplink port speed",
+          "type": "string"
+        },
+        "privateNetwork1xvlan": {
+          "description": "Private network configuration",
+          "type": "string"
+        },
+        "ipV4Configuration": {
+          "description": "IPv4 configuration",
+          "type": "string"
+        },
+        "additionalServices": {
+          "description": "Additional services",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "monitoringType": {
+          "description": "Monitoring type",
+          "type": "string"
+        },
+        "ddosIpProtection": {
+          "description": "DDoS IP protection",
+          "type": "string"
+        },
+        "serviceLevelAgreement": {
+          "description": "Service level agreement",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "dedicatedServerConfigurationOption": {
+      "properties": {
+        "name": {
+          "description": "Option name",
+          "type": "string"
+        },
+        "selected": {
+          "description": "Whether this option is selected",
+          "type": "boolean"
+        },
+        "price": {
+          "description": "Price for this option",
+          "type": "number"
+        },
+        "currency": {
+          "description": "Currency for the price",
+          "type": "string"
+        }
+      },
+      "title": "dedicatedServerConfigurationOption",
+      "type": "object"
+    },
+    "dedicatedServerConfigurationOptions": {
+      "properties": {
+        "configurationOptions": {
+          "$ref": "#/$defs/dedicatedServerConfigurationOptions_1"
+        }
+      },
+      "type": "object"
+    },
+    "dedicatedServerConfigurationOptions_1": {
+      "description": "Available configuration options for the dedicated server",
+      "properties": {
+        "operatingSystem": {
+          "description": "Available operating system options with their price",
+          "items": {
+            "$ref": "#/$defs/dedicatedServerConfigurationOption"
+          },
+          "type": "array"
+        }
+      },
+      "title": "dedicatedServerConfigurationOptions",
+      "type": "object"
+    },
+    "dedicatedServerDetail": {
+      "properties": {
+        "id": {
+          "description": "Id of the server",
+          "type": "string"
+        },
+        "name": {
+          "description": "Name of the server",
+          "type": "string"
+        },
+        "chassis": {
+          "description": "Chassis of the server",
+          "type": "string"
+        },
+        "cpu": {
+          "$ref": "#/$defs/cpu"
+        },
+        "deliveryMethod": {
+          "description": "Time to get the server ready",
+          "type": "string"
+        },
+        "hdd": {
+          "description": "HDD info of the server",
+          "items": {
+            "$ref": "#/$defs/hdd"
+          },
+          "type": "array"
+        },
+        "ram": {
+          "$ref": "#/$defs/ram"
+        },
+        "location": {
+          "description": "Location of the server",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "discountItems": {
+      "properties": {
+        "description": {
+          "description": "Discount description",
+          "type": "string"
+        },
+        "value": {
+          "description": "Discount value",
+          "type": "number"
+        }
+      },
+      "title": "discountItems",
+      "type": "object"
+    },
+    "hdd": {
+      "properties": {
+        "amount": {
+          "description": "Amount of disks",
+          "type": "string"
+        },
+        "size": {
+          "description": "Disk size",
+          "type": "string"
+        }
+      },
+      "title": "hdd",
+      "type": "object"
+    },
+    "productDiscounts": {
+      "description": "Discounts details",
+      "properties": {
+        "total": {
+          "description": "Total discounts",
+          "type": "number"
+        },
+        "details": {
+          "description": "Discount details",
+          "items": {
+            "$ref": "#/$defs/discountItems"
+          },
+          "type": "array"
+        }
+      },
+      "title": "productDiscounts",
+      "type": "object"
+    },
+    "productPrice": {
+      "properties": {
+        "price": {
+          "$ref": "#/$defs/productPrice_price"
+        }
+      }
+    },
+    "productPrice_price": {
+      "description": "Price details of the product",
+      "properties": {
+        "currency": {
+          "description": "Price's currency",
+          "type": "string"
+        },
+        "basePrice": {
+          "description": "Initial price",
+          "type": "number"
+        },
+        "tax": {
+          "description": "Tax",
+          "type": "number"
+        },
+        "setupFee": {
+          "description": "Setup Fee",
+          "type": "number"
+        },
+        "fee": {
+          "description": "Fee amount",
+          "type": "number"
+        },
+        "discounts": {
+          "$ref": "#/$defs/productDiscounts"
+        },
+        "total": {
+          "description": "Final price",
+          "type": "number"
+        },
+        "contractTerm": {
+          "description": "Selected contract term",
+          "enum": [
+            "1 month",
+            "3 months",
+            "6 months",
+            "1 year",
+            "2 years",
+            "3 years"
+          ],
+          "type": "string"
+        },
+        "contractTerms": {
+          "description": "Available contract terms",
+          "items": {
+            "$ref": "#/$defs/contractTermItem"
+          },
+          "title": "contractTerms",
+          "type": "array"
+        },
+        "billingCycle": {
+          "description": "Selected billing cycle",
+          "enum": [
+            "1 month",
+            "3 months",
+            "6 months",
+            "1 year",
+            "2 years",
+            "3 years"
+          ],
+          "type": "string"
+        },
+        "billingCycles": {
+          "description": "Available billing cycles",
+          "items": {
+            "$ref": "#/$defs/billingCycleItem"
+          },
+          "title": "billingCycles",
+          "type": "array"
+        },
+        "details": {
+          "additionalProperties": {
+            "additionalProperties": {
+              "type": "string"
+            },
+            "type": "object"
+          },
+          "description": "Per-component price breakdown grouped by section (e.g. Server, Connectivity, Software, Services, Discounts). Each section maps a line description to its formatted price (e.g. \"incl.\" or \"€ 513.00\").",
+          "title": "priceDetails",
+          "type": "object"
+        }
+      },
+      "type": "object"
+    },
+    "ram": {
+      "description": "Ram info of the server",
+      "properties": {
+        "size": {
+          "description": "Ram size",
+          "type": "string"
+        },
+        "unit": {
+          "description": "Unit description",
+          "type": "string"
+        }
+      },
+      "title": "ram",
+      "type": "object"
+    }
+  }
+}

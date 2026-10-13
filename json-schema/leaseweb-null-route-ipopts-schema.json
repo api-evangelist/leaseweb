@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/leaseweb/main/json-schema/leaseweb-null-route-ipopts-schema.json",
+  "title": "nullRouteIPOpts",
+  "x-generated": "2026-10-13",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/leaseweb-ipmgmt-openapi.yml#/components/schemas/nullRouteIPOpts",
+  "properties": {
+    "automatedUnnullingAt": {
+      "description": "The date and time when the null route is to be deactivated. The date and time should be specified using the format yyyy-mm-ddThh:mm:ss±hh:mm (with time zone designator) or yyyy-mm-ddThh:mm:ssZ (UTC). If this field is not present then the null route will not be automatically removed.",
+      "format": "date-time",
+      "type": "string"
+    },
+    "comment": {
+      "description": "A comment to be stored with the null route (e.g. null route reason)",
+      "type": "string"
+    },
+    "ticketId": {
+      "description": "A reference to be stored with the null route",
+      "type": "string"
+    }
+  },
+  "type": "object"
+}

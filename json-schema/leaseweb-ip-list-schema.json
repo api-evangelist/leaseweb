@@ -1,0 +1,126 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/leaseweb/main/json-schema/leaseweb-ip-list-schema.json",
+  "title": "ipList",
+  "x-generated": "2026-10-13",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/leaseweb-networkequipment-openapi.yml#/components/schemas/ipList",
+  "properties": {
+    "_metadata": {
+      "$ref": "#/$defs/_metadata"
+    },
+    "ips": {
+      "description": "An array of IP addresses",
+      "items": {
+        "$ref": "#/$defs/ip"
+      },
+      "type": "array"
+    }
+  },
+  "type": "object",
+  "$defs": {
+    "_metadata": {
+      "description": "Metadata about the collection",
+      "properties": {
+        "totalCount": {
+          "description": "Total amount of elements in this collection",
+          "minimum": 0,
+          "type": "integer"
+        },
+        "offset": {
+          "default": 0,
+          "description": "The offset used to generate this response",
+          "minimum": 0,
+          "type": "integer"
+        },
+        "limit": {
+          "default": 5,
+          "description": "The limit used to generate this response",
+          "minimum": 0,
+          "type": "integer"
+        }
+      },
+      "required": [
+        "limit",
+        "offset",
+        "totalCount"
+      ],
+      "title": "metadata",
+      "type": "object"
+    },
+    "dDos": {
+      "description": "DDoS IP Protection Details",
+      "properties": {
+        "detectionProfile": {
+          "description": "The applied detection profile",
+          "enum": [
+            "STANDARD_DEFAULT",
+            "ADVANCED_DEFAULT",
+            "ADVANCED_LOW_UDP",
+            "ADVANCED_MED_UDP"
+          ],
+          "type": "string"
+        },
+        "protectionType": {
+          "description": "The type of DDoS protection",
+          "enum": [
+            "STANDARD",
+            "ADVANCED"
+          ],
+          "type": "string"
+        }
+      },
+      "title": "dDos",
+      "type": "object"
+    },
+    "ip": {
+      "properties": {
+        "ddos": {
+          "$ref": "#/$defs/dDos"
+        },
+        "floatingIp": {
+          "description": "Indicates if the IP is a Floating IP",
+          "type": "boolean"
+        },
+        "gateway": {
+          "description": "Gateway",
+          "type": "string"
+        },
+        "ip": {
+          "description": "IP address in CIDR notation",
+          "type": "string"
+        },
+        "mainIp": {
+          "description": "IP address is main",
+          "type": "boolean"
+        },
+        "networkType": {
+          "$ref": "#/$defs/networkType"
+        },
+        "nullRouted": {
+          "description": "IP address null routed",
+          "type": "boolean"
+        },
+        "reverseLookup": {
+          "description": "The reverse lookup value",
+          "type": "string"
+        },
+        "version": {
+          "description": "IP version",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "networkType": {
+      "description": "Type of network",
+      "enum": [
+        "INTERNAL",
+        "PUBLIC",
+        "REMOTE_MANAGEMENT"
+      ],
+      "type": "string"
+    }
+  }
+}

@@ -1,0 +1,135 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/leaseweb/main/json-schema/leaseweb-get-proforma-result-schema.json",
+  "title": "getProformaResult",
+  "x-generated": "2026-10-13",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/leaseweb-invoice-openapi.yml#/components/schemas/getProformaResult",
+  "properties": {
+    "proformaDate": {
+      "description": "The date of the next invoice on which this proforma is based on. (UTC)",
+      "type": "string"
+    },
+    "total": {
+      "description": "Total amount which will be invoiced the upcoming month.",
+      "format": "float",
+      "type": "number"
+    },
+    "subTotal": {
+      "description": "Total amount without vat which will be invoiced the upcoming month.",
+      "format": "float",
+      "type": "number"
+    },
+    "vatAmount": {
+      "description": "The total amount of tax.",
+      "format": "float",
+      "type": "number"
+    },
+    "currency": {
+      "description": "The currency of the service price",
+      "enum": [
+        "EUR",
+        "GBP",
+        "USD",
+        "SGD",
+        "AUD",
+        "HKD"
+      ],
+      "type": "string"
+    },
+    "contractItems": {
+      "description": "Array of contract items",
+      "items": {
+        "$ref": "#/$defs/lineItem_1"
+      },
+      "type": "array"
+    },
+    "_metadata": {
+      "$ref": "#/$defs/_metadata"
+    }
+  },
+  "type": "object",
+  "$defs": {
+    "_metadata": {
+      "description": "Metadata about the collection",
+      "properties": {
+        "totalCount": {
+          "description": "Total amount of elements in this collection",
+          "minimum": 0,
+          "type": "integer"
+        },
+        "offset": {
+          "default": 0,
+          "description": "The offset used to generate this response",
+          "minimum": 0,
+          "type": "integer"
+        },
+        "limit": {
+          "default": 5,
+          "description": "The limit used to generate this response",
+          "minimum": 0,
+          "type": "integer"
+        }
+      },
+      "required": [
+        "limit",
+        "offset",
+        "totalCount"
+      ],
+      "title": "metadata",
+      "type": "object"
+    },
+    "lineItem_1": {
+      "properties": {
+        "contractId": {
+          "description": "The unique id of the contract",
+          "type": "string"
+        },
+        "equipmentId": {
+          "description": "The unique id of the equipment",
+          "type": "string"
+        },
+        "startDate": {
+          "description": "The start date of the contract (UTC)",
+          "type": "string"
+        },
+        "endDate": {
+          "description": "The end date of the contract (UTC)",
+          "type": "string"
+        },
+        "poNumber": {
+          "description": "The purchase order number.",
+          "type": "string"
+        },
+        "product": {
+          "description": "A string to indicate what kind of product this is",
+          "type": "string"
+        },
+        "reference": {
+          "description": "The reference a customer gave to the service",
+          "type": "string"
+        },
+        "price": {
+          "description": "The price of the contract item.",
+          "format": "float",
+          "type": "number"
+        },
+        "currency": {
+          "description": "The currency of the service price",
+          "enum": [
+            "EUR",
+            "GBP",
+            "USD",
+            "SGD",
+            "AUD",
+            "HKD"
+          ],
+          "type": "string"
+        }
+      },
+      "title": "lineItem",
+      "type": "object"
+    }
+  }
+}

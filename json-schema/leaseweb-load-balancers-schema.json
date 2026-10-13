@@ -1,0 +1,503 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/leaseweb/main/json-schema/leaseweb-load-balancers-schema.json",
+  "title": "loadBalancers",
+  "x-generated": "2026-10-13",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/leaseweb-publiccloud-openapi.yml#/components/schemas/loadBalancers",
+  "properties": {
+    "loadBalancers": {
+      "items": {
+        "$ref": "#/$defs/loadBalancer"
+      },
+      "type": "array"
+    },
+    "_metadata": {
+      "$ref": "#/$defs/_metadata"
+    }
+  },
+  "type": "object",
+  "$defs": {
+    "_metadata": {
+      "description": "Metadata about the collection",
+      "properties": {
+        "totalCount": {
+          "description": "Total amount of elements in this collection",
+          "minimum": 0,
+          "type": "integer"
+        },
+        "offset": {
+          "default": 0,
+          "description": "The offset used to generate this response",
+          "minimum": 0,
+          "type": "integer"
+        },
+        "limit": {
+          "default": 5,
+          "description": "The limit used to generate this response",
+          "minimum": 0,
+          "type": "integer"
+        }
+      },
+      "required": [
+        "limit",
+        "offset",
+        "totalCount"
+      ],
+      "title": "metadata",
+      "type": "object"
+    },
+    "balance": {
+      "description": "Algorithm to be used for load balancer",
+      "enum": [
+        "roundrobin",
+        "leastconn",
+        "source"
+      ],
+      "type": "string"
+    },
+    "billingFrequency": {
+      "description": "The billing frequency (in months) of the instance. Used only when contract type is MONTHLY",
+      "enum": [
+        1,
+        3,
+        6,
+        12
+      ],
+      "type": "integer"
+    },
+    "contractTerm": {
+      "description": "Contract commitment. Used only when contract type is MONTHLY",
+      "enum": [
+        0,
+        1,
+        3,
+        6,
+        12,
+        24,
+        36
+      ],
+      "type": "integer"
+    },
+    "contractType": {
+      "description": "Select HOURLY for billing based on hourly usage, else MONTHLY for billing per month usage",
+      "enum": [
+        "HOURLY",
+        "MONTHLY"
+      ],
+      "type": "string"
+    },
+    "cpu": {
+      "description": "Number of cores",
+      "properties": {
+        "value": {
+          "type": "integer"
+        },
+        "unit": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "unit",
+        "value"
+      ],
+      "title": "cpu",
+      "type": "object"
+    },
+    "instanceContract": {
+      "properties": {
+        "billingFrequency": {
+          "$ref": "#/$defs/billingFrequency"
+        },
+        "term": {
+          "$ref": "#/$defs/contractTerm"
+        },
+        "type": {
+          "$ref": "#/$defs/contractType"
+        }
+      },
+      "required": [
+        "billingFrequency",
+        "term",
+        "type"
+      ],
+      "type": "object"
+    },
+    "ip": {
+      "properties": {
+        "ip": {
+          "description": "Ip Address",
+          "type": "string"
+        },
+        "prefixLength": {
+          "description": "The number of leading bits in the IP address",
+          "type": "string"
+        },
+        "version": {
+          "$ref": "#/$defs/ipVersion"
+        },
+        "nullRouted": {
+          "description": "Whether or not the IP has been nulled",
+          "type": "boolean"
+        },
+        "mainIp": {
+          "type": "boolean"
+        },
+        "networkType": {
+          "$ref": "#/$defs/networkType"
+        },
+        "reverseLookup": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "required": [
+        "ip",
+        "mainIp",
+        "networkType",
+        "nullRouted",
+        "prefixLength",
+        "reverseLookup",
+        "version"
+      ],
+      "title": "ip",
+      "type": "object"
+    },
+    "ipVersion": {
+      "description": "Ip version",
+      "enum": [
+        4,
+        6
+      ],
+      "type": "integer"
+    },
+    "loadBalancer": {
+      "properties": {
+        "id": {
+          "description": "The load balancer unique identifier",
+          "format": "uuid",
+          "type": "string"
+        },
+        "type": {
+          "$ref": "#/$defs/typeName"
+        },
+        "resources": {
+          "$ref": "#/$defs/resources"
+        },
+        "reference": {
+          "description": "The identifying name set to the load balancer",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "state": {
+          "$ref": "#/$defs/state"
+        },
+        "startedAt": {
+          "description": "Date and time when the load balancer was started for the first time, right after launching it",
+          "format": "date-time",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "region": {
+          "$ref": "#/$defs/regionName"
+        },
+        "configuration": {
+          "$ref": "#/$defs/loadBalancerConfiguration"
+        },
+        "privateNetwork": {
+          "$ref": "#/$defs/privateNetwork"
+        },
+        "contract": {
+          "$ref": "#/$defs/instanceContract"
+        },
+        "ips": {
+          "items": {
+            "$ref": "#/$defs/ip"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "configuration",
+        "contract",
+        "id",
+        "ips",
+        "privateNetwork",
+        "reference",
+        "region",
+        "resources",
+        "startedAt",
+        "state",
+        "type"
+      ],
+      "type": "object"
+    },
+    "loadBalancerConfiguration": {
+      "description": "Different configuration assigned for the load balancer",
+      "properties": {
+        "stickySession": {
+          "$ref": "#/$defs/stickySession"
+        },
+        "balance": {
+          "$ref": "#/$defs/balance"
+        },
+        "xForwardedFor": {
+          "description": "Is xForwardedFor header enabled or not",
+          "type": "boolean"
+        },
+        "idleTimeOut": {
+          "description": "Time to close the connection if load balancer is idle",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "balance",
+        "idleTimeOut",
+        "stickySession",
+        "xForwardedFor"
+      ],
+      "title": "loadBalancerConfiguration",
+      "type": [
+        "object",
+        "null"
+      ]
+    },
+    "memory": {
+      "description": "Total memory in GiB",
+      "properties": {
+        "value": {
+          "type": "number"
+        },
+        "unit": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "unit",
+        "value"
+      ],
+      "title": "memory",
+      "type": "object"
+    },
+    "networkSpeed": {
+      "description": "Network speed in Gbps",
+      "properties": {
+        "value": {
+          "type": "integer"
+        },
+        "unit": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "unit",
+        "value"
+      ],
+      "title": "networkSpeed",
+      "type": "object"
+    },
+    "networkType": {
+      "enum": [
+        "INTERNAL",
+        "PUBLIC"
+      ],
+      "type": "string"
+    },
+    "privateNetwork": {
+      "properties": {
+        "privateNetworkId": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string"
+        },
+        "subnet": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "privateNetworkId",
+        "status",
+        "subnet"
+      ],
+      "title": "privateNetwork",
+      "type": [
+        "object",
+        "null"
+      ]
+    },
+    "regionName": {
+      "description": "region name",
+      "enum": [
+        "eu-west-3",
+        "us-east-1",
+        "eu-central-1",
+        "ap-southeast-1",
+        "us-west-1",
+        "eu-west-2",
+        "ca-central-1",
+        "ap-northeast-1"
+      ],
+      "title": "regionName",
+      "type": "string"
+    },
+    "resources": {
+      "description": "Available resources",
+      "properties": {
+        "cpu": {
+          "$ref": "#/$defs/cpu"
+        },
+        "memory": {
+          "$ref": "#/$defs/memory"
+        },
+        "publicNetworkSpeed": {
+          "$ref": "#/$defs/networkSpeed"
+        },
+        "privateNetworkSpeed": {
+          "$ref": "#/$defs/networkSpeed"
+        }
+      },
+      "required": [
+        "cpu",
+        "memory",
+        "privateNetworkSpeed",
+        "publicNetworkSpeed"
+      ],
+      "type": "object"
+    },
+    "state": {
+      "description": "The current state",
+      "enum": [
+        "CREATING",
+        "DESTROYED",
+        "DESTROYING",
+        "FAILED",
+        "RUNNING",
+        "STARTING",
+        "STOPPED",
+        "STOPPING",
+        "UNKNOWN"
+      ],
+      "type": "string"
+    },
+    "stickySession": {
+      "properties": {
+        "enabled": {
+          "description": "If sticky session is enabled or not",
+          "type": "boolean"
+        },
+        "maxLifeTime": {
+          "description": "Time that the Load Balancer routes the requests from one requester to the same target instance",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "enabled",
+        "maxLifeTime"
+      ],
+      "title": "stickySession",
+      "type": [
+        "object",
+        "null"
+      ]
+    },
+    "typeName": {
+      "description": "Instance/Load balancer type",
+      "enum": [
+        "lsw.m3.large",
+        "lsw.m3.xlarge",
+        "lsw.m3.2xlarge",
+        "lsw.m4.large",
+        "lsw.m4.xlarge",
+        "lsw.m4.2xlarge",
+        "lsw.m4.4xlarge",
+        "lsw.m5.large",
+        "lsw.m5.xlarge",
+        "lsw.m5.2xlarge",
+        "lsw.m5.4xlarge",
+        "lsw.m5a.large",
+        "lsw.m5a.xlarge",
+        "lsw.m5a.2xlarge",
+        "lsw.m5a.4xlarge",
+        "lsw.m5a.8xlarge",
+        "lsw.m5a.12xlarge",
+        "lsw.m6a.large",
+        "lsw.m6a.xlarge",
+        "lsw.m6a.2xlarge",
+        "lsw.m6a.4xlarge",
+        "lsw.m6a.8xlarge",
+        "lsw.m6a.12xlarge",
+        "lsw.m6a.16xlarge",
+        "lsw.m6a.24xlarge",
+        "lsw.c3.large",
+        "lsw.c3.xlarge",
+        "lsw.c3.2xlarge",
+        "lsw.c3.4xlarge",
+        "lsw.c4.large",
+        "lsw.c4.xlarge",
+        "lsw.c4.2xlarge",
+        "lsw.c4.4xlarge",
+        "lsw.c5.large",
+        "lsw.c5.xlarge",
+        "lsw.c5.2xlarge",
+        "lsw.c5.4xlarge",
+        "lsw.c5a.large",
+        "lsw.c5a.xlarge",
+        "lsw.c5a.2xlarge",
+        "lsw.c5a.4xlarge",
+        "lsw.c5a.9xlarge",
+        "lsw.c5a.12xlarge",
+        "lsw.c6a.large",
+        "lsw.c6a.xlarge",
+        "lsw.c6a.2xlarge",
+        "lsw.c6a.4xlarge",
+        "lsw.c6a.8xlarge",
+        "lsw.c6a.12xlarge",
+        "lsw.c6a.16xlarge",
+        "lsw.c6a.24xlarge",
+        "lsw.r3.large",
+        "lsw.r3.xlarge",
+        "lsw.r3.2xlarge",
+        "lsw.r4.large",
+        "lsw.r4.xlarge",
+        "lsw.r4.2xlarge",
+        "lsw.r5.large",
+        "lsw.r5.xlarge",
+        "lsw.r5.2xlarge",
+        "lsw.r5a.large",
+        "lsw.r5a.xlarge",
+        "lsw.r5a.2xlarge",
+        "lsw.r5a.4xlarge",
+        "lsw.r5a.8xlarge",
+        "lsw.r5a.12xlarge",
+        "lsw.r6a.large",
+        "lsw.r6a.xlarge",
+        "lsw.r6a.2xlarge",
+        "lsw.r6a.4xlarge",
+        "lsw.r6a.8xlarge",
+        "lsw.r6a.12xlarge",
+        "lsw.r6a.16xlarge",
+        "lsw.r6a.24xlarge",
+        "lsw.g6.xlarge",
+        "lsw.g6.2xlarge",
+        "lsw.g6.4xlarge",
+        "lsw.g6.8xlarge",
+        "lsw.g6.12xlarge",
+        "lsw.g6.16xlarge",
+        "lsw.g6.18xlarge",
+        "lsw.g6.24xlarge",
+        "lsw.gr6.4xlarge",
+        "lsw.gr6.8xlarge"
+      ],
+      "title": "typeName",
+      "type": "string"
+    }
+  }
+}

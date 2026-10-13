@@ -1,0 +1,41 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/leaseweb/main/json-schema/leaseweb-order-dedicated-server-opts-schema.json",
+  "title": "orderDedicatedServerOpts",
+  "x-generated": "2026-10-13",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/leaseweb-ordering-openapi.yml#/components/schemas/orderDedicatedServerOpts",
+  "properties": {
+    "location": {
+      "description": "The location of the server",
+      "type": "string"
+    },
+    "connectedToAggregationPool": {
+      "default": false,
+      "description": "Whether the server is connected to an aggregation pool",
+      "type": "boolean"
+    },
+    "contractTerm": {
+      "default": "1_MONTH",
+      "description": "The contract term of the server",
+      "enum": [
+        "1_MONTH",
+        "3_MONTHS",
+        "6_MONTHS",
+        "1_YEAR",
+        "2_YEARS",
+        "3_YEARS"
+      ],
+      "type": "string"
+    },
+    "operatingSystem": {
+      "description": "Operating system option. Defaults to no OS when omitted.",
+      "type": "string"
+    }
+  },
+  "required": [
+    "location"
+  ],
+  "type": "object"
+}

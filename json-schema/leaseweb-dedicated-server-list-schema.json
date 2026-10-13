@@ -1,0 +1,152 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/leaseweb/main/json-schema/leaseweb-dedicated-server-list-schema.json",
+  "title": "dedicatedServerList",
+  "x-generated": "2026-10-13",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/leaseweb-ordering-openapi.yml#/components/schemas/dedicatedServerList",
+  "properties": {
+    "dedicatedServers": {
+      "items": {
+        "$ref": "#/$defs/dedicatedServerDetail"
+      },
+      "type": "array"
+    },
+    "_metadata": {
+      "$ref": "#/$defs/_metadata"
+    }
+  },
+  "type": "object",
+  "$defs": {
+    "_metadata": {
+      "description": "Metadata about the collection",
+      "properties": {
+        "totalCount": {
+          "description": "Total amount of elements in this collection",
+          "minimum": 0,
+          "type": "integer"
+        },
+        "offset": {
+          "default": 0,
+          "description": "The offset used to generate this response",
+          "minimum": 0,
+          "type": "integer"
+        },
+        "limit": {
+          "default": 5,
+          "description": "The limit used to generate this response",
+          "minimum": 0,
+          "type": "integer"
+        }
+      },
+      "required": [
+        "limit",
+        "offset",
+        "totalCount"
+      ],
+      "title": "metadata",
+      "type": "object"
+    },
+    "cpu": {
+      "description": "CPU info of the server",
+      "properties": {
+        "coresPerCPU": {
+          "description": "Quantity of cores per CPU",
+          "type": "string"
+        },
+        "totalCores": {
+          "description": "Sum of CPU cores",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "quantity": {
+          "description": "Quantity of CPUs",
+          "type": "string"
+        },
+        "speed": {
+          "description": "CPU speed",
+          "type": "string"
+        },
+        "type": {
+          "description": "CPU type",
+          "type": "string"
+        }
+      },
+      "title": "cpu",
+      "type": "object"
+    },
+    "dedicatedServerDetail": {
+      "properties": {
+        "id": {
+          "description": "Id of the server",
+          "type": "string"
+        },
+        "name": {
+          "description": "Name of the server",
+          "type": "string"
+        },
+        "chassis": {
+          "description": "Chassis of the server",
+          "type": "string"
+        },
+        "cpu": {
+          "$ref": "#/$defs/cpu"
+        },
+        "deliveryMethod": {
+          "description": "Time to get the server ready",
+          "type": "string"
+        },
+        "hdd": {
+          "description": "HDD info of the server",
+          "items": {
+            "$ref": "#/$defs/hdd"
+          },
+          "type": "array"
+        },
+        "ram": {
+          "$ref": "#/$defs/ram"
+        },
+        "location": {
+          "description": "Location of the server",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "hdd": {
+      "properties": {
+        "amount": {
+          "description": "Amount of disks",
+          "type": "string"
+        },
+        "size": {
+          "description": "Disk size",
+          "type": "string"
+        }
+      },
+      "title": "hdd",
+      "type": "object"
+    },
+    "ram": {
+      "description": "Ram info of the server",
+      "properties": {
+        "size": {
+          "description": "Ram size",
+          "type": "string"
+        },
+        "unit": {
+          "description": "Unit description",
+          "type": "string"
+        }
+      },
+      "title": "ram",
+      "type": "object"
+    }
+  }
+}
