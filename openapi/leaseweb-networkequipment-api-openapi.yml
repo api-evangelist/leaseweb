@@ -1,60 +1,38 @@
-openapi: 3.0.0
+openapi: 3.2.0
 info:
+  title: Leaseweb Networkequipment API
+  version: v2
   contact: {}
-  description: |-
-    This is the description of the Dedicated Network Equipment API.
-
-    The base url of this API is `https://api.leaseweb.com`.
   license:
     name: Apache 2.0
     url: https://www.apache.org/licenses/LICENSE-2.0.html
-  title: Dedicated Network Equipments
-  version: v2
   x-logo:
     altText: Leaseweb developer documentation
-    backgroundColor: "#5484c6"
+    backgroundColor: '#5484c6'
     href: https://developer.leaseweb.com
     url: https://developer.leaseweb.com/images/logo.png
+  description: 'Operations tagged networkequipment across 2 of this provider''s published API definitions: leaseweb-networkequipment-openapi.yaml, leaseweb-networkequipment-openapi.yml. Each path carries the servers of the definition it was published in.'
 servers:
 - url: https://api.leaseweb.com/bareMetals/v2
 security:
 - X-LSW-Auth: []
 tags:
-- description: |
-    The API uses standard HTTP status codes to indicate the success or failure of the API call. The response will be JSON. Most APIs use the following format:
-
-    ```json
-    {
-        "errorCode": "APP00800",
-        "errorMessage": "The connection with the DB cannot be established.",
-        "correlationId": "550e8400-e29b-41d4-a716-446655440000",
-        "userMessage": "Cannot handle your request at the moment. Please try again later.",
-        "reference": "https://developer.leaseweb.com/errors/APP00800"
-    }
-    ```
-  name: Errors
-  x-traitTag: true
-- description: |
-    Authentication for the APIs is required. To authenticate your call, you will need to sent your API key as `X-LSW-Auth` header.
-
-    You can generate API keys in the [Customer Portal](https://secure.leaseweb.com/api-client-management/).
-  name: API Key Authentication
-  x-traitTag: true
-- name: Getting Started
-- name: IPs
-- name: Credentials
-- name: Power
+- name: networkequipment
 paths:
   /networkEquipments:
     get:
-      description: |
-        List your Dedicated Network Equipment. This api call supports pagination. Use
+      description: 'List your Dedicated Network Equipment. This api call supports pagination. Use
+
         the `limit` and `offset` query string parameters to paginate through all your
+
         dedicated network equipment.
 
+
         Every `network equipment` object in the json response lists a few properties
+
         of a network equipment. Use the single resource api call to get more details
-        for a single network equipment.
+
+        for a single network equipment.'
       operationId: getNetworkEquipmentList
       parameters:
       - description: Limit the number of results returned.
@@ -101,7 +79,7 @@ paths:
         name: macAddress
         required: false
         schema:
-          $ref: "#/components/schemas/macAddress"
+          $ref: '#/components/schemas/macAddress'
         style: form
       - description: Filter the list of network equipment by site (location).
         example: FRA-10
@@ -113,7 +91,7 @@ paths:
           type: string
         style: form
       - description: Filter the list of network equipment by dedicated rack id.
-        example: "123"
+        example: '123'
         explode: true
         in: query
         name: privateRackId
@@ -128,8 +106,8 @@ paths:
         required: false
         schema:
           enum:
-          - "true"
-          - "false"
+          - 'true'
+          - 'false'
           type: string
         style: form
       - description: Filter the list for private network enabled network equipment
@@ -139,12 +117,12 @@ paths:
         required: false
         schema:
           enum:
-          - "true"
-          - "false"
+          - 'true'
+          - 'false'
           type: string
         style: form
       responses:
-        "200":
+        '200':
           content:
             application/json:
               example:
@@ -154,23 +132,23 @@ paths:
                   totalCount: 2
                 networkEquipments:
                 - contract:
-                    customerId: "10085996"
+                    customerId: '10085996'
                     deliveryStatus: ACTIVE
-                    id: "49031391001170"
+                    id: '49031391001170'
                     reference: My Private Switch
-                    salesOrgId: "2000"
+                    salesOrgId: '2000'
                   featureAvailability:
                     automation: true
                     ipmiReboot: false
                     powerCycle: true
                     privateNetwork: false
                     remoteManagement: false
-                  id: "12345"
+                  id: '12345'
                   location:
                     rack: YY11
                     site: AMS-01
                     suite: HALL3
-                    unit: "21"
+                    unit: '21'
                   networkInterfaces:
                     internal:
                       gateway: null
@@ -179,7 +157,7 @@ paths:
                     public:
                       gateway: 127.0.2.254
                       ip: 127.0.2.1/24
-                      locationId: ""
+                      locationId: ''
                       nullRouted: false
                       ports: []
                     remoteManagement:
@@ -189,23 +167,23 @@ paths:
                       ports: []
                   type: SWITCH
                 - contract:
-                    customerId: "10085996"
+                    customerId: '10085996'
                     deliveryStatus: ACTIVE
-                    id: "49031513001110"
+                    id: '49031513001110'
                     reference: My Other Private Switch
-                    salesOrgId: "2000"
+                    salesOrgId: '2000'
                   featureAvailability:
                     automation: false
                     ipmiReboot: false
                     powerCycle: false
                     privateNetwork: false
                     remoteManagement: false
-                  id: "45678"
+                  id: '45678'
                   location:
                     rack: XX00
                     site: AMS-01
                     suite: HALL3
-                    unit: "21"
+                    unit: '21'
                   networkInterfaces:
                     internal:
                       gateway: null
@@ -214,7 +192,7 @@ paths:
                     public:
                       gateway: 127.1.1.254
                       ip: 127.1.1.68/24
-                      locationId: ""
+                      locationId: ''
                       nullRouted: false
                       ports: []
                     remoteManagement:
@@ -224,58 +202,60 @@ paths:
                       ports: []
                   type: SWITCH
               schema:
-                $ref: "#/components/schemas/getNetworkEquipmentListResult"
+                $ref: '#/components/schemas/getNetworkEquipmentListResult'
           description: Ok.
-        "401":
+        '401':
           content:
             application/json:
               example:
                 correlationId: 289346a1-3eaf-4da4-b707-62ef12eb08be
-                errorCode: "401"
+                errorCode: '401'
                 errorMessage: You are not authorized to view this resource.
               schema:
-                $ref: "#/components/schemas/errorResult"
+                $ref: '#/components/schemas/errorResult'
           description: Not Authorized.
-        "403":
+        '403':
           content:
             application/json:
               example:
                 correlationId: 289346a1-3eaf-4da4-b707-62ef12eb08be
-                errorCode: "403"
+                errorCode: '403'
                 errorMessage: Access to the requested resource is forbidden.
               schema:
-                $ref: "#/components/schemas/errorResult"
+                $ref: '#/components/schemas/errorResult'
           description: Forbidden.
-        "500":
+        '500':
           content:
             application/json:
               example:
                 correlationId: 289346a1-3eaf-4da4-b707-62ef12eb08be
-                errorCode: "500"
+                errorCode: '500'
                 errorMessage: '''The API could not handle your request at this time.'
               schema:
-                $ref: "#/components/schemas/errorResult"
+                $ref: '#/components/schemas/errorResult'
           description: Internal Server Error.
-        "503":
+        '503':
           content:
             application/json:
               example:
                 correlationId: 289346a1-3eaf-4da4-b707-62ef12eb08be
-                errorCode: "503"
+                errorCode: '503'
                 errorMessage: The API is not available at the moment.
               schema:
-                $ref: "#/components/schemas/errorResult"
+                $ref: '#/components/schemas/errorResult'
           description: Service Unavailable.
       summary: List network equipment
       tags:
       - networkequipment
+    servers:
+    - url: https://api.leaseweb.com/bareMetals/v2
   /networkEquipments/{networkEquipmentId}:
     get:
       description: Use this API to get information about a single network equipment.
       operationId: getNetworkEquipment
       parameters:
       - description: The ID of a dedicated network equipment
-        example: "12345"
+        example: '12345'
         explode: false
         in: path
         name: networkEquipmentId
@@ -284,7 +264,7 @@ paths:
           type: string
         style: simple
       responses:
-        "200":
+        '200':
           content:
             application/json:
               example:
@@ -295,21 +275,21 @@ paths:
                   contractTerm: 12
                   contractType: NORMAL
                   currency: EUR
-                  customerId: "10085996"
+                  customerId: '10085996'
                   deliveryStatus: ACTIVE
                   endsAt: null
-                  id: "49031391001170"
+                  id: '49031391001170'
                   networkTraffic:
                     connectivityType: INTERCONNECTED
                     datatrafficLimit: null
                     datatrafficUnit: null
                     trafficType: null
                     type: null
-                  pricePerFrequency: "0.00"
+                  pricePerFrequency: '0.00'
                   reference: My Switch
-                  salesOrgId: "2000"
+                  salesOrgId: '2000'
                   sla: Platinum
-                  startsAt: 2017-08-01T00:00:00Z
+                  startsAt: 2017-08-01 00:00:00+00:00
                   status: ACTIVE
                   subnets: []
                 featureAvailability:
@@ -318,12 +298,12 @@ paths:
                   powerCycle: true
                   privateNetwork: false
                   remoteManagement: false
-                id: "12345"
+                id: '12345'
                 location:
                   rack: YY11
                   site: AMS-01
                   suite: HALL3
-                  unit: "21"
+                  unit: '21'
                 name: ABC-DE-001
                 networkInterfaces:
                   internal:
@@ -333,7 +313,7 @@ paths:
                   public:
                     gateway: 127.0.0..254
                     ip: 127.0.0..124/24
-                    locationId: ""
+                    locationId: ''
                     nullRouted: false
                     ports: []
                   remoteManagement:
@@ -343,67 +323,67 @@ paths:
                     ports: []
                 powerPorts:
                 - name: AMS-01-HALL3-YY11-PDU01
-                  port: "7"
+                  port: '7'
                 rack:
-                  capacity: ""
-                  id: "11111"
+                  capacity: ''
+                  id: '11111'
                 serialNumber: XN51FPD0QX
                 specs:
                   brand: HP
                   model: PC 2530-48 J9781A
                 type: SWITCH
               schema:
-                $ref: "#/components/schemas/networkEquipment"
+                $ref: '#/components/schemas/networkEquipment'
           description: Ok.
-        "401":
+        '401':
           content:
             application/json:
               example:
                 correlationId: 289346a1-3eaf-4da4-b707-62ef12eb08be
-                errorCode: "401"
+                errorCode: '401'
                 errorMessage: You are not authorized to view this resource.
               schema:
-                $ref: "#/components/schemas/errorResult"
+                $ref: '#/components/schemas/errorResult'
           description: Not Authorized.
-        "403":
+        '403':
           content:
             application/json:
               example:
                 correlationId: 289346a1-3eaf-4da4-b707-62ef12eb08be
-                errorCode: "403"
+                errorCode: '403'
                 errorMessage: Access to the requested resource is forbidden.
               schema:
-                $ref: "#/components/schemas/errorResult"
+                $ref: '#/components/schemas/errorResult'
           description: Forbidden.
-        "404":
+        '404':
           content:
             application/json:
               example:
                 correlationId: 289346a1-3eaf-4da4-b707-62ef12eb08be
-                errorCode: "404"
+                errorCode: '404'
                 errorMessage: Resource not found
               schema:
-                $ref: "#/components/schemas/errorResult"
+                $ref: '#/components/schemas/errorResult'
           description: Not Found.
-        "500":
+        '500':
           content:
             application/json:
               example:
                 correlationId: 289346a1-3eaf-4da4-b707-62ef12eb08be
-                errorCode: "500"
+                errorCode: '500'
                 errorMessage: '''The API could not handle your request at this time.'
               schema:
-                $ref: "#/components/schemas/errorResult"
+                $ref: '#/components/schemas/errorResult'
           description: Internal Server Error.
-        "503":
+        '503':
           content:
             application/json:
               example:
                 correlationId: 289346a1-3eaf-4da4-b707-62ef12eb08be
-                errorCode: "503"
+                errorCode: '503'
                 errorMessage: The API is not available at the moment.
               schema:
-                $ref: "#/components/schemas/errorResult"
+                $ref: '#/components/schemas/errorResult'
           description: Service Unavailable.
       summary: Get network equipment
       tags:
@@ -413,7 +393,7 @@ paths:
       operationId: updateReference
       parameters:
       - description: The ID of a dedicated network equipment
-        example: "12345"
+        example: '12345'
         explode: false
         in: path
         name: networkEquipmentId
@@ -427,62 +407,63 @@ paths:
             example:
               reference: my-private-switch
             schema:
-              $ref: "#/components/schemas/updateReferenceOpts"
+              $ref: '#/components/schemas/updateReferenceOpts'
         required: true
       responses:
-        "204":
+        '204':
           description: No Content.
-        "401":
+        '401':
           content:
             application/json:
               example:
                 correlationId: 289346a1-3eaf-4da4-b707-62ef12eb08be
-                errorCode: "401"
+                errorCode: '401'
                 errorMessage: You are not authorized to view this resource.
               schema:
-                $ref: "#/components/schemas/errorResult"
+                $ref: '#/components/schemas/errorResult'
           description: Not Authorized.
-        "403":
+        '403':
           content:
             application/json:
               example:
                 correlationId: 289346a1-3eaf-4da4-b707-62ef12eb08be
-                errorCode: "403"
+                errorCode: '403'
                 errorMessage: Access to the requested resource is forbidden.
               schema:
-                $ref: "#/components/schemas/errorResult"
+                $ref: '#/components/schemas/errorResult'
           description: Forbidden.
-        "500":
+        '500':
           content:
             application/json:
               example:
                 correlationId: 289346a1-3eaf-4da4-b707-62ef12eb08be
-                errorCode: "500"
+                errorCode: '500'
                 errorMessage: '''The API could not handle your request at this time.'
               schema:
-                $ref: "#/components/schemas/errorResult"
+                $ref: '#/components/schemas/errorResult'
           description: Internal Server Error.
-        "503":
+        '503':
           content:
             application/json:
               example:
                 correlationId: 289346a1-3eaf-4da4-b707-62ef12eb08be
-                errorCode: "403"
+                errorCode: '403'
                 errorMessage: Access to the requested resource is forbidden.
               schema:
-                $ref: "#/components/schemas/errorResult"
+                $ref: '#/components/schemas/errorResult'
           description: Forbidden.
       summary: Update network equipment
       tags:
       - networkequipment
+    servers:
+    - url: https://api.leaseweb.com/bareMetals/v2
   /networkEquipments/{networkEquipmentId}/ips:
     get:
-      description: List all IP Addresses associated with this network equipment. Optionally
-        filtered.
+      description: List all IP Addresses associated with this network equipment. Optionally filtered.
       operationId: getIpList
       parameters:
       - description: The ID of a dedicated network equipment
-        example: "12345"
+        example: '12345'
         explode: false
         in: path
         name: networkEquipmentId
@@ -496,7 +477,7 @@ paths:
         name: networkType
         required: false
         schema:
-          $ref: "#/components/schemas/networkType"
+          $ref: '#/components/schemas/networkType'
         style: form
       - description: Filter the collection by ip version
         explode: true
@@ -514,8 +495,7 @@ paths:
         schema:
           type: string
         style: form
-      - description: Filter the collection of Ips for the comma separated list of
-          Ips
+      - description: Filter the collection of Ips for the comma separated list of Ips
         explode: true
         in: query
         name: ips
@@ -542,7 +522,7 @@ paths:
           type: integer
         style: form
       responses:
-        "200":
+        '200':
           content:
             application/json:
               example:
@@ -574,58 +554,60 @@ paths:
                   reverseLookup: domain.example.com
                   version: 6
               schema:
-                $ref: "#/components/schemas/ipList"
+                $ref: '#/components/schemas/ipList'
           description: Ok.
-        "401":
+        '401':
           content:
             application/json:
               example:
                 correlationId: 289346a1-3eaf-4da4-b707-62ef12eb08be
-                errorCode: "401"
+                errorCode: '401'
                 errorMessage: You are not authorized to view this resource.
               schema:
-                $ref: "#/components/schemas/errorResult"
+                $ref: '#/components/schemas/errorResult'
           description: Not Authorized.
-        "403":
+        '403':
           content:
             application/json:
               example:
                 correlationId: 289346a1-3eaf-4da4-b707-62ef12eb08be
-                errorCode: "403"
+                errorCode: '403'
                 errorMessage: Access to the requested resource is forbidden.
               schema:
-                $ref: "#/components/schemas/errorResult"
+                $ref: '#/components/schemas/errorResult'
           description: Forbidden.
-        "500":
+        '500':
           content:
             application/json:
               example:
                 correlationId: 289346a1-3eaf-4da4-b707-62ef12eb08be
-                errorCode: "500"
+                errorCode: '500'
                 errorMessage: '''The API could not handle your request at this time.'
               schema:
-                $ref: "#/components/schemas/errorResult"
+                $ref: '#/components/schemas/errorResult'
           description: Internal Server Error.
-        "503":
+        '503':
           content:
             application/json:
               example:
                 correlationId: 289346a1-3eaf-4da4-b707-62ef12eb08be
-                errorCode: "403"
+                errorCode: '403'
                 errorMessage: Access to the requested resource is forbidden.
               schema:
-                $ref: "#/components/schemas/errorResult"
+                $ref: '#/components/schemas/errorResult'
           description: Forbidden.
       summary: List IPs
       tags:
       - networkequipment
+    servers:
+    - url: https://api.leaseweb.com/bareMetals/v2
   /networkEquipments/{networkEquipmentId}/ips/{ip}:
     get:
       description: Get a single IP address associated with this network equipment.
       operationId: getIp
       parameters:
       - description: The ID of a dedicated network equipment
-        example: "12345"
+        example: '12345'
         explode: false
         in: path
         name: networkEquipmentId
@@ -643,7 +625,7 @@ paths:
           type: string
         style: simple
       responses:
-        "200":
+        '200':
           content:
             application/json:
               example:
@@ -659,74 +641,76 @@ paths:
                 reverseLookup: domain.example.com
                 version: 4
               schema:
-                $ref: "#/components/schemas/ip"
+                $ref: '#/components/schemas/ip'
           description: Ok.
-        "400":
+        '400':
           content:
             application/json:
               example:
                 correlationId: 289346a1-3eaf-4da4-b707-62ef12eb08be
-                errorCode: "400"
+                errorCode: '400'
                 errorDetails: {}
                 errorMessage: The API could not interpret your request correctly.
               schema:
-                $ref: "#/components/schemas/errorResult"
+                $ref: '#/components/schemas/errorResult'
           description: Bad Request.
-        "401":
+        '401':
           content:
             application/json:
               example:
                 correlationId: 289346a1-3eaf-4da4-b707-62ef12eb08be
-                errorCode: "401"
+                errorCode: '401'
                 errorMessage: You are not authorized to view this resource.
               schema:
-                $ref: "#/components/schemas/errorResult"
+                $ref: '#/components/schemas/errorResult'
           description: Not Authorized.
-        "403":
+        '403':
           content:
             application/json:
               example:
                 correlationId: 289346a1-3eaf-4da4-b707-62ef12eb08be
-                errorCode: "403"
+                errorCode: '403'
                 errorMessage: Access to the requested resource is forbidden.
               schema:
-                $ref: "#/components/schemas/errorResult"
+                $ref: '#/components/schemas/errorResult'
           description: Forbidden.
-        "500":
+        '500':
           content:
             application/json:
               example:
                 correlationId: 289346a1-3eaf-4da4-b707-62ef12eb08be
-                errorCode: "500"
+                errorCode: '500'
                 errorMessage: '''The API could not handle your request at this time.'
               schema:
-                $ref: "#/components/schemas/errorResult"
+                $ref: '#/components/schemas/errorResult'
           description: Internal Server Error.
-        "503":
+        '503':
           content:
             application/json:
               example:
                 correlationId: 289346a1-3eaf-4da4-b707-62ef12eb08be
-                errorCode: "403"
+                errorCode: '403'
                 errorMessage: Access to the requested resource is forbidden.
               schema:
-                $ref: "#/components/schemas/errorResult"
+                $ref: '#/components/schemas/errorResult'
           description: Forbidden.
       summary: Show a network equipment IP
       tags:
       - networkequipment
     put:
-      description: |
-        Update the reverse lookup or DDoS detection profile for the ip address.
+      description: 'Update the reverse lookup or DDoS detection profile for the ip address.
+
 
         DDoS detection profiles can only be changed if the IP address is protected
+
         using Advanced DDoS protection.
 
-        For more information about DDoS detection profiles, check our [Knowledge Base article on DDoS IP Protection](https://kb.leaseweb.com/products/cyber-security/ddos-ip-protection#DDOSIPProtection-DDoSIPProtectionAdvancedDetectionprofiles).
+
+        For more information about DDoS detection profiles, check our Knowledge Base article on DDoS IP Protection.'
       operationId: updateIp
       parameters:
       - description: The ID of a dedicated network equipment
-        example: "12345"
+        example: '12345'
         explode: false
         in: path
         name: networkEquipmentId
@@ -750,9 +734,9 @@ paths:
               detectionProfile: ADVANCED_LOW_UDP
               reverseLookup: domain.example.com
             schema:
-              $ref: "#/components/schemas/updateIpOpts"
+              $ref: '#/components/schemas/updateIpOpts'
       responses:
-        "200":
+        '200':
           content:
             application/json:
               example:
@@ -768,71 +752,73 @@ paths:
                 reverseLookup: domain.example.com
                 version: 4
               schema:
-                $ref: "#/components/schemas/ip"
+                $ref: '#/components/schemas/ip'
           description: Ok.
-        "400":
+        '400':
           content:
             application/json:
               example:
                 correlationId: 289346a1-3eaf-4da4-b707-62ef12eb08be
-                errorCode: "400"
+                errorCode: '400'
                 errorDetails: {}
                 errorMessage: The API could not interpret your request correctly.
               schema:
-                $ref: "#/components/schemas/errorResult"
+                $ref: '#/components/schemas/errorResult'
           description: Bad Request.
-        "401":
+        '401':
           content:
             application/json:
               example:
                 correlationId: 289346a1-3eaf-4da4-b707-62ef12eb08be
-                errorCode: "401"
+                errorCode: '401'
                 errorMessage: You are not authorized to view this resource.
               schema:
-                $ref: "#/components/schemas/errorResult"
+                $ref: '#/components/schemas/errorResult'
           description: Not Authorized.
-        "403":
+        '403':
           content:
             application/json:
               example:
                 correlationId: 289346a1-3eaf-4da4-b707-62ef12eb08be
-                errorCode: "403"
+                errorCode: '403'
                 errorMessage: Access to the requested resource is forbidden.
               schema:
-                $ref: "#/components/schemas/errorResult"
+                $ref: '#/components/schemas/errorResult'
           description: Forbidden.
-        "500":
+        '500':
           content:
             application/json:
               example:
                 correlationId: 289346a1-3eaf-4da4-b707-62ef12eb08be
-                errorCode: "500"
+                errorCode: '500'
                 errorMessage: '''The API could not handle your request at this time.'
               schema:
-                $ref: "#/components/schemas/errorResult"
+                $ref: '#/components/schemas/errorResult'
           description: Internal Server Error.
-        "503":
+        '503':
           content:
             application/json:
               example:
                 correlationId: 289346a1-3eaf-4da4-b707-62ef12eb08be
-                errorCode: "403"
+                errorCode: '403'
                 errorMessage: Access to the requested resource is forbidden.
               schema:
-                $ref: "#/components/schemas/errorResult"
+                $ref: '#/components/schemas/errorResult'
           description: Forbidden.
       summary: Update an IP
       tags:
       - networkequipment
+    servers:
+    - url: https://api.leaseweb.com/bareMetals/v2
   /networkEquipments/{networkEquipmentId}/ips/{ip}/null:
     post:
-      description: |
-        Null the given IP address. It might take a few minutes before the change is
-        propagated across the network.
+      description: 'Null the given IP address. It might take a few minutes before the change is
+
+        propagated across the network.'
       operationId: nullIpRoute
       parameters:
       - description: The ID of a dedicated network equipment
-        example: "12345"
+        example: '12345'
         explode: false
         in: path
         name: networkEquipmentId
@@ -850,7 +836,7 @@ paths:
           type: string
         style: simple
       responses:
-        "202":
+        '202':
           content:
             application/json:
               example:
@@ -866,71 +852,73 @@ paths:
                 reverseLookup: domain.example.com
                 version: 4
               schema:
-                $ref: "#/components/schemas/ip"
+                $ref: '#/components/schemas/ip'
           description: Accepted.
-        "400":
+        '400':
           content:
             application/json:
               example:
                 correlationId: 289346a1-3eaf-4da4-b707-62ef12eb08be
-                errorCode: "400"
+                errorCode: '400'
                 errorDetails: {}
                 errorMessage: The API could not interpret your request correctly.
               schema:
-                $ref: "#/components/schemas/errorResult"
+                $ref: '#/components/schemas/errorResult'
           description: Bad Request.
-        "401":
+        '401':
           content:
             application/json:
               example:
                 correlationId: 289346a1-3eaf-4da4-b707-62ef12eb08be
-                errorCode: "401"
+                errorCode: '401'
                 errorMessage: You are not authorized to view this resource.
               schema:
-                $ref: "#/components/schemas/errorResult"
+                $ref: '#/components/schemas/errorResult'
           description: Not Authorized.
-        "403":
+        '403':
           content:
             application/json:
               example:
                 correlationId: 289346a1-3eaf-4da4-b707-62ef12eb08be
-                errorCode: "403"
+                errorCode: '403'
                 errorMessage: Access to the requested resource is forbidden.
               schema:
-                $ref: "#/components/schemas/errorResult"
+                $ref: '#/components/schemas/errorResult'
           description: Forbidden.
-        "500":
+        '500':
           content:
             application/json:
               example:
                 correlationId: 289346a1-3eaf-4da4-b707-62ef12eb08be
-                errorCode: "500"
+                errorCode: '500'
                 errorMessage: '''The API could not handle your request at this time.'
               schema:
-                $ref: "#/components/schemas/errorResult"
+                $ref: '#/components/schemas/errorResult'
           description: Internal Server Error.
-        "503":
+        '503':
           content:
             application/json:
               example:
                 correlationId: 289346a1-3eaf-4da4-b707-62ef12eb08be
-                errorCode: "403"
+                errorCode: '403'
                 errorMessage: Access to the requested resource is forbidden.
               schema:
-                $ref: "#/components/schemas/errorResult"
+                $ref: '#/components/schemas/errorResult'
           description: Forbidden.
       summary: Null route an IP
       tags:
       - networkequipment
+    servers:
+    - url: https://api.leaseweb.com/bareMetals/v2
   /networkEquipments/{networkEquipmentId}/ips/{ip}/unnull:
     post:
-      description: |
-        Remove an existing null route for the given IP address. It might take a few
-        minutes before the change is propagated across the network.
+      description: 'Remove an existing null route for the given IP address. It might take a few
+
+        minutes before the change is propagated across the network.'
       operationId: unNullIpRoute
       parameters:
       - description: The ID of a dedicated network equipment
-        example: "12345"
+        example: '12345'
         explode: false
         in: path
         name: networkEquipmentId
@@ -948,7 +936,7 @@ paths:
           type: string
         style: simple
       responses:
-        "202":
+        '202':
           content:
             application/json:
               example:
@@ -964,70 +952,71 @@ paths:
                 reverseLookup: domain.example.com
                 version: 4
               schema:
-                $ref: "#/components/schemas/ip"
+                $ref: '#/components/schemas/ip'
           description: Accepted.
-        "400":
+        '400':
           content:
             application/json:
               example:
                 correlationId: 289346a1-3eaf-4da4-b707-62ef12eb08be
-                errorCode: "400"
+                errorCode: '400'
                 errorDetails: {}
                 errorMessage: The API could not interpret your request correctly.
               schema:
-                $ref: "#/components/schemas/errorResult"
+                $ref: '#/components/schemas/errorResult'
           description: Bad Request.
-        "401":
+        '401':
           content:
             application/json:
               example:
                 correlationId: 289346a1-3eaf-4da4-b707-62ef12eb08be
-                errorCode: "401"
+                errorCode: '401'
                 errorMessage: You are not authorized to view this resource.
               schema:
-                $ref: "#/components/schemas/errorResult"
+                $ref: '#/components/schemas/errorResult'
           description: Not Authorized.
-        "403":
+        '403':
           content:
             application/json:
               example:
                 correlationId: 289346a1-3eaf-4da4-b707-62ef12eb08be
-                errorCode: "403"
+                errorCode: '403'
                 errorMessage: Access to the requested resource is forbidden.
               schema:
-                $ref: "#/components/schemas/errorResult"
+                $ref: '#/components/schemas/errorResult'
           description: Forbidden.
-        "500":
+        '500':
           content:
             application/json:
               example:
                 correlationId: 289346a1-3eaf-4da4-b707-62ef12eb08be
-                errorCode: "500"
+                errorCode: '500'
                 errorMessage: '''The API could not handle your request at this time.'
               schema:
-                $ref: "#/components/schemas/errorResult"
+                $ref: '#/components/schemas/errorResult'
           description: Internal Server Error.
-        "503":
+        '503':
           content:
             application/json:
               example:
                 correlationId: 289346a1-3eaf-4da4-b707-62ef12eb08be
-                errorCode: "403"
+                errorCode: '403'
                 errorMessage: Access to the requested resource is forbidden.
               schema:
-                $ref: "#/components/schemas/errorResult"
+                $ref: '#/components/schemas/errorResult'
           description: Forbidden.
       summary: Remove a null route
       tags:
       - networkequipment
+    servers:
+    - url: https://api.leaseweb.com/bareMetals/v2
   /networkEquipments/{networkEquipmentId}/nullRouteHistory:
     get:
-      description: Show all null route history for any ips associated with this a
-        network equipment.
+      description: Show all null route history for any ips associated with this a network equipment.
       operationId: getNullRouteHistory
       parameters:
       - description: The ID of a dedicated network equipment
-        example: "12345"
+        example: '12345'
         explode: false
         in: path
         name: networkEquipmentId
@@ -1054,7 +1043,7 @@ paths:
           type: integer
         style: form
       responses:
-        "200":
+        '200':
           content:
             application/json:
               example:
@@ -1063,66 +1052,67 @@ paths:
                   offset: 0
                   totalCount: 1
                 nullRoutes:
-                - automatedUnnullingAt: 2016-08-12T07:45:33+00:00
+                - automatedUnnullingAt: 2016-08-12 07:45:33+00:00
                   comment: Device Null Route related to DDoS Mitigation
                   ip: 1.1.1.1/32
                   nullLevel: 3
-                  nulledAt: 2016-08-12T07:40:27+00:00
-                  ticketId: "282912"
+                  nulledAt: 2016-08-12 07:40:27+00:00
+                  ticketId: '282912'
               schema:
-                $ref: "#/components/schemas/nullRouteList"
+                $ref: '#/components/schemas/nullRouteList'
           description: Ok.
-        "401":
+        '401':
           content:
             application/json:
               example:
                 correlationId: 289346a1-3eaf-4da4-b707-62ef12eb08be
-                errorCode: "401"
+                errorCode: '401'
                 errorMessage: You are not authorized to view this resource.
               schema:
-                $ref: "#/components/schemas/errorResult"
+                $ref: '#/components/schemas/errorResult'
           description: Not Authorized.
-        "403":
+        '403':
           content:
             application/json:
               example:
                 correlationId: 289346a1-3eaf-4da4-b707-62ef12eb08be
-                errorCode: "403"
+                errorCode: '403'
                 errorMessage: Access to the requested resource is forbidden.
               schema:
-                $ref: "#/components/schemas/errorResult"
+                $ref: '#/components/schemas/errorResult'
           description: Forbidden.
-        "500":
+        '500':
           content:
             application/json:
               example:
                 correlationId: 289346a1-3eaf-4da4-b707-62ef12eb08be
-                errorCode: "500"
+                errorCode: '500'
                 errorMessage: '''The API could not handle your request at this time.'
               schema:
-                $ref: "#/components/schemas/errorResult"
+                $ref: '#/components/schemas/errorResult'
           description: Internal Server Error.
-        "503":
+        '503':
           content:
             application/json:
               example:
                 correlationId: 289346a1-3eaf-4da4-b707-62ef12eb08be
-                errorCode: "403"
+                errorCode: '403'
                 errorMessage: Access to the requested resource is forbidden.
               schema:
-                $ref: "#/components/schemas/errorResult"
+                $ref: '#/components/schemas/errorResult'
           description: Forbidden.
       summary: Show null route history
       tags:
       - networkequipment
+    servers:
+    - url: https://api.leaseweb.com/bareMetals/v2
   /networkEquipments/{networkEquipmentId}/credentials:
     get:
-      description: The credentials API allows you to store usernames and passwords
-        securely.
+      description: The credentials API allows you to store usernames and passwords securely.
       operationId: getCredentialList
       parameters:
       - description: The ID of a dedicated network equipment
-        example: "12345"
+        example: '12345'
         explode: false
         in: path
         name: networkEquipmentId
@@ -1149,7 +1139,7 @@ paths:
           type: integer
         style: form
       responses:
-        "200":
+        '200':
           content:
             application/json:
               example:
@@ -1185,60 +1175,61 @@ paths:
                 - type: DATABASE
                   username: user
               schema:
-                $ref: "#/components/schemas/credentialList"
+                $ref: '#/components/schemas/credentialList'
           description: Ok.
-        "401":
+        '401':
           content:
             application/json:
               example:
                 correlationId: 289346a1-3eaf-4da4-b707-62ef12eb08be
-                errorCode: "401"
+                errorCode: '401'
                 errorMessage: You are not authorized to view this resource.
               schema:
-                $ref: "#/components/schemas/errorResult"
+                $ref: '#/components/schemas/errorResult'
           description: Not Authorized.
-        "403":
+        '403':
           content:
             application/json:
               example:
                 correlationId: 289346a1-3eaf-4da4-b707-62ef12eb08be
-                errorCode: "403"
+                errorCode: '403'
                 errorMessage: Access to the requested resource is forbidden.
               schema:
-                $ref: "#/components/schemas/errorResult"
+                $ref: '#/components/schemas/errorResult'
           description: Forbidden.
-        "500":
+        '500':
           content:
             application/json:
               example:
                 correlationId: 289346a1-3eaf-4da4-b707-62ef12eb08be
-                errorCode: "500"
+                errorCode: '500'
                 errorMessage: '''The API could not handle your request at this time.'
               schema:
-                $ref: "#/components/schemas/errorResult"
+                $ref: '#/components/schemas/errorResult'
           description: Internal Server Error.
-        "503":
+        '503':
           content:
             application/json:
               example:
                 correlationId: 289346a1-3eaf-4da4-b707-62ef12eb08be
-                errorCode: "403"
+                errorCode: '403'
                 errorMessage: Access to the requested resource is forbidden.
               schema:
-                $ref: "#/components/schemas/errorResult"
+                $ref: '#/components/schemas/errorResult'
           description: Forbidden.
       summary: List network equipment credentials
       tags:
       - networkequipment
     post:
-      description: |
-        Password will NOT be updated on the network equipment. The ability to update
+      description: 'Password will NOT be updated on the network equipment. The ability to update
+
         credentials is for convenience only. It provides a secure way to communicate
-        passwords with Leaseweb engineers in case support is required.
+
+        passwords with Leaseweb engineers in case support is required.'
       operationId: createCredential
       parameters:
       - description: The ID of a dedicated network equipment
-        example: "12345"
+        example: '12345'
         explode: false
         in: path
         name: networkEquipmentId
@@ -1254,9 +1245,9 @@ paths:
               type: OPERATING_SYSTEM
               username: root
             schema:
-              $ref: "#/components/schemas/createCredentialOpts"
+              $ref: '#/components/schemas/createCredentialOpts'
       responses:
-        "200":
+        '200':
           content:
             application/json:
               example:
@@ -1264,60 +1255,62 @@ paths:
                 type: OPERATING_SYSTEM
                 username: root
               schema:
-                $ref: "#/components/schemas/credential"
+                $ref: '#/components/schemas/credential'
           description: Ok.
-        "401":
+        '401':
           content:
             application/json:
               example:
                 correlationId: 289346a1-3eaf-4da4-b707-62ef12eb08be
-                errorCode: "401"
+                errorCode: '401'
                 errorMessage: You are not authorized to view this resource.
               schema:
-                $ref: "#/components/schemas/errorResult"
+                $ref: '#/components/schemas/errorResult'
           description: Not Authorized.
-        "403":
+        '403':
           content:
             application/json:
               example:
                 correlationId: 289346a1-3eaf-4da4-b707-62ef12eb08be
-                errorCode: "403"
+                errorCode: '403'
                 errorMessage: Access to the requested resource is forbidden.
               schema:
-                $ref: "#/components/schemas/errorResult"
+                $ref: '#/components/schemas/errorResult'
           description: Forbidden.
-        "500":
+        '500':
           content:
             application/json:
               example:
                 correlationId: 289346a1-3eaf-4da4-b707-62ef12eb08be
-                errorCode: "500"
+                errorCode: '500'
                 errorMessage: '''The API could not handle your request at this time.'
               schema:
-                $ref: "#/components/schemas/errorResult"
+                $ref: '#/components/schemas/errorResult'
           description: Internal Server Error.
-        "503":
+        '503':
           content:
             application/json:
               example:
                 correlationId: 289346a1-3eaf-4da4-b707-62ef12eb08be
-                errorCode: "403"
+                errorCode: '403'
                 errorMessage: Access to the requested resource is forbidden.
               schema:
-                $ref: "#/components/schemas/errorResult"
+                $ref: '#/components/schemas/errorResult'
           description: Forbidden.
       summary: Create new network equipment credentials
       tags:
       - networkequipment
+    servers:
+    - url: https://api.leaseweb.com/bareMetals/v2
   /networkEquipments/{networkEquipmentId}/credentials/{type}:
     get:
-      description: |
-        List all the credentials filtered by the specified type that are associated
-        with this network equipment.
+      description: 'List all the credentials filtered by the specified type that are associated
+
+        with this network equipment.'
       operationId: getCredentialListByType
       parameters:
       - description: The ID of a dedicated network equipment
-        example: "12345"
+        example: '12345'
         explode: false
         in: path
         name: networkEquipmentId
@@ -1331,7 +1324,7 @@ paths:
         name: type
         required: true
         schema:
-          $ref: "#/components/schemas/credentialType"
+          $ref: '#/components/schemas/credentialType'
         style: simple
       - description: Limit the number of results returned.
         example: 20
@@ -1352,7 +1345,7 @@ paths:
           type: integer
         style: form
       responses:
-        "200":
+        '200':
           content:
             application/json:
               example:
@@ -1366,60 +1359,62 @@ paths:
                 - type: OPERATING_SYSTEM
                   username: user
               schema:
-                $ref: "#/components/schemas/credentialList"
+                $ref: '#/components/schemas/credentialList'
           description: Ok.
-        "401":
+        '401':
           content:
             application/json:
               example:
                 correlationId: 289346a1-3eaf-4da4-b707-62ef12eb08be
-                errorCode: "401"
+                errorCode: '401'
                 errorMessage: You are not authorized to view this resource.
               schema:
-                $ref: "#/components/schemas/errorResult"
+                $ref: '#/components/schemas/errorResult'
           description: Not Authorized.
-        "403":
+        '403':
           content:
             application/json:
               example:
                 correlationId: 289346a1-3eaf-4da4-b707-62ef12eb08be
-                errorCode: "403"
+                errorCode: '403'
                 errorMessage: Access to the requested resource is forbidden.
               schema:
-                $ref: "#/components/schemas/errorResult"
+                $ref: '#/components/schemas/errorResult'
           description: Forbidden.
-        "500":
+        '500':
           content:
             application/json:
               example:
                 correlationId: 289346a1-3eaf-4da4-b707-62ef12eb08be
-                errorCode: "500"
+                errorCode: '500'
                 errorMessage: '''The API could not handle your request at this time.'
               schema:
-                $ref: "#/components/schemas/errorResult"
+                $ref: '#/components/schemas/errorResult'
           description: Internal Server Error.
-        "503":
+        '503':
           content:
             application/json:
               example:
                 correlationId: 289346a1-3eaf-4da4-b707-62ef12eb08be
-                errorCode: "403"
+                errorCode: '403'
                 errorMessage: Access to the requested resource is forbidden.
               schema:
-                $ref: "#/components/schemas/errorResult"
+                $ref: '#/components/schemas/errorResult'
           description: Forbidden.
       summary: List network equipment credentials by type
       tags:
       - networkequipment
+    servers:
+    - url: https://api.leaseweb.com/bareMetals/v2
   /networkEquipments/{networkEquipmentId}/credentials/{type}/{username}:
     delete:
-      description: |
-        This action is purely administrative and will only remove the username and
-        password associated with this resource from our database.
+      description: 'This action is purely administrative and will only remove the username and
+
+        password associated with this resource from our database.'
       operationId: deleteCredential
       parameters:
       - description: The ID of a dedicated network equipment
-        example: "12345"
+        example: '12345'
         explode: false
         in: path
         name: networkEquipmentId
@@ -1433,7 +1428,7 @@ paths:
         name: type
         required: true
         schema:
-          $ref: "#/components/schemas/credentialType"
+          $ref: '#/components/schemas/credentialType'
         style: simple
       - description: Username
         explode: false
@@ -1445,59 +1440,59 @@ paths:
           type: string
         style: simple
       responses:
-        "204":
+        '204':
           description: No Content.
-        "401":
+        '401':
           content:
             application/json:
               example:
                 correlationId: 289346a1-3eaf-4da4-b707-62ef12eb08be
-                errorCode: "401"
+                errorCode: '401'
                 errorMessage: You are not authorized to view this resource.
               schema:
-                $ref: "#/components/schemas/errorResult"
+                $ref: '#/components/schemas/errorResult'
           description: Not Authorized.
-        "403":
+        '403':
           content:
             application/json:
               example:
                 correlationId: 289346a1-3eaf-4da4-b707-62ef12eb08be
-                errorCode: "403"
+                errorCode: '403'
                 errorMessage: Access to the requested resource is forbidden.
               schema:
-                $ref: "#/components/schemas/errorResult"
+                $ref: '#/components/schemas/errorResult'
           description: Forbidden.
-        "500":
+        '500':
           content:
             application/json:
               example:
                 correlationId: 289346a1-3eaf-4da4-b707-62ef12eb08be
-                errorCode: "500"
+                errorCode: '500'
                 errorMessage: '''The API could not handle your request at this time.'
               schema:
-                $ref: "#/components/schemas/errorResult"
+                $ref: '#/components/schemas/errorResult'
           description: Internal Server Error.
-        "503":
+        '503':
           content:
             application/json:
               example:
                 correlationId: 289346a1-3eaf-4da4-b707-62ef12eb08be
-                errorCode: "403"
+                errorCode: '403'
                 errorMessage: Access to the requested resource is forbidden.
               schema:
-                $ref: "#/components/schemas/errorResult"
+                $ref: '#/components/schemas/errorResult'
           description: Forbidden.
       summary: Delete network equipment credentials
       tags:
       - networkequipment
     get:
-      description: |
-        View the password for the given credential, identified by `type` and
-        `username`.
+      description: 'View the password for the given credential, identified by `type` and
+
+        `username`.'
       operationId: getCredential
       parameters:
       - description: The ID of a dedicated network equipment
-        example: "12345"
+        example: '12345'
         explode: false
         in: path
         name: networkEquipmentId
@@ -1511,7 +1506,7 @@ paths:
         name: type
         required: true
         schema:
-          $ref: "#/components/schemas/credentialType"
+          $ref: '#/components/schemas/credentialType'
         style: simple
       - description: Username
         explode: false
@@ -1523,7 +1518,7 @@ paths:
           type: string
         style: simple
       responses:
-        "200":
+        '200':
           content:
             application/json:
               example:
@@ -1531,62 +1526,64 @@ paths:
                 type: OPERATING_SYSTEM
                 username: root
               schema:
-                $ref: "#/components/schemas/credential"
+                $ref: '#/components/schemas/credential'
           description: Ok.
-        "401":
+        '401':
           content:
             application/json:
               example:
                 correlationId: 289346a1-3eaf-4da4-b707-62ef12eb08be
-                errorCode: "401"
+                errorCode: '401'
                 errorMessage: You are not authorized to view this resource.
               schema:
-                $ref: "#/components/schemas/errorResult"
+                $ref: '#/components/schemas/errorResult'
           description: Not Authorized.
-        "403":
+        '403':
           content:
             application/json:
               example:
                 correlationId: 289346a1-3eaf-4da4-b707-62ef12eb08be
-                errorCode: "403"
+                errorCode: '403'
                 errorMessage: Access to the requested resource is forbidden.
               schema:
-                $ref: "#/components/schemas/errorResult"
+                $ref: '#/components/schemas/errorResult'
           description: Forbidden.
-        "500":
+        '500':
           content:
             application/json:
               example:
                 correlationId: 289346a1-3eaf-4da4-b707-62ef12eb08be
-                errorCode: "500"
+                errorCode: '500'
                 errorMessage: '''The API could not handle your request at this time.'
               schema:
-                $ref: "#/components/schemas/errorResult"
+                $ref: '#/components/schemas/errorResult'
           description: Internal Server Error.
-        "503":
+        '503':
           content:
             application/json:
               example:
                 correlationId: 289346a1-3eaf-4da4-b707-62ef12eb08be
-                errorCode: "403"
+                errorCode: '403'
                 errorMessage: Access to the requested resource is forbidden.
               schema:
-                $ref: "#/components/schemas/errorResult"
+                $ref: '#/components/schemas/errorResult'
           description: Forbidden.
       summary: Show network equipment credentials
       tags:
       - networkequipment
     put:
-      description: |
-        The usernames or types cannot be changed. In order to change those remove this
+      description: 'The usernames or types cannot be changed. In order to change those remove this
+
         credentials and create a new one.
 
+
         This action is purely administrative and will only update the password
-        associated with this resource in our database.
+
+        associated with this resource in our database.'
       operationId: updateCredential
       parameters:
       - description: The ID of a dedicated network equipment
-        example: "12345"
+        example: '12345'
         explode: false
         in: path
         name: networkEquipmentId
@@ -1600,7 +1597,7 @@ paths:
         name: type
         required: true
         schema:
-          $ref: "#/components/schemas/credentialType"
+          $ref: '#/components/schemas/credentialType'
         style: simple
       - description: Username
         explode: false
@@ -1617,9 +1614,9 @@ paths:
             example:
               password: mys3cr3tp@ssw0rd
             schema:
-              $ref: "#/components/schemas/updateCredentialOpts"
+              $ref: '#/components/schemas/updateCredentialOpts'
       responses:
-        "200":
+        '200':
           content:
             application/json:
               example:
@@ -1627,69 +1624,71 @@ paths:
                 type: OPERATING_SYSTEM
                 username: root
               schema:
-                $ref: "#/components/schemas/credential"
+                $ref: '#/components/schemas/credential'
           description: Ok.
-        "400":
+        '400':
           content:
             application/json:
               example:
                 correlationId: 289346a1-3eaf-4da4-b707-62ef12eb08be
-                errorCode: "400"
+                errorCode: '400'
                 errorDetails: {}
                 errorMessage: The API could not interpret your request correctly.
               schema:
-                $ref: "#/components/schemas/errorResult"
+                $ref: '#/components/schemas/errorResult'
           description: Bad Request.
-        "401":
+        '401':
           content:
             application/json:
               example:
                 correlationId: 289346a1-3eaf-4da4-b707-62ef12eb08be
-                errorCode: "401"
+                errorCode: '401'
                 errorMessage: You are not authorized to view this resource.
               schema:
-                $ref: "#/components/schemas/errorResult"
+                $ref: '#/components/schemas/errorResult'
           description: Not Authorized.
-        "403":
+        '403':
           content:
             application/json:
               example:
                 correlationId: 289346a1-3eaf-4da4-b707-62ef12eb08be
-                errorCode: "403"
+                errorCode: '403'
                 errorMessage: Access to the requested resource is forbidden.
               schema:
-                $ref: "#/components/schemas/errorResult"
+                $ref: '#/components/schemas/errorResult'
           description: Forbidden.
-        "500":
+        '500':
           content:
             application/json:
               example:
                 correlationId: 289346a1-3eaf-4da4-b707-62ef12eb08be
-                errorCode: "500"
+                errorCode: '500'
                 errorMessage: '''The API could not handle your request at this time.'
               schema:
-                $ref: "#/components/schemas/errorResult"
+                $ref: '#/components/schemas/errorResult'
           description: Internal Server Error.
-        "503":
+        '503':
           content:
             application/json:
               example:
                 correlationId: 289346a1-3eaf-4da4-b707-62ef12eb08be
-                errorCode: "403"
+                errorCode: '403'
                 errorMessage: Access to the requested resource is forbidden.
               schema:
-                $ref: "#/components/schemas/errorResult"
+                $ref: '#/components/schemas/errorResult'
           description: Forbidden.
       summary: Update network equipment credentials
       tags:
       - networkequipment
+    servers:
+    - url: https://api.leaseweb.com/bareMetals/v2
   /networkEquipments/{networkEquipmentId}/powerCycle:
     post:
       description: Powercyle the network equipment.
       operationId: powerCycle
       parameters:
       - description: The ID of a dedicated network equipment
-        example: "12345"
+        example: '12345'
         explode: false
         in: path
         name: networkEquipmentId
@@ -1698,78 +1697,86 @@ paths:
           type: string
         style: simple
       responses:
-        "204":
+        '204':
           description: No Content.
-        "400":
+        '400':
           content:
             application/json:
               example:
                 correlationId: 289346a1-3eaf-4da4-b707-62ef12eb08be
-                errorCode: "400"
+                errorCode: '400'
                 errorDetails: {}
                 errorMessage: The API could not interpret your request correctly.
               schema:
-                $ref: "#/components/schemas/errorResult"
+                $ref: '#/components/schemas/errorResult'
           description: Bad Request.
-        "401":
+        '401':
           content:
             application/json:
               example:
                 correlationId: 289346a1-3eaf-4da4-b707-62ef12eb08be
-                errorCode: "401"
+                errorCode: '401'
                 errorMessage: You are not authorized to view this resource.
               schema:
-                $ref: "#/components/schemas/errorResult"
+                $ref: '#/components/schemas/errorResult'
           description: Not Authorized.
-        "403":
+        '403':
           content:
             application/json:
               example:
                 correlationId: 289346a1-3eaf-4da4-b707-62ef12eb08be
-                errorCode: "403"
+                errorCode: '403'
                 errorMessage: Access to the requested resource is forbidden.
               schema:
-                $ref: "#/components/schemas/errorResult"
+                $ref: '#/components/schemas/errorResult'
           description: Forbidden.
-        "500":
+        '500':
           content:
             application/json:
               example:
                 correlationId: 289346a1-3eaf-4da4-b707-62ef12eb08be
-                errorCode: "500"
+                errorCode: '500'
                 errorMessage: '''The API could not handle your request at this time.'
               schema:
-                $ref: "#/components/schemas/errorResult"
+                $ref: '#/components/schemas/errorResult'
           description: Internal Server Error.
-        "503":
+        '503':
           content:
             application/json:
               example:
                 correlationId: 289346a1-3eaf-4da4-b707-62ef12eb08be
-                errorCode: "403"
+                errorCode: '403'
                 errorMessage: Access to the requested resource is forbidden.
               schema:
-                $ref: "#/components/schemas/errorResult"
+                $ref: '#/components/schemas/errorResult'
           description: Forbidden.
       summary: Power cycle a network equipment
       tags:
       - networkequipment
+    servers:
+    - url: https://api.leaseweb.com/bareMetals/v2
   /networkEquipments/{networkEquipmentId}/powerInfo:
     get:
-      description: |
-        The network equipment can either be `ON` or `OFF`. Network Equipment can be
+      description: 'The network equipment can either be `ON` or `OFF`. Network Equipment can be
+
         powered on or off by using the respective `/powerOn` and `/powerOff` API
+
         calls. In addition network equipment can also be rebooted using the
+
         `/powerCycle` API call.
 
+
         The `pdu` object describes the power status from the power distribution unit
+
         (PDU) point of view. If your network equipment is connected to multiple PDU
+
         ports the `status` property will report `on` if at least one PDU port has
-        power.
+
+        power.'
       operationId: getPowerStatus
       parameters:
       - description: The ID of a dedicated network equipment
-        example: "12345"
+        example: '12345'
         explode: false
         in: path
         name: networkEquipmentId
@@ -1778,76 +1785,78 @@ paths:
           type: string
         style: simple
       responses:
-        "200":
+        '200':
           content:
             application/json:
               example:
                 pdu:
-                  status: "on"
+                  status: 'on'
               schema:
-                $ref: "#/components/schemas/getPowerStatusResult"
+                $ref: '#/components/schemas/getPowerStatusResult'
           description: Ok.
-        "400":
+        '400':
           content:
             application/json:
               example:
                 correlationId: 289346a1-3eaf-4da4-b707-62ef12eb08be
-                errorCode: "400"
+                errorCode: '400'
                 errorDetails: {}
                 errorMessage: The API could not interpret your request correctly.
               schema:
-                $ref: "#/components/schemas/errorResult"
+                $ref: '#/components/schemas/errorResult'
           description: Bad Request.
-        "401":
+        '401':
           content:
             application/json:
               example:
                 correlationId: 289346a1-3eaf-4da4-b707-62ef12eb08be
-                errorCode: "401"
+                errorCode: '401'
                 errorMessage: You are not authorized to view this resource.
               schema:
-                $ref: "#/components/schemas/errorResult"
+                $ref: '#/components/schemas/errorResult'
           description: Not Authorized.
-        "403":
+        '403':
           content:
             application/json:
               example:
                 correlationId: 289346a1-3eaf-4da4-b707-62ef12eb08be
-                errorCode: "403"
+                errorCode: '403'
                 errorMessage: Access to the requested resource is forbidden.
               schema:
-                $ref: "#/components/schemas/errorResult"
+                $ref: '#/components/schemas/errorResult'
           description: Forbidden.
-        "500":
+        '500':
           content:
             application/json:
               example:
                 correlationId: 289346a1-3eaf-4da4-b707-62ef12eb08be
-                errorCode: "500"
+                errorCode: '500'
                 errorMessage: '''The API could not handle your request at this time.'
               schema:
-                $ref: "#/components/schemas/errorResult"
+                $ref: '#/components/schemas/errorResult'
           description: Internal Server Error.
-        "503":
+        '503':
           content:
             application/json:
               example:
                 correlationId: 289346a1-3eaf-4da4-b707-62ef12eb08be
-                errorCode: "403"
+                errorCode: '403'
                 errorMessage: Access to the requested resource is forbidden.
               schema:
-                $ref: "#/components/schemas/errorResult"
+                $ref: '#/components/schemas/errorResult'
           description: Forbidden.
       summary: Show power status
       tags:
       - networkequipment
+    servers:
+    - url: https://api.leaseweb.com/bareMetals/v2
   /networkEquipments/{networkEquipmentId}/powerOff:
     post:
       description: Power off the given network equipment.
       operationId: powerOff
       parameters:
       - description: The ID of a dedicated network equipment
-        example: "12345"
+        example: '12345'
         explode: false
         in: path
         name: networkEquipmentId
@@ -1856,69 +1865,71 @@ paths:
           type: string
         style: simple
       responses:
-        "204":
+        '204':
           description: No Content.
-        "400":
+        '400':
           content:
             application/json:
               example:
                 correlationId: 289346a1-3eaf-4da4-b707-62ef12eb08be
-                errorCode: "400"
+                errorCode: '400'
                 errorDetails: {}
                 errorMessage: The API could not interpret your request correctly.
               schema:
-                $ref: "#/components/schemas/errorResult"
+                $ref: '#/components/schemas/errorResult'
           description: Bad Request.
-        "401":
+        '401':
           content:
             application/json:
               example:
                 correlationId: 289346a1-3eaf-4da4-b707-62ef12eb08be
-                errorCode: "401"
+                errorCode: '401'
                 errorMessage: You are not authorized to view this resource.
               schema:
-                $ref: "#/components/schemas/errorResult"
+                $ref: '#/components/schemas/errorResult'
           description: Not Authorized.
-        "403":
+        '403':
           content:
             application/json:
               example:
                 correlationId: 289346a1-3eaf-4da4-b707-62ef12eb08be
-                errorCode: "403"
+                errorCode: '403'
                 errorMessage: Access to the requested resource is forbidden.
               schema:
-                $ref: "#/components/schemas/errorResult"
+                $ref: '#/components/schemas/errorResult'
           description: Forbidden.
-        "500":
+        '500':
           content:
             application/json:
               example:
                 correlationId: 289346a1-3eaf-4da4-b707-62ef12eb08be
-                errorCode: "500"
+                errorCode: '500'
                 errorMessage: '''The API could not handle your request at this time.'
               schema:
-                $ref: "#/components/schemas/errorResult"
+                $ref: '#/components/schemas/errorResult'
           description: Internal Server Error.
-        "503":
+        '503':
           content:
             application/json:
               example:
                 correlationId: 289346a1-3eaf-4da4-b707-62ef12eb08be
-                errorCode: "403"
+                errorCode: '403'
                 errorMessage: Access to the requested resource is forbidden.
               schema:
-                $ref: "#/components/schemas/errorResult"
+                $ref: '#/components/schemas/errorResult'
           description: Forbidden.
       summary: Power off network equipment
       tags:
       - networkequipment
+    servers:
+    - url: https://api.leaseweb.com/bareMetals/v2
   /networkEquipments/{networkEquipmentId}/powerOn:
     post:
       description: Power on the given network equipment.
       operationId: powerOn
       parameters:
       - description: The ID of a dedicated network equipment
-        example: "12345"
+        example: '12345'
         explode: false
         in: path
         name: networkEquipmentId
@@ -1927,647 +1938,111 @@ paths:
           type: string
         style: simple
       responses:
-        "204":
+        '204':
           description: No Content.
-        "400":
+        '400':
           content:
             application/json:
               example:
                 correlationId: 289346a1-3eaf-4da4-b707-62ef12eb08be
-                errorCode: "400"
+                errorCode: '400'
                 errorDetails: {}
                 errorMessage: The API could not interpret your request correctly.
               schema:
-                $ref: "#/components/schemas/errorResult"
+                $ref: '#/components/schemas/errorResult'
           description: Bad Request.
-        "401":
+        '401':
           content:
             application/json:
               example:
                 correlationId: 289346a1-3eaf-4da4-b707-62ef12eb08be
-                errorCode: "401"
+                errorCode: '401'
                 errorMessage: You are not authorized to view this resource.
               schema:
-                $ref: "#/components/schemas/errorResult"
+                $ref: '#/components/schemas/errorResult'
           description: Not Authorized.
-        "403":
+        '403':
           content:
             application/json:
               example:
                 correlationId: 289346a1-3eaf-4da4-b707-62ef12eb08be
-                errorCode: "403"
+                errorCode: '403'
                 errorMessage: Access to the requested resource is forbidden.
               schema:
-                $ref: "#/components/schemas/errorResult"
+                $ref: '#/components/schemas/errorResult'
           description: Forbidden.
-        "500":
+        '500':
           content:
             application/json:
               example:
                 correlationId: 289346a1-3eaf-4da4-b707-62ef12eb08be
-                errorCode: "500"
+                errorCode: '500'
                 errorMessage: '''The API could not handle your request at this time.'
               schema:
-                $ref: "#/components/schemas/errorResult"
+                $ref: '#/components/schemas/errorResult'
           description: Internal Server Error.
-        "503":
+        '503':
           content:
             application/json:
               example:
                 correlationId: 289346a1-3eaf-4da4-b707-62ef12eb08be
-                errorCode: "403"
+                errorCode: '403'
                 errorMessage: Access to the requested resource is forbidden.
               schema:
-                $ref: "#/components/schemas/errorResult"
+                $ref: '#/components/schemas/errorResult'
           description: Forbidden.
       summary: Power on network equipment
       tags:
       - networkequipment
+    servers:
+    - url: https://api.leaseweb.com/bareMetals/v2
 components:
-  parameters:
-    limit:
-      description: Limit the number of results returned.
-      example: 20
-      explode: true
-      in: query
-      name: limit
-      required: false
-      schema:
-        type: integer
-      style: form
-    offset:
-      description: Return results starting from the given offset.
-      example: 10
-      explode: true
-      in: query
-      name: offset
-      required: false
-      schema:
-        type: integer
-      style: form
-    networkEquipmentId:
-      description: The ID of a dedicated network equipment
-      example: "12345"
-      explode: false
-      in: path
-      name: networkEquipmentId
-      required: true
-      schema:
-        type: string
-      style: simple
-    ip:
-      description: The IP Address
-      example: 127.0.0.6
-      explode: false
-      in: path
-      name: ip
-      required: true
-      schema:
-        type: string
-      style: simple
-    credentialsType:
-      description: The type of the credential.
-      explode: false
-      in: path
-      name: type
-      required: true
-      schema:
-        $ref: "#/components/schemas/credentialType"
-      style: simple
-    credentialsUsername:
-      description: Username
-      explode: false
-      in: path
-      name: username
-      required: true
-      schema:
-        example: root
-        type: string
-      style: simple
-  responses:
-    "204":
-      description: No Content.
-    "400":
-      content:
-        application/json:
-          example:
-            correlationId: 289346a1-3eaf-4da4-b707-62ef12eb08be
-            errorCode: "400"
-            errorDetails: {}
-            errorMessage: The API could not interpret your request correctly.
-          schema:
-            $ref: "#/components/schemas/errorResult"
-      description: Bad Request.
-    "401":
-      content:
-        application/json:
-          example:
-            correlationId: 289346a1-3eaf-4da4-b707-62ef12eb08be
-            errorCode: "401"
-            errorMessage: You are not authorized to view this resource.
-          schema:
-            $ref: "#/components/schemas/errorResult"
-      description: Not Authorized.
-    "403":
-      content:
-        application/json:
-          example:
-            correlationId: 289346a1-3eaf-4da4-b707-62ef12eb08be
-            errorCode: "403"
-            errorMessage: Access to the requested resource is forbidden.
-          schema:
-            $ref: "#/components/schemas/errorResult"
-      description: Forbidden.
-    "404":
-      content:
-        application/json:
-          example:
-            correlationId: 289346a1-3eaf-4da4-b707-62ef12eb08be
-            errorCode: "404"
-            errorMessage: Resource not found
-          schema:
-            $ref: "#/components/schemas/errorResult"
-      description: Not Found.
-    "500":
-      content:
-        application/json:
-          example:
-            correlationId: 289346a1-3eaf-4da4-b707-62ef12eb08be
-            errorCode: "500"
-            errorMessage: '''The API could not handle your request at this time.'
-          schema:
-            $ref: "#/components/schemas/errorResult"
-      description: Internal Server Error.
-    "503":
-      content:
-        application/json:
-          example:
-            correlationId: 289346a1-3eaf-4da4-b707-62ef12eb08be
-            errorCode: "503"
-            errorMessage: The API is not available at the moment.
-          schema:
-            $ref: "#/components/schemas/errorResult"
-      description: Service Unavailable.
   schemas:
-    macAddress:
-      description: Represents a MAC Address in the standard colon delimited format.
-        Eg. `01:23:45:67:89:0A`
-      example: 00:15:17:DB:63:01
-      pattern: "([0-9A-Fa-f]{2}[:-]){5}([0-9A-Fa-f]{2})|([0-9a-fA-F]{4}\\.[0-9a-fA-F]{4}\\\
-        .[0-9a-fA-F]{4})$"
-      type: string
-    _metadata:
-      description: Metadata about the collection
+    ipList:
       example:
-        offset: 0
-        limit: 5
-        totalCount: 2
+        _metadata:
+          offset: 0
+          limit: 5
+          totalCount: 2
+        ips:
+        - floatingIp: true
+          reverseLookup: reverseLookup
+          ip: ip
+          nullRouted: true
+          mainIp: true
+          ddos:
+            detectionProfile: STANDARD_DEFAULT
+            protectionType: STANDARD
+          networkType: INTERNAL
+          version: 0
+          gateway: gateway
+        - floatingIp: true
+          reverseLookup: reverseLookup
+          ip: ip
+          nullRouted: true
+          mainIp: true
+          ddos:
+            detectionProfile: STANDARD_DEFAULT
+            protectionType: STANDARD
+          networkType: INTERNAL
+          version: 0
+          gateway: gateway
       properties:
-        totalCount:
-          description: Total amount of elements in this collection
-          example: 2
-          minimum: 0
-          type: integer
-        offset:
-          default: 0
-          description: The offset used to generate this response
-          example: 0
-          minimum: 0
-          type: integer
-        limit:
-          default: 5
-          description: The limit used to generate this response
-          example: 5
-          minimum: 0
-          type: integer
+        _metadata:
+          $ref: '#/components/schemas/_metadata'
+        ips:
+          description: An array of IP addresses
+          items:
+            $ref: '#/components/schemas/ip'
+          type: array
+      type: object
+    updateCredentialOpts:
+      properties:
+        password:
+          description: The password for the credentials
+          type: string
       required:
-      - limit
-      - offset
-      - totalCount
-      title: metadata
-      type: object
-    networkType:
-      description: Type of network
-      enum:
-      - INTERNAL
-      - PUBLIC
-      - REMOTE_MANAGEMENT
-      example: INTERNAL
-      type: string
-    currency:
-      example: USD
-      type: string
-    contract:
-      description: Contract information
-      example:
-        billingFrequency: billingFrequency
-        contractType: NORMAL
-        managedServices:
-        - managedServices
-        - managedServices
-        softwareLicenses:
-        - price: 2.3021358869347655
-          name: name
-          currency: USD
-          type: CONTROL_PANEL
-        - price: 2.3021358869347655
-          name: name
-          currency: USD
-          type: CONTROL_PANEL
-        sla: sla
-        aggregationPackId: aggregationPackId
-        reference: reference
-        billingCycle: 5
-        contractTerm: 1
-        customerId: customerId
-        startsAt: 2000-01-23T04:56:07.000+00:00
-        networkTraffic:
-          connectivityType: connectivityType
-          trafficType: trafficType
-          datatrafficUnit: datatrafficUnit
-          type: type
-          datatrafficLimit: 5.637376656633329
-        privateNetworkPortSpeed: 0.8008281904610115
-        subnets:
-        - quantity: 6
-          subnetSize: subnetSize
-          networkType: INTERNAL
-        - quantity: 6
-          subnetSize: subnetSize
-          networkType: INTERNAL
-        currency: USD
-        id: id
-        pricePerFrequency: pricePerFrequency
-        endsAt: 2000-01-23T04:56:07.000+00:00
-        deliveryStatus: deliveryStatus
-        ipv4Quantity: 7
-        salesOrgId: salesOrgId
-        status: status
-      properties:
-        id:
-          type: string
-        customerId:
-          type: string
-        salesOrgId:
-          type: string
-        deliveryStatus:
-          type: string
-        reference:
-          nullable: true
-          type: string
-        privateNetworkPortSpeed:
-          nullable: true
-          type: number
-        subnets:
-          items:
-            $ref: "#/components/schemas/subnet"
-          type: array
-        status:
-          type: string
-        startsAt:
-          format: date-time
-          type: string
-        endsAt:
-          format: date-time
-          nullable: true
-          type: string
-        sla:
-          description: Service Level Agreement
-          type: string
-        contractTerm:
-          type: integer
-        contractType:
-          enum:
-          - NORMAL
-          type: string
-        billingCycle:
-          description: Applied billing cycle
-          type: integer
-        billingFrequency:
-          description: The interval for which billing will be done
-          type: string
-        pricePerFrequency:
-          description: Price per billing frequency
-          type: string
-        currency:
-          example: USD
-          type: string
-        networkTraffic:
-          $ref: "#/components/schemas/networkTraffic"
-        softwareLicenses:
-          items:
-            $ref: "#/components/schemas/softwareLicense"
-          type: array
-        managedServices:
-          items:
-            type: string
-          type: array
-        aggregationPackId:
-          nullable: true
-          type: string
-        ipv4Quantity:
-          nullable: true
-          type: integer
-      type: object
-    featureAvailability:
-      description: List of features that are available for this device
-      example:
-        ipmiReboot: true
-        automation: true
-        privateNetwork: true
-        powerCycle: true
-        remoteManagement: true
-      properties:
-        automation:
-          type: boolean
-        powerCycle:
-          type: boolean
-        ipmiReboot:
-          type: boolean
-        privateNetwork:
-          type: boolean
-        remoteManagement:
-          type: boolean
-      title: featureAvailability
-      type: object
-    location:
-      description: Device location
-      example:
-        site: site
-        rack: rack
-        unit: unit
-        suite: suite
-      properties:
-        site:
-          type: string
-        suite:
-          type: string
-        rack:
-          type: string
-        unit:
-          type: string
-      title: location
-      type: object
-    port:
-      example:
-        port: port
-        name: name
-      properties:
-        name:
-          type: string
-        port:
-          type: string
-      type: object
-    networkInterface:
-      example:
-        locationId: locationId
-        ip: ip
-        nullRouted: true
-        ports:
-        - port: port
-          name: name
-        - port: port
-          name: name
-        mac: mac
-        gateway: gateway
-      properties:
-        mac:
-          description: Represents a MAC Address in the standard colon delimited format.
-            Eg. `01:23:45:67:89:0A`
-          nullable: true
-          type: string
-        ip:
-          format: ipv4
-          nullable: true
-          type: string
-        nullRouted:
-          nullable: true
-          type: boolean
-        gateway:
-          format: ipv4
-          nullable: true
-          type: string
-        ports:
-          items:
-            $ref: "#/components/schemas/port"
-          type: array
-        locationId:
-          nullable: true
-          type: string
-      title: networkInterface
-      type: object
-    networkInterfaces:
-      description: Network interface information grouped by type
-      example:
-        internal:
-          locationId: locationId
-          ip: ip
-          nullRouted: true
-          ports:
-          - port: port
-            name: name
-          - port: port
-            name: name
-          mac: mac
-          gateway: gateway
-        public:
-          locationId: locationId
-          ip: ip
-          nullRouted: true
-          ports:
-          - port: port
-            name: name
-          - port: port
-            name: name
-          mac: mac
-          gateway: gateway
-        remoteManagement:
-          locationId: locationId
-          ip: ip
-          nullRouted: true
-          ports:
-          - port: port
-            name: name
-          - port: port
-            name: name
-          mac: mac
-          gateway: gateway
-      properties:
-        public:
-          $ref: "#/components/schemas/networkInterface"
-        internal:
-          $ref: "#/components/schemas/networkInterface"
-        remoteManagement:
-          $ref: "#/components/schemas/networkInterface"
-      title: networkInterfaces
-      type: object
-    rackType:
-      description: rack type
-      enum:
-      - SHARED
-      - DEDICATED
-      - SHARED_10GE
-      - SHARED_40GE
-      - SHARED_100GE
-      - SHARED_200GE
-      - SHARED_400GE
-      title: rackType
-      type: string
-    rack:
-      description: Rack details where this network equipment is located at
-      example:
-        id: id
-        type: SHARED
-        capacity: capacity
-      properties:
-        id:
-          description: Rack id
-          type: string
-        capacity:
-          description: Rack capacity
-          type: string
-        type:
-          $ref: "#/components/schemas/rackType"
-      title: rack
-      type: object
-    networkEquipment:
-      example:
-        specs:
-          model: model
-          brand: brand
-        rack:
-          id: id
-          type: SHARED
-          capacity: capacity
-        networkInterfaces:
-          internal:
-            locationId: locationId
-            ip: ip
-            nullRouted: true
-            ports:
-            - port: port
-              name: name
-            - port: port
-              name: name
-            mac: mac
-            gateway: gateway
-          public:
-            locationId: locationId
-            ip: ip
-            nullRouted: true
-            ports:
-            - port: port
-              name: name
-            - port: port
-              name: name
-            mac: mac
-            gateway: gateway
-          remoteManagement:
-            locationId: locationId
-            ip: ip
-            nullRouted: true
-            ports:
-            - port: port
-              name: name
-            - port: port
-              name: name
-            mac: mac
-            gateway: gateway
-        serialNumber: serialNumber
-        contract:
-          billingFrequency: billingFrequency
-          contractType: NORMAL
-          managedServices:
-          - managedServices
-          - managedServices
-          softwareLicenses:
-          - price: 2.3021358869347655
-            name: name
-            currency: USD
-            type: CONTROL_PANEL
-          - price: 2.3021358869347655
-            name: name
-            currency: USD
-            type: CONTROL_PANEL
-          sla: sla
-          aggregationPackId: aggregationPackId
-          reference: reference
-          billingCycle: 5
-          contractTerm: 1
-          customerId: customerId
-          startsAt: 2000-01-23T04:56:07.000+00:00
-          networkTraffic:
-            connectivityType: connectivityType
-            trafficType: trafficType
-            datatrafficUnit: datatrafficUnit
-            type: type
-            datatrafficLimit: 5.637376656633329
-          privateNetworkPortSpeed: 0.8008281904610115
-          subnets:
-          - quantity: 6
-            subnetSize: subnetSize
-            networkType: INTERNAL
-          - quantity: 6
-            subnetSize: subnetSize
-            networkType: INTERNAL
-          currency: USD
-          id: id
-          pricePerFrequency: pricePerFrequency
-          endsAt: 2000-01-23T04:56:07.000+00:00
-          deliveryStatus: deliveryStatus
-          ipv4Quantity: 7
-          salesOrgId: salesOrgId
-          status: status
-        name: name
-        location:
-          site: site
-          rack: rack
-          unit: unit
-          suite: suite
-        id: id
-        type: type
-        featureAvailability:
-          ipmiReboot: true
-          automation: true
-          privateNetwork: true
-          powerCycle: true
-          remoteManagement: true
-        powerPorts:
-        - port: port
-          name: name
-        - port: port
-          name: name
-      properties:
-        contract:
-          $ref: "#/components/schemas/contract"
-        featureAvailability:
-          $ref: "#/components/schemas/featureAvailability"
-        id:
-          description: Id of the network equipment
-          type: string
-        location:
-          $ref: "#/components/schemas/location"
-        name:
-          description: The name of the network equipment
-          type: string
-        type:
-          description: The network equipment type
-          type: string
-        networkInterfaces:
-          $ref: "#/components/schemas/networkInterfaces"
-        powerPorts:
-          description: List of ports that can be used to manage power of the network
-            equipment
-          items:
-            $ref: "#/components/schemas/port"
-          type: array
-        rack:
-          $ref: "#/components/schemas/rack"
-        serialNumber:
-          description: Serial number of network equipment
-          type: string
-        specs:
-          $ref: "#/components/schemas/networkEquipmentSpecs"
+      - password
       type: object
     getNetworkEquipmentListResult:
       example:
@@ -2635,7 +2110,7 @@ components:
             billingCycle: 5
             contractTerm: 1
             customerId: customerId
-            startsAt: 2000-01-23T04:56:07.000+00:00
+            startsAt: 2000-01-23 04:56:07+00:00
             networkTraffic:
               connectivityType: connectivityType
               trafficType: trafficType
@@ -2653,7 +2128,7 @@ components:
             currency: USD
             id: id
             pricePerFrequency: pricePerFrequency
-            endsAt: 2000-01-23T04:56:07.000+00:00
+            endsAt: 2000-01-23 04:56:07+00:00
             deliveryStatus: deliveryStatus
             ipv4Quantity: 7
             salesOrgId: salesOrgId
@@ -2740,7 +2215,7 @@ components:
             billingCycle: 5
             contractTerm: 1
             customerId: customerId
-            startsAt: 2000-01-23T04:56:07.000+00:00
+            startsAt: 2000-01-23 04:56:07+00:00
             networkTraffic:
               connectivityType: connectivityType
               trafficType: trafficType
@@ -2758,7 +2233,7 @@ components:
             currency: USD
             id: id
             pricePerFrequency: pricePerFrequency
-            endsAt: 2000-01-23T04:56:07.000+00:00
+            endsAt: 2000-01-23 04:56:07+00:00
             deliveryStatus: deliveryStatus
             ipv4Quantity: 7
             salesOrgId: salesOrgId
@@ -2788,13 +2263,25 @@ components:
           totalCount: 2
       properties:
         _metadata:
-          $ref: "#/components/schemas/_metadata"
+          $ref: '#/components/schemas/_metadata'
         networkEquipments:
           description: An array of network equipment
           items:
-            $ref: "#/components/schemas/networkEquipment"
+            $ref: '#/components/schemas/networkEquipment'
           type: array
       type: object
+    rackType:
+      description: rack type
+      enum:
+      - SHARED
+      - DEDICATED
+      - SHARED_10GE
+      - SHARED_40GE
+      - SHARED_100GE
+      - SHARED_200GE
+      - SHARED_400GE
+      title: rackType
+      type: string
     errorResult:
       example:
         errorMessage: errorMessage
@@ -2822,6 +2309,290 @@ components:
           title: errorDetails
           type: object
       type: object
+    featureAvailability:
+      description: List of features that are available for this device
+      example:
+        ipmiReboot: true
+        automation: true
+        privateNetwork: true
+        powerCycle: true
+        remoteManagement: true
+      properties:
+        automation:
+          type: boolean
+        powerCycle:
+          type: boolean
+        ipmiReboot:
+          type: boolean
+        privateNetwork:
+          type: boolean
+        remoteManagement:
+          type: boolean
+      title: featureAvailability
+      type: object
+    networkEquipmentSpecs:
+      description: Hardware information of the network equipment
+      example:
+        model: model
+        brand: brand
+      properties:
+        brand:
+          description: The brand of the network equipment
+          type: string
+        model:
+          description: The model of the network equipment
+          type: string
+      title: networkEquipmentSpecs
+      type: object
+    getPowerStatusResult:
+      example:
+        pdu:
+          status: status
+      properties:
+        pdu:
+          $ref: '#/components/schemas/pdu'
+    networkType:
+      description: Type of network
+      enum:
+      - INTERNAL
+      - PUBLIC
+      - REMOTE_MANAGEMENT
+      example: INTERNAL
+      type: string
+    networkInterface:
+      example:
+        locationId: locationId
+        ip: ip
+        nullRouted: true
+        ports:
+        - port: port
+          name: name
+        - port: port
+          name: name
+        mac: mac
+        gateway: gateway
+      properties:
+        mac:
+          description: Represents a MAC Address in the standard colon delimited format. Eg. `01:23:45:67:89:0A`
+          type:
+          - string
+          - 'null'
+        ip:
+          format: ipv4
+          type:
+          - string
+          - 'null'
+        nullRouted:
+          type:
+          - boolean
+          - 'null'
+        gateway:
+          format: ipv4
+          type:
+          - string
+          - 'null'
+        ports:
+          items:
+            $ref: '#/components/schemas/port'
+          type: array
+        locationId:
+          type:
+          - string
+          - 'null'
+      title: networkInterface
+      type: object
+    networkTraffic:
+      description: Network traffic associated to the server
+      example:
+        connectivityType: connectivityType
+        trafficType: trafficType
+        datatrafficUnit: datatrafficUnit
+        type: type
+        datatrafficLimit: 5.637376656633329
+      properties:
+        type:
+          description: Type of network traffic
+          type:
+          - string
+          - 'null'
+        connectivityType:
+          type:
+          - string
+          - 'null'
+        trafficType:
+          description: Type of traffic
+          type:
+          - string
+          - 'null'
+        datatrafficUnit:
+          description: Unit in which the data traffic limit is represented
+          type:
+          - string
+          - 'null'
+        datatrafficLimit:
+          description: Data traffic limit
+          type:
+          - number
+          - 'null'
+      title: networkTraffic
+      type: object
+    credential:
+      example:
+        password: password
+        type: OPERATING_SYSTEM
+        username: username
+      properties:
+        password:
+          description: The password
+          type: string
+        type:
+          $ref: '#/components/schemas/credentialType'
+        username:
+          description: The username
+          type: string
+      required:
+      - password
+      - type
+      - username
+      title: credential
+      type: object
+    pdu:
+      description: Object describing the PDU power information
+      example:
+        status: status
+      properties:
+        status:
+          description: The current power status of the network equipment.
+          type: string
+      title: pdu
+      type: object
+    credentialList:
+      example:
+        credentials:
+        - type: OPERATING_SYSTEM
+          username: username
+        - type: OPERATING_SYSTEM
+          username: username
+        _metadata:
+          offset: 0
+          limit: 5
+          totalCount: 2
+      properties:
+        _metadata:
+          $ref: '#/components/schemas/_metadata'
+        credentials:
+          description: An array of credentials
+          items:
+            $ref: '#/components/schemas/credentialWithoutPassword'
+          type: array
+      type: object
+    networkInterfaces:
+      description: Network interface information grouped by type
+      example:
+        internal:
+          locationId: locationId
+          ip: ip
+          nullRouted: true
+          ports:
+          - port: port
+            name: name
+          - port: port
+            name: name
+          mac: mac
+          gateway: gateway
+        public:
+          locationId: locationId
+          ip: ip
+          nullRouted: true
+          ports:
+          - port: port
+            name: name
+          - port: port
+            name: name
+          mac: mac
+          gateway: gateway
+        remoteManagement:
+          locationId: locationId
+          ip: ip
+          nullRouted: true
+          ports:
+          - port: port
+            name: name
+          - port: port
+            name: name
+          mac: mac
+          gateway: gateway
+      properties:
+        public:
+          $ref: '#/components/schemas/networkInterface'
+        internal:
+          $ref: '#/components/schemas/networkInterface'
+        remoteManagement:
+          $ref: '#/components/schemas/networkInterface'
+      title: networkInterfaces
+      type: object
+    createCredentialOpts:
+      properties:
+        password:
+          description: The password for the credentials
+          type: string
+        type:
+          $ref: '#/components/schemas/credentialType'
+        username:
+          description: The username for the credentials
+          type: string
+      required:
+      - password
+      - type
+      - username
+      type: object
+    _metadata:
+      description: Metadata about the collection
+      example:
+        offset: 0
+        limit: 5
+        totalCount: 2
+      properties:
+        totalCount:
+          description: Total amount of elements in this collection
+          example: 2
+          minimum: 0
+          type: integer
+        offset:
+          default: 0
+          description: The offset used to generate this response
+          example: 0
+          minimum: 0
+          type: integer
+        limit:
+          default: 5
+          description: The limit used to generate this response
+          example: 5
+          minimum: 0
+          type: integer
+      required:
+      - limit
+      - offset
+      - totalCount
+      title: metadata
+      type: object
+    credentialType:
+      description: The type of the credential.
+      enum:
+      - OPERATING_SYSTEM
+      - RESCUE_MODE
+      - REMOTE_MANAGEMENT
+      - CONTROL_PANEL
+      - SWITCH
+      - PDU
+      - FIREWALL
+      - LOAD_BALANCER
+      - VNC
+      - TEMPORARY_OPERATING_SYSTEM
+      - VPN_USER
+      - COMBINATION_LOCK
+      - DATABASE
+      type: string
     updateReferenceOpts:
       properties:
         reference:
@@ -2829,6 +2600,204 @@ components:
           type: string
       required:
       - reference
+      type: object
+    nullRouteList:
+      example:
+        nullRoutes:
+        - nullLevel: 0
+          ip: ip
+          automatedUnnullingAt: 2000-01-23 04:56:07+00:00
+          comment: comment
+          nulledAt: 2000-01-23 04:56:07+00:00
+          ticketId: ticketId
+        - nullLevel: 0
+          ip: ip
+          automatedUnnullingAt: 2000-01-23 04:56:07+00:00
+          comment: comment
+          nulledAt: 2000-01-23 04:56:07+00:00
+          ticketId: ticketId
+        _metadata:
+          offset: 0
+          limit: 5
+          totalCount: 2
+      properties:
+        _metadata:
+          $ref: '#/components/schemas/_metadata'
+        nullRoutes:
+          description: An array of server null route events
+          items:
+            $ref: '#/components/schemas/nullRoute'
+          type: array
+      type: object
+    macAddress:
+      description: Represents a MAC Address in the standard colon delimited format. Eg. `01:23:45:67:89:0A`
+      example: 00:15:17:DB:63:01
+      pattern: ([0-9A-Fa-f]{2}[:-]){5}([0-9A-Fa-f]{2})|([0-9a-fA-F]{4}\.[0-9a-fA-F]{4}\.[0-9a-fA-F]{4})$
+      type: string
+    networkEquipment:
+      example:
+        specs:
+          model: model
+          brand: brand
+        rack:
+          id: id
+          type: SHARED
+          capacity: capacity
+        networkInterfaces:
+          internal:
+            locationId: locationId
+            ip: ip
+            nullRouted: true
+            ports:
+            - port: port
+              name: name
+            - port: port
+              name: name
+            mac: mac
+            gateway: gateway
+          public:
+            locationId: locationId
+            ip: ip
+            nullRouted: true
+            ports:
+            - port: port
+              name: name
+            - port: port
+              name: name
+            mac: mac
+            gateway: gateway
+          remoteManagement:
+            locationId: locationId
+            ip: ip
+            nullRouted: true
+            ports:
+            - port: port
+              name: name
+            - port: port
+              name: name
+            mac: mac
+            gateway: gateway
+        serialNumber: serialNumber
+        contract:
+          billingFrequency: billingFrequency
+          contractType: NORMAL
+          managedServices:
+          - managedServices
+          - managedServices
+          softwareLicenses:
+          - price: 2.3021358869347655
+            name: name
+            currency: USD
+            type: CONTROL_PANEL
+          - price: 2.3021358869347655
+            name: name
+            currency: USD
+            type: CONTROL_PANEL
+          sla: sla
+          aggregationPackId: aggregationPackId
+          reference: reference
+          billingCycle: 5
+          contractTerm: 1
+          customerId: customerId
+          startsAt: 2000-01-23 04:56:07+00:00
+          networkTraffic:
+            connectivityType: connectivityType
+            trafficType: trafficType
+            datatrafficUnit: datatrafficUnit
+            type: type
+            datatrafficLimit: 5.637376656633329
+          privateNetworkPortSpeed: 0.8008281904610115
+          subnets:
+          - quantity: 6
+            subnetSize: subnetSize
+            networkType: INTERNAL
+          - quantity: 6
+            subnetSize: subnetSize
+            networkType: INTERNAL
+          currency: USD
+          id: id
+          pricePerFrequency: pricePerFrequency
+          endsAt: 2000-01-23 04:56:07+00:00
+          deliveryStatus: deliveryStatus
+          ipv4Quantity: 7
+          salesOrgId: salesOrgId
+          status: status
+        name: name
+        location:
+          site: site
+          rack: rack
+          unit: unit
+          suite: suite
+        id: id
+        type: type
+        featureAvailability:
+          ipmiReboot: true
+          automation: true
+          privateNetwork: true
+          powerCycle: true
+          remoteManagement: true
+        powerPorts:
+        - port: port
+          name: name
+        - port: port
+          name: name
+      properties:
+        contract:
+          $ref: '#/components/schemas/contract'
+        featureAvailability:
+          $ref: '#/components/schemas/featureAvailability'
+        id:
+          description: Id of the network equipment
+          type: string
+        location:
+          $ref: '#/components/schemas/location'
+        name:
+          description: The name of the network equipment
+          type: string
+        type:
+          description: The network equipment type
+          type: string
+        networkInterfaces:
+          $ref: '#/components/schemas/networkInterfaces'
+        powerPorts:
+          description: List of ports that can be used to manage power of the network equipment
+          items:
+            $ref: '#/components/schemas/port'
+          type: array
+        rack:
+          $ref: '#/components/schemas/rack'
+        serialNumber:
+          description: Serial number of network equipment
+          type: string
+        specs:
+          $ref: '#/components/schemas/networkEquipmentSpecs'
+      type: object
+    port:
+      example:
+        port: port
+        name: name
+      properties:
+        name:
+          type: string
+        port:
+          type: string
+      type: object
+    rack:
+      description: Rack details where this network equipment is located at
+      example:
+        id: id
+        type: SHARED
+        capacity: capacity
+      properties:
+        id:
+          description: Rack id
+          type: string
+        capacity:
+          description: Rack capacity
+          type: string
+        type:
+          $ref: '#/components/schemas/rackType'
+      title: rack
       type: object
     ip:
       example:
@@ -2845,7 +2814,7 @@ components:
         gateway: gateway
       properties:
         ddos:
-          $ref: "#/components/schemas/dDos"
+          $ref: '#/components/schemas/dDos'
         floatingIp:
           description: Indicates if the IP is a Floating IP
           type: boolean
@@ -2859,7 +2828,7 @@ components:
           description: IP address is main
           type: boolean
         networkType:
-          $ref: "#/components/schemas/networkType"
+          $ref: '#/components/schemas/networkType'
         nullRouted:
           description: IP address null routed
           type: boolean
@@ -2870,43 +2839,38 @@ components:
           description: IP version
           type: integer
       type: object
-    ipList:
+    location:
+      description: Device location
       example:
-        _metadata:
-          offset: 0
-          limit: 5
-          totalCount: 2
-        ips:
-        - floatingIp: true
-          reverseLookup: reverseLookup
-          ip: ip
-          nullRouted: true
-          mainIp: true
-          ddos:
-            detectionProfile: STANDARD_DEFAULT
-            protectionType: STANDARD
-          networkType: INTERNAL
-          version: 0
-          gateway: gateway
-        - floatingIp: true
-          reverseLookup: reverseLookup
-          ip: ip
-          nullRouted: true
-          mainIp: true
-          ddos:
-            detectionProfile: STANDARD_DEFAULT
-            protectionType: STANDARD
-          networkType: INTERNAL
-          version: 0
-          gateway: gateway
+        site: site
+        rack: rack
+        unit: unit
+        suite: suite
       properties:
-        _metadata:
-          $ref: "#/components/schemas/_metadata"
-        ips:
-          description: An array of IP addresses
-          items:
-            $ref: "#/components/schemas/ip"
-          type: array
+        site:
+          type: string
+        suite:
+          type: string
+        rack:
+          type: string
+        unit:
+          type: string
+      title: location
+      type: object
+    credentialWithoutPassword:
+      example:
+        type: OPERATING_SYSTEM
+        username: username
+      properties:
+        type:
+          $ref: '#/components/schemas/credentialType'
+        username:
+          description: The username
+          type: string
+      required:
+      - type
+      - username
+      title: credentialWithoutPassword
       type: object
     updateIpOpts:
       properties:
@@ -2925,9 +2889,9 @@ components:
       example:
         nullLevel: 0
         ip: ip
-        automatedUnnullingAt: 2000-01-23T04:56:07.000+00:00
+        automatedUnnullingAt: 2000-01-23 04:56:07+00:00
         comment: comment
-        nulledAt: 2000-01-23T04:56:07.000+00:00
+        nulledAt: 2000-01-23 04:56:07+00:00
         ticketId: ticketId
       properties:
         automatedUnnullingAt:
@@ -2952,146 +2916,6 @@ components:
           type: string
       title: nullRoute
       type: object
-    nullRouteList:
-      example:
-        nullRoutes:
-        - nullLevel: 0
-          ip: ip
-          automatedUnnullingAt: 2000-01-23T04:56:07.000+00:00
-          comment: comment
-          nulledAt: 2000-01-23T04:56:07.000+00:00
-          ticketId: ticketId
-        - nullLevel: 0
-          ip: ip
-          automatedUnnullingAt: 2000-01-23T04:56:07.000+00:00
-          comment: comment
-          nulledAt: 2000-01-23T04:56:07.000+00:00
-          ticketId: ticketId
-        _metadata:
-          offset: 0
-          limit: 5
-          totalCount: 2
-      properties:
-        _metadata:
-          $ref: "#/components/schemas/_metadata"
-        nullRoutes:
-          description: An array of server null route events
-          items:
-            $ref: "#/components/schemas/nullRoute"
-          type: array
-      type: object
-    credentialType:
-      description: The type of the credential.
-      enum:
-      - OPERATING_SYSTEM
-      - RESCUE_MODE
-      - REMOTE_MANAGEMENT
-      - CONTROL_PANEL
-      - SWITCH
-      - PDU
-      - FIREWALL
-      - LOAD_BALANCER
-      - VNC
-      - TEMPORARY_OPERATING_SYSTEM
-      - VPN_USER
-      - COMBINATION_LOCK
-      - DATABASE
-      type: string
-    credentialWithoutPassword:
-      example:
-        type: OPERATING_SYSTEM
-        username: username
-      properties:
-        type:
-          $ref: "#/components/schemas/credentialType"
-        username:
-          description: The username
-          type: string
-      required:
-      - type
-      - username
-      title: credentialWithoutPassword
-      type: object
-    credentialList:
-      example:
-        credentials:
-        - type: OPERATING_SYSTEM
-          username: username
-        - type: OPERATING_SYSTEM
-          username: username
-        _metadata:
-          offset: 0
-          limit: 5
-          totalCount: 2
-      properties:
-        _metadata:
-          $ref: "#/components/schemas/_metadata"
-        credentials:
-          description: An array of credentials
-          items:
-            $ref: "#/components/schemas/credentialWithoutPassword"
-          type: array
-      type: object
-    createCredentialOpts:
-      properties:
-        password:
-          description: The password for the credentials
-          type: string
-        type:
-          $ref: "#/components/schemas/credentialType"
-        username:
-          description: The username for the credentials
-          type: string
-      required:
-      - password
-      - type
-      - username
-      type: object
-    credential:
-      example:
-        password: password
-        type: OPERATING_SYSTEM
-        username: username
-      properties:
-        password:
-          description: The password
-          type: string
-        type:
-          $ref: "#/components/schemas/credentialType"
-        username:
-          description: The username
-          type: string
-      required:
-      - password
-      - type
-      - username
-      title: credential
-      type: object
-    updateCredentialOpts:
-      properties:
-        password:
-          description: The password for the credentials
-          type: string
-      required:
-      - password
-      type: object
-    pdu:
-      description: Object describing the PDU power information
-      example:
-        status: status
-      properties:
-        status:
-          description: The current power status of the network equipment.
-          type: string
-      title: pdu
-      type: object
-    getPowerStatusResult:
-      example:
-        pdu:
-          status: status
-      properties:
-        pdu:
-          $ref: "#/components/schemas/pdu"
     subnet:
       example:
         quantity: 6
@@ -3103,72 +2927,8 @@ components:
         subnetSize:
           type: string
         networkType:
-          $ref: "#/components/schemas/networkType"
+          $ref: '#/components/schemas/networkType'
       title: subnet
-      type: object
-    networkTraffic:
-      description: Network traffic associated to the server
-      example:
-        connectivityType: connectivityType
-        trafficType: trafficType
-        datatrafficUnit: datatrafficUnit
-        type: type
-        datatrafficLimit: 5.637376656633329
-      properties:
-        type:
-          description: Type of network traffic
-          nullable: true
-          type: string
-        connectivityType:
-          nullable: true
-          type: string
-        trafficType:
-          description: Type of traffic
-          nullable: true
-          type: string
-        datatrafficUnit:
-          description: Unit in which the data traffic limit is represented
-          nullable: true
-          type: string
-        datatrafficLimit:
-          description: Data traffic limit
-          nullable: true
-          type: number
-      title: networkTraffic
-      type: object
-    softwareLicense:
-      example:
-        price: 2.3021358869347655
-        name: name
-        currency: USD
-        type: CONTROL_PANEL
-      properties:
-        name:
-          type: string
-        price:
-          nullable: true
-          type: number
-        currency:
-          example: USD
-          type: string
-        type:
-          example: CONTROL_PANEL
-          type: string
-      title: softwareLicense
-      type: object
-    networkEquipmentSpecs:
-      description: Hardware information of the network equipment
-      example:
-        model: model
-        brand: brand
-      properties:
-        brand:
-          description: The brand of the network equipment
-          type: string
-        model:
-          description: The model of the network equipment
-          type: string
-      title: networkEquipmentSpecs
       type: object
     dDos:
       description: DDoS IP Protection Details
@@ -3192,6 +2952,144 @@ components:
           type: string
       title: dDos
       type: object
+    contract:
+      description: Contract information
+      example:
+        billingFrequency: billingFrequency
+        contractType: NORMAL
+        managedServices:
+        - managedServices
+        - managedServices
+        softwareLicenses:
+        - price: 2.3021358869347655
+          name: name
+          currency: USD
+          type: CONTROL_PANEL
+        - price: 2.3021358869347655
+          name: name
+          currency: USD
+          type: CONTROL_PANEL
+        sla: sla
+        aggregationPackId: aggregationPackId
+        reference: reference
+        billingCycle: 5
+        contractTerm: 1
+        customerId: customerId
+        startsAt: 2000-01-23 04:56:07+00:00
+        networkTraffic:
+          connectivityType: connectivityType
+          trafficType: trafficType
+          datatrafficUnit: datatrafficUnit
+          type: type
+          datatrafficLimit: 5.637376656633329
+        privateNetworkPortSpeed: 0.8008281904610115
+        subnets:
+        - quantity: 6
+          subnetSize: subnetSize
+          networkType: INTERNAL
+        - quantity: 6
+          subnetSize: subnetSize
+          networkType: INTERNAL
+        currency: USD
+        id: id
+        pricePerFrequency: pricePerFrequency
+        endsAt: 2000-01-23 04:56:07+00:00
+        deliveryStatus: deliveryStatus
+        ipv4Quantity: 7
+        salesOrgId: salesOrgId
+        status: status
+      properties:
+        id:
+          type: string
+        customerId:
+          type: string
+        salesOrgId:
+          type: string
+        deliveryStatus:
+          type: string
+        reference:
+          type:
+          - string
+          - 'null'
+        privateNetworkPortSpeed:
+          type:
+          - number
+          - 'null'
+        subnets:
+          items:
+            $ref: '#/components/schemas/subnet'
+          type: array
+        status:
+          type: string
+        startsAt:
+          format: date-time
+          type: string
+        endsAt:
+          format: date-time
+          type:
+          - string
+          - 'null'
+        sla:
+          description: Service Level Agreement
+          type: string
+        contractTerm:
+          type: integer
+        contractType:
+          enum:
+          - NORMAL
+          type: string
+        billingCycle:
+          description: Applied billing cycle
+          type: integer
+        billingFrequency:
+          description: The interval for which billing will be done
+          type: string
+        pricePerFrequency:
+          description: Price per billing frequency
+          type: string
+        currency:
+          example: USD
+          type: string
+        networkTraffic:
+          $ref: '#/components/schemas/networkTraffic'
+        softwareLicenses:
+          items:
+            $ref: '#/components/schemas/softwareLicense'
+          type: array
+        managedServices:
+          items:
+            type: string
+          type: array
+        aggregationPackId:
+          type:
+          - string
+          - 'null'
+        ipv4Quantity:
+          type:
+          - integer
+          - 'null'
+      type: object
+    softwareLicense:
+      example:
+        price: 2.3021358869347655
+        name: name
+        currency: USD
+        type: CONTROL_PANEL
+      properties:
+        name:
+          type: string
+        price:
+          type:
+          - number
+          - 'null'
+        currency:
+          example: USD
+          type: string
+        type:
+          example: CONTROL_PANEL
+          type: string
+      title: softwareLicense
+      type: object
   securitySchemes:
     BearerAuth:
       scheme: bearer
@@ -3201,3 +3099,6 @@ components:
       in: header
       name: X-LSW-Auth
       type: apiKey
+x-refined-from:
+- leaseweb-networkequipment-openapi.yaml
+- leaseweb-networkequipment-openapi.yml

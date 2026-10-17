@@ -1,0 +1,2147 @@
+openapi: 3.2.0
+info:
+  title: Leaseweb Ordering API
+  version: v1
+  contact: {}
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0.html
+  x-logo:
+    altText: Leaseweb developer documentation
+    backgroundColor: '#5484c6'
+    href: https://developer.leaseweb.com
+    url: https://developer.leaseweb.com/images/logo.png
+  description: 'Operations tagged ordering across 2 of this provider''s published API definitions: leaseweb-ordering-openapi.yaml, leaseweb-ordering-openapi.yml. Each path carries the servers of the definition it was published in.'
+servers:
+- url: https://api.leaseweb.com/ordering/v1
+security:
+- X-LSW-Auth: []
+tags:
+- name: ordering
+paths:
+  /products/dedicatedServers:
+    get:
+      description: List available dedicated server configurations.
+      operationId: getDedicatedServerList
+      parameters:
+      - explode: true
+        in: query
+        name: location
+        required: false
+        schema:
+          $ref: '#/components/schemas/location'
+        style: form
+      - explode: true
+        in: query
+        name: ram
+        required: false
+        schema:
+          $ref: '#/components/schemas/ramQuery'
+        style: form
+      - explode: true
+        in: query
+        name: diskSize
+        required: false
+        schema:
+          $ref: '#/components/schemas/diskSize'
+        style: form
+      - explode: true
+        in: query
+        name: diskAmount
+        required: false
+        schema:
+          $ref: '#/components/schemas/diskAmount'
+        style: form
+      - description: Limit the number of results returned.
+        example: 20
+        explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          type: integer
+        style: form
+      - description: Return results starting from the given offset.
+        example: 10
+        explode: true
+        in: query
+        name: offset
+        required: false
+        schema:
+          type: integer
+        style: form
+      responses:
+        '200':
+          content:
+            application/json:
+              example:
+                _metadata:
+                  limit: 10
+                  offset: 0
+                  totalCount: 2
+                dedicatedServers:
+                - id: 27f38ef06cf3bf62e21e75401feac6cd
+                  name: Dell R730XD (12xLFF) 2x Intel Xeon E5-2650v4
+                  chassis: Dell R730XD (12xLFF)
+                  cpu:
+                    coresPerCPU: '12'
+                    totalCores: '24'
+                    quantity: Dual
+                    speed: 2,2 GHz
+                    type: Intel Xeon E5-2650v4
+                  deliveryMethod: 1 hour
+                  hdd:
+                  - amount: '2'
+                    size: SSD480GB
+                  ram:
+                    size: '32'
+                    unit: GB
+                  location:
+                  - AMS-01
+                  - AMS-02
+                - id: e2f0e2f2a3083d9f4b5ca9ebe34ae5d3
+                  name: Dell R7525 (16SFF+8NVMe) 2x AMD EPYC 7543
+                  chassis: Dell R7525 (16SFF+8NVMe)
+                  cpu:
+                    coresPerCPU: '32'
+                    totalCores: '64'
+                    quantity: Dual
+                    speed: 2,8 GHz
+                    type: AMD EPYC 7543
+                  deliveryMethod: 1 hour
+                  hdd:
+                  - amount: '2'
+                    size: SSD960GB
+                  - amount: '2'
+                    size: U2_3.2TB
+                  ram:
+                    size: '128'
+                    unit: GB
+                  location:
+                  - AMS-01
+              schema:
+                $ref: '#/components/schemas/dedicatedServerList'
+          description: Ok.
+        '401':
+          content:
+            application/json:
+              example:
+                correlationId: 289346a1-3eaf-4da4-b707-62ef12eb08be
+                errorCode: '401'
+                errorMessage: You are not authorized to view this resource.
+              schema:
+                $ref: '#/components/schemas/errorResult'
+          description: Not Authorized.
+        '403':
+          content:
+            application/json:
+              example:
+                correlationId: 289346a1-3eaf-4da4-b707-62ef12eb08be
+                errorCode: '403'
+                errorMessage: Access to the requested resource is forbidden.
+              schema:
+                $ref: '#/components/schemas/errorResult'
+          description: Forbidden.
+        '500':
+          content:
+            application/json:
+              example:
+                correlationId: 289346a1-3eaf-4da4-b707-62ef12eb08be
+                errorCode: '500'
+                errorMessage: '''The API could not handle your request at this time.'
+              schema:
+                $ref: '#/components/schemas/errorResult'
+          description: Internal Server Error.
+        '503':
+          content:
+            application/json:
+              example:
+                correlationId: 289346a1-3eaf-4da4-b707-62ef12eb08be
+                errorCode: '503'
+                errorMessage: The API is not available at the moment.
+              schema:
+                $ref: '#/components/schemas/errorResult'
+          description: Service Unavailable.
+      summary: List available dedicated server configurations
+      tags:
+      - ordering
+    servers:
+    - url: https://api.leaseweb.com/ordering/v1
+  /products/dedicatedServers/{dedicatedServerId}:
+    get:
+      description: Get a single dedicated server and its price.
+      operationId: getDedicatedServer
+      parameters:
+      - description: The ID of a dedicated server
+        example: 27f38ef06cf3bf62e21e75401feac6cd
+        explode: false
+        in: path
+        name: dedicatedServerId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - explode: true
+        in: query
+        name: location
+        required: true
+        schema:
+          $ref: '#/components/schemas/location'
+        style: form
+      - explode: true
+        in: query
+        name: connectedToAggregationPool
+        required: false
+        schema:
+          $ref: '#/components/schemas/connectedToAggregationPool'
+        style: form
+      - explode: true
+        in: query
+        name: contractTerm
+        required: false
+        schema:
+          $ref: '#/components/schemas/contractTerm'
+        style: form
+      - explode: true
+        in: query
+        name: billingCycle
+        required: false
+        schema:
+          $ref: '#/components/schemas/billingCycle'
+        style: form
+      - explode: true
+        in: query
+        name: operatingSystem
+        required: false
+        schema:
+          $ref: '#/components/schemas/operatingSystem'
+        style: form
+      responses:
+        '200':
+          content:
+            application/json:
+              example:
+                additionalServices:
+                - Monitoring
+                - Remote Management
+                chassis: Dell R630 (8xSFF)
+                configurationOptions:
+                  operatingSystem:
+                  - name: no OS
+                    selected: false
+                    price: 0
+                    currency: EUR
+                  - name: Ubuntu 22.04
+                    selected: true
+                    price: 0
+                    currency: EUR
+                  - name: Windows Server 2022 Standard
+                    selected: false
+                    price: 513
+                    currency: EUR
+                controlPanel: No Control Panel
+                cpu:
+                  coresPerCPU: '12'
+                  totalCores: '24'
+                  quantity: Dual
+                  speed: 2,3 GHz
+                  type: Intel Xeon E5-2670v3
+                dataPackConfiguration: 30 TB|Metered|Volume
+                ddosIpProtection: DDOS IP Protection Standard
+                deliveryMethod: 1 hour
+                hdd:
+                - amount: '2'
+                  size: SSD480GB
+                id: WyJERURTRVIwMl9ORVdfT1JERVJfQlVTSU5FU1NfUjYzMC04U0ZGLUU1MjY3MHYzIiwiMiIsIjQ4MEdCIFNTRCBXSSIsIjEyOCBHQiJd
+                installOsOnHdd: Set 1
+                ipConnectivityType: Direct Connectivity
+                ipV4Configuration: 1 x IP V4
+                location:
+                - AMS-01
+                monitoringType: Leaseweb Monitoring
+                name: Dell R630 (8xSFF) 2x Intel Xeon E5-2670v3
+                operatingSystem: Windows Server 2025 Standard (2-Cores)
+                price:
+                  currency: EUR
+                  basePrice: 170.55
+                  tax: 0
+                  setupFee: 0
+                  fee: 219.36
+                  discounts:
+                    total: -7.28
+                    details:
+                    - description: Contract and Billing Term Discount
+                      value: -7.28
+                  total: 219.36
+                  contractTerm: 6 months
+                  contractTerms:
+                  - key: 1_MONTH
+                    description: 1 month
+                    discountText: 0%
+                    discountValue: 0
+                    total: 230.91
+                  - key: 3_MONTHS
+                    description: 3 months
+                    discountText: -3%
+                    discountValue: -3
+                    total: 223.98
+                  - key: 6_MONTHS
+                    description: 6 months
+                    discountText: -5%
+                    discountValue: -5
+                    total: 219.36
+                  - key: 1_YEAR
+                    description: 1 year
+                    discountText: -10%
+                    discountValue: -10
+                    total: 207.81
+                  - key: 2_YEARS
+                    description: 2 years
+                    discountText: -20%
+                    discountValue: -20
+                    total: 184.72
+                  - key: 3_YEARS
+                    description: 3 years
+                    discountText: -25%
+                    discountValue: -25
+                    total: 173.18
+                  billingCycle: 1 month
+                  billingCycles:
+                  - key: 1_MONTH
+                    description: 1 month
+                    discountText: 0%
+                    discountValue: 0
+                    total: 219.36
+                  - key: 3_MONTHS
+                    description: 3 months
+                    discountText: -2%
+                    discountValue: -2
+                    total: 214.97
+                  - key: 6_MONTHS
+                    description: 6 months
+                    discountText: -3%
+                    discountValue: -3
+                    total: 212.78
+                  details:
+                    Server:
+                      Dell R630 (8xSFF) Intel E5-2670v3: incl.
+                      128GB RAM: incl.
+                      2 x SSD480GB (set 1): incl.
+                    Connectivity:
+                      Metered Volume 30TB: incl.
+                      1 X GE port UTP: incl.
+                      1 x IPv4 address (Individual): incl.
+                    Software:
+                      1 x No control panel: incl.
+                      12 x Windows Server 2025 Standard 2-cores: € 81.00
+                    Services:
+                      Basic: incl.
+                      DDOS IP Protection Standard: incl.
+                    Delivery discount:
+                      Automatic delivery (-20.0%): '- € 24.91'
+                privateNetwork1xvlan: No Private Network
+                ram:
+                  size: '128'
+                  unit: GB
+                serviceLevelAgreement: Basic
+                uplinkPortSpeed: 1 x GE port UTP
+              schema:
+                $ref: '#/components/schemas/dedicatedServer'
+          description: Ok.
+        '401':
+          content:
+            application/json:
+              example:
+                correlationId: 289346a1-3eaf-4da4-b707-62ef12eb08be
+                errorCode: '401'
+                errorMessage: You are not authorized to view this resource.
+              schema:
+                $ref: '#/components/schemas/errorResult'
+          description: Not Authorized.
+        '403':
+          content:
+            application/json:
+              example:
+                correlationId: 289346a1-3eaf-4da4-b707-62ef12eb08be
+                errorCode: '403'
+                errorMessage: Access to the requested resource is forbidden.
+              schema:
+                $ref: '#/components/schemas/errorResult'
+          description: Forbidden.
+        '404':
+          content:
+            application/json:
+              example:
+                correlationId: 289346a1-3eaf-4da4-b707-62ef12eb08be
+                errorCode: '404'
+                errorMessage: Resource not found
+              schema:
+                $ref: '#/components/schemas/errorResult'
+          description: Not Found.
+        '500':
+          content:
+            application/json:
+              example:
+                correlationId: 289346a1-3eaf-4da4-b707-62ef12eb08be
+                errorCode: '500'
+                errorMessage: '''The API could not handle your request at this time.'
+              schema:
+                $ref: '#/components/schemas/errorResult'
+          description: Internal Server Error.
+        '503':
+          content:
+            application/json:
+              example:
+                correlationId: 289346a1-3eaf-4da4-b707-62ef12eb08be
+                errorCode: '503'
+                errorMessage: The API is not available at the moment.
+              schema:
+                $ref: '#/components/schemas/errorResult'
+          description: Service Unavailable.
+      summary: Get a single dedicated server and its price
+      tags:
+      - ordering
+    servers:
+    - url: https://api.leaseweb.com/ordering/v1
+  /products/dedicatedServers/{dedicatedServerId}/order:
+    post:
+      description: The Ordering API can only be used by existing, verified Leaseweb customers who are on invoice payment with no prepayment obligation. If you are a new customer, you must first complete the Know Your Customer (KYC) process before you can place orders via API. If you are already on invoice payment but receive an error when placing an order via API, this is likely due to a prepayment requirement on your account. Please contact Leaseweb Sales or Support to have the prepayment obligation removed.
+      operationId: orderDedicatedServer
+      parameters:
+      - description: The ID of a dedicated server
+        example: 27f38ef06cf3bf62e21e75401feac6cd
+        explode: false
+        in: path
+        name: dedicatedServerId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            example:
+              connectedToAggregationPool: true
+              contractTerm: 1_MONTH
+              location: AMS-01
+            schema:
+              $ref: '#/components/schemas/orderDedicatedServerOpts'
+      responses:
+        '201':
+          content:
+            application/json:
+              example:
+                orderId: 44011723
+              schema:
+                $ref: '#/components/schemas/order'
+          description: Created.
+        '401':
+          content:
+            application/json:
+              example:
+                correlationId: 289346a1-3eaf-4da4-b707-62ef12eb08be
+                errorCode: '401'
+                errorMessage: You are not authorized to view this resource.
+              schema:
+                $ref: '#/components/schemas/errorResult'
+          description: Not Authorized.
+        '403':
+          content:
+            application/json:
+              example:
+                correlationId: 289346a1-3eaf-4da4-b707-62ef12eb08be
+                errorCode: '403'
+                errorMessage: Access to the requested resource is forbidden.
+              schema:
+                $ref: '#/components/schemas/errorResult'
+          description: Forbidden.
+        '404':
+          content:
+            application/json:
+              example:
+                correlationId: 289346a1-3eaf-4da4-b707-62ef12eb08be
+                errorCode: '404'
+                errorMessage: Resource not found
+              schema:
+                $ref: '#/components/schemas/errorResult'
+          description: Not Found.
+        '500':
+          content:
+            application/json:
+              example:
+                correlationId: 289346a1-3eaf-4da4-b707-62ef12eb08be
+                errorCode: '500'
+                errorMessage: '''The API could not handle your request at this time.'
+              schema:
+                $ref: '#/components/schemas/errorResult'
+          description: Internal Server Error.
+        '503':
+          content:
+            application/json:
+              example:
+                correlationId: 289346a1-3eaf-4da4-b707-62ef12eb08be
+                errorCode: '503'
+                errorMessage: The API is not available at the moment.
+              schema:
+                $ref: '#/components/schemas/errorResult'
+          description: Service Unavailable.
+      summary: Dedicated Server ordering
+      tags:
+      - ordering
+    servers:
+    - url: https://api.leaseweb.com/ordering/v1
+  /products/vps:
+    get:
+      description: Get a list of VPS and its price.
+      operationId: getVpsList
+      parameters:
+      - explode: true
+        in: query
+        name: location
+        required: false
+        schema:
+          $ref: '#/components/schemas/location'
+        style: form
+      - description: Limit the number of results returned.
+        example: 20
+        explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          type: integer
+        style: form
+      - description: Return results starting from the given offset.
+        example: 10
+        explode: true
+        in: query
+        name: offset
+        required: false
+        schema:
+          type: integer
+        style: form
+      responses:
+        '200':
+          content:
+            application/json:
+              example:
+                _metadata:
+                  limit: 6
+                  offset: 0
+                  totalCount: 6
+                vpss:
+                - id: VPS02_1
+                  name: Leaseweb VPS 1
+                  vCpu: '4'
+                  vRam: '6'
+                  nvmeStorage: 100 GB
+                  traffic: 30 TB Volume
+                  price:
+                    currency: EUR
+                    basePrice: 3.59
+                    discount: 0
+                    total: 3.59
+                - id: VPS02_2
+                  name: Leaseweb VPS 2
+                  vCpu: '6'
+                  vRam: '16'
+                  nvmeStorage: 200 GB
+                  traffic: 30 TB Volume
+                  price:
+                    currency: EUR
+                    basePrice: 8.09
+                    discount: 0
+                    total: 8.09
+                - id: VPS02_3
+                  name: Leaseweb VPS 3
+                  vCpu: '8'
+                  vRam: '24'
+                  nvmeStorage: 300 GB
+                  traffic: 30 TB Volume
+                  price:
+                    currency: EUR
+                    basePrice: 12.59
+                    discount: 0
+                    total: 12.59
+                - id: VPS02_4
+                  name: Leaseweb VPS 4
+                  vCpu: '12'
+                  vRam: '48'
+                  nvmeStorage: 400 GB
+                  traffic: 30 TB Volume
+                  price:
+                    currency: EUR
+                    basePrice: 23.38
+                    discount: -2.33
+                    total: 21.05
+                - id: VPS02_5
+                  name: Leaseweb VPS 5
+                  vCpu: '16'
+                  vRam: '64'
+                  nvmeStorage: 500 GB
+                  traffic: 30 TB Volume
+                  price:
+                    currency: EUR
+                    basePrice: 30.59
+                    discount: -4.59
+                    total: 26
+                - id: VPS02_6
+                  name: Leaseweb VPS 6
+                  vCpu: '24'
+                  vRam: '120'
+                  nvmeStorage: 600 GB
+                  traffic: 30 TB Volume
+                  price:
+                    currency: EUR
+                    basePrice: 59.39
+                    discount: -11.88
+                    total: 47.51
+              schema:
+                $ref: '#/components/schemas/vpsList'
+          description: Ok.
+        '401':
+          content:
+            application/json:
+              example:
+                correlationId: 289346a1-3eaf-4da4-b707-62ef12eb08be
+                errorCode: '401'
+                errorMessage: You are not authorized to view this resource.
+              schema:
+                $ref: '#/components/schemas/errorResult'
+          description: Not Authorized.
+        '403':
+          content:
+            application/json:
+              example:
+                correlationId: 289346a1-3eaf-4da4-b707-62ef12eb08be
+                errorCode: '403'
+                errorMessage: Access to the requested resource is forbidden.
+              schema:
+                $ref: '#/components/schemas/errorResult'
+          description: Forbidden.
+        '500':
+          content:
+            application/json:
+              example:
+                correlationId: 289346a1-3eaf-4da4-b707-62ef12eb08be
+                errorCode: '500'
+                errorMessage: '''The API could not handle your request at this time.'
+              schema:
+                $ref: '#/components/schemas/errorResult'
+          description: Internal Server Error.
+        '503':
+          content:
+            application/json:
+              example:
+                correlationId: 289346a1-3eaf-4da4-b707-62ef12eb08be
+                errorCode: '503'
+                errorMessage: The API is not available at the moment.
+              schema:
+                $ref: '#/components/schemas/errorResult'
+          description: Service Unavailable.
+      summary: Get a list of available VPS products and their prices
+      tags:
+      - ordering
+    servers:
+    - url: https://api.leaseweb.com/ordering/v1
+  /products/vps/{vpsId}:
+    get:
+      description: Get a single VPS and its price.
+      operationId: getVps
+      parameters:
+      - description: The VPS ID
+        example: VPS02_1
+        explode: false
+        in: path
+        name: vpsId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - explode: true
+        in: query
+        name: location
+        required: true
+        schema:
+          $ref: '#/components/schemas/location'
+        style: form
+      - explode: true
+        in: query
+        name: diskUpgrade
+        required: false
+        schema:
+          $ref: '#/components/schemas/diskUpgrade'
+        style: form
+      - explode: true
+        in: query
+        name: operatingSystem
+        required: false
+        schema:
+          $ref: '#/components/schemas/operatingSystem'
+        style: form
+      - explode: true
+        in: query
+        name: controlPanel
+        required: false
+        schema:
+          $ref: '#/components/schemas/controlPanel'
+        style: form
+      - explode: true
+        in: query
+        name: contractTerm
+        required: false
+        schema:
+          $ref: '#/components/schemas/contractTerm'
+        style: form
+      - explode: true
+        in: query
+        name: billingCycle
+        required: false
+        schema:
+          $ref: '#/components/schemas/billingCycle'
+        style: form
+      - explode: true
+        in: query
+        name: serviceLevelAgreement
+        required: false
+        schema:
+          $ref: '#/components/schemas/serviceLevelAgreement'
+        style: form
+      responses:
+        '200':
+          content:
+            application/json:
+              example:
+                configurationOptions:
+                  diskUpgrade:
+                  - name: 0 GB
+                    selected: false
+                    price: -1.5
+                    currency: EUR
+                  - name: 100 GB
+                    selected: false
+                    price: 1.5
+                    currency: EUR
+                  - name: 200 GB
+                    selected: false
+                    price: 4.5
+                    currency: EUR
+                  - name: 300 GB
+                    selected: false
+                    price: 7.5
+                    currency: EUR
+                  - name: 500 GB
+                    selected: false
+                    price: 13.5
+                    currency: EUR
+                  - name: 1000 GB
+                    selected: false
+                    price: 28.5
+                    currency: EUR
+                  - name: 50 GB
+                    selected: true
+                    price: 0
+                    currency: EUR
+                  operatingSystem:
+                  - name: AlmaLinux 8
+                    selected: false
+                    price: 0
+                    currency: EUR
+                  - name: Rocky Linux 8
+                    selected: false
+                    price: 0
+                    currency: EUR
+                  - name: Ubuntu 22.04
+                    selected: true
+                    price: 0
+                    currency: EUR
+                  - name: AlmaLinux 9
+                    selected: false
+                    price: 0
+                    currency: EUR
+                  - name: Debian 12
+                    selected: false
+                    price: 0
+                    currency: EUR
+                  - name: Ubuntu 24.04
+                    selected: false
+                    price: 0
+                    currency: EUR
+                  - name: Debian 13
+                    selected: false
+                    price: 0
+                    currency: EUR
+                  - name: AlmaLinux 10
+                    selected: false
+                    price: 0
+                    currency: EUR
+                  controlPanel:
+                  - name: No Control Panel
+                    selected: false
+                    price: -15.75
+                    currency: EUR
+                  - name: Plesk Web Pro Edition (30 Domains) for VPS
+                    selected: true
+                    price: 0
+                    currency: EUR
+                  - name: cPanel Premier Cloud 100
+                    selected: false
+                    price: 26
+                    currency: EUR
+                  - name: Plesk Web Admin Edition (10 Domains) for VPS
+                    selected: false
+                    price: -6.75
+                    currency: EUR
+                  - name: Plesk Web Host Edition - Unlimited Domains
+                    selected: false
+                    price: 13
+                    currency: EUR
+                  - name: cPanel Admin 5
+                    selected: false
+                    price: 1.75
+                    currency: EUR
+                  - name: cPanel Pro 30
+                    selected: false
+                    price: 8.25
+                    currency: EUR
+                  serviceLevelAgreement:
+                  - name: Basic
+                    selected: true
+                    price: 0
+                    currency: EUR
+                  - name: Bronze
+                    selected: false
+                    price: 31
+                    currency: EUR
+                  - name: Silver
+                    selected: false
+                    price: 53
+                    currency: EUR
+                  - name: Gold
+                    selected: false
+                    price: 85.3
+                    currency: EUR
+                  - name: Platinum
+                    selected: false
+                    price: 129
+                    currency: EUR
+                id: VPS02_1
+                location:
+                - AMS-01
+                - FRA-01
+                - LAX-12
+                - LON-01
+                - MTL-02
+                - SFO-12
+                - SIN-01
+                - SYD-12
+                - TYO-11
+                - WDC-02
+                name: Leaseweb VPS 1
+                nvmeStorage: 100 GB
+                price:
+                  currency: EUR
+                  basePrice: 3.99
+                  tax: 0
+                  setupFee: 0
+                  fee: 4.12
+                  discounts:
+                    total: -1.37
+                    details:
+                    - description: Contract and Billing Term Discount
+                      value: -1.37
+                  total: 4.12
+                  contractTerm: 3 years
+                  contractTerms:
+                  - key: 1_MONTH
+                    description: 1 month
+                    discountText: 0%
+                    discountValue: 0
+                    total: 5.49
+                  - key: 3_MONTHS
+                    description: 3 months
+                    discountText: -3%
+                    discountValue: -3
+                    total: 5.33
+                  - key: 6_MONTHS
+                    description: 6 months
+                    discountText: -5%
+                    discountValue: -5
+                    total: 5.22
+                  - key: 1_YEAR
+                    description: 1 year
+                    discountText: -10%
+                    discountValue: -10
+                    total: 4.94
+                  - key: 2_YEARS
+                    description: 2 years
+                    discountText: -20%
+                    discountValue: -20
+                    total: 4.39
+                  - key: 3_YEARS
+                    description: 3 years
+                    discountText: -25%
+                    discountValue: -25
+                    total: 4.12
+                  billingCycle: 1 month
+                  billingCycles:
+                  - key: 1_MONTH
+                    description: 1 month
+                    discountText: 0%
+                    discountValue: 0
+                    total: 4.12
+                  - key: 3_MONTHS
+                    description: 3 months
+                    discountText: -2%
+                    discountValue: -2
+                    total: 4.04
+                  - key: 6_MONTHS
+                    description: 6 months
+                    discountText: -3%
+                    discountValue: -3
+                    total: 4
+                  - key: 1_YEAR
+                    description: 1 year
+                    discountText: -5%
+                    discountValue: -5
+                    total: 3.91
+                  - key: 2_YEARS
+                    description: 2 years
+                    discountText: -10%
+                    discountValue: -10
+                    total: 3.71
+                  - key: 3_YEARS
+                    description: 3 years
+                    discountText: -15%
+                    discountValue: -15
+                    total: 3.5
+                  details:
+                    Connectivity:
+                      30 TB Volume: incl.
+                      1 X 10GE port Virtual: incl.
+                      1 x IPv4 address (Individual): incl.
+                    Cloud Instance:
+                      1 x 4 vCPU - 6 GB vRAM - 100 GB NVMe Disk: incl.
+                      1 x Disk upgrade 50 GB: € 1.50
+                    Software:
+                      1 x Parallels Plesk Panel Web Pro for VPS: incl.
+                      1 x Ubuntu 22.04: incl.
+                    Services:
+                      Basic: incl.
+                      DDOS IP Protection Standard: incl.
+                traffic: 30 TB Volume
+                vCpu: '4'
+                vRam: '6'
+              schema:
+                $ref: '#/components/schemas/vps'
+          description: Ok.
+        '401':
+          content:
+            application/json:
+              example:
+                correlationId: 289346a1-3eaf-4da4-b707-62ef12eb08be
+                errorCode: '401'
+                errorMessage: You are not authorized to view this resource.
+              schema:
+                $ref: '#/components/schemas/errorResult'
+          description: Not Authorized.
+        '403':
+          content:
+            application/json:
+              example:
+                correlationId: 289346a1-3eaf-4da4-b707-62ef12eb08be
+                errorCode: '403'
+                errorMessage: Access to the requested resource is forbidden.
+              schema:
+                $ref: '#/components/schemas/errorResult'
+          description: Forbidden.
+        '404':
+          content:
+            application/json:
+              example:
+                correlationId: 289346a1-3eaf-4da4-b707-62ef12eb08be
+                errorCode: '404'
+                errorMessage: Resource not found
+              schema:
+                $ref: '#/components/schemas/errorResult'
+          description: Not Found.
+        '500':
+          content:
+            application/json:
+              example:
+                correlationId: 289346a1-3eaf-4da4-b707-62ef12eb08be
+                errorCode: '500'
+                errorMessage: '''The API could not handle your request at this time.'
+              schema:
+                $ref: '#/components/schemas/errorResult'
+          description: Internal Server Error.
+        '503':
+          content:
+            application/json:
+              example:
+                correlationId: 289346a1-3eaf-4da4-b707-62ef12eb08be
+                errorCode: '503'
+                errorMessage: The API is not available at the moment.
+              schema:
+                $ref: '#/components/schemas/errorResult'
+          description: Service Unavailable.
+      summary: Get a single VPS and its price
+      tags:
+      - ordering
+    servers:
+    - url: https://api.leaseweb.com/ordering/v1
+  /products/vps/{vpsId}/order:
+    post:
+      description: The Ordering API can only be used by existing, verified Leaseweb customers who are on invoice payment with no prepayment obligation. If you are a new customer, you must first complete the Know Your Customer (KYC) process before you can place orders via API. If you are already on invoice payment but receive an error when placing an order via API, this is likely due to a prepayment requirement on your account. Please contact Leaseweb Sales or Support to have the prepayment obligation removed.
+      operationId: orderVps
+      parameters:
+      - description: The VPS ID
+        example: VPS02_1
+        explode: false
+        in: path
+        name: vpsId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            example:
+              billingCycle: 1_MONTH
+              contractTerm: 1_YEAR
+              controlPanel: Plesk Web Pro Edition (30 Domains) for VPS
+              diskUpgrade: 100GB
+              location: AMS-01
+              operatingSystem: Ubuntu 24.04
+              serviceLevelAgreement: Basic
+            schema:
+              $ref: '#/components/schemas/orderVpsOpts'
+      responses:
+        '201':
+          content:
+            application/json:
+              example:
+                orderId: 44011723
+              schema:
+                $ref: '#/components/schemas/order'
+          description: Created.
+        '400':
+          content:
+            application/json:
+              example:
+                correlationId: 289346a1-3eaf-4da4-b707-62ef12eb08be
+                errorCode: '400'
+                errorDetails: {}
+                errorMessage: The API could not interpret your request correctly.
+              schema:
+                $ref: '#/components/schemas/errorResult'
+          description: Bad Request.
+        '401':
+          content:
+            application/json:
+              example:
+                correlationId: 289346a1-3eaf-4da4-b707-62ef12eb08be
+                errorCode: '401'
+                errorMessage: You are not authorized to view this resource.
+              schema:
+                $ref: '#/components/schemas/errorResult'
+          description: Not Authorized.
+        '403':
+          content:
+            application/json:
+              example:
+                correlationId: 289346a1-3eaf-4da4-b707-62ef12eb08be
+                errorCode: '403'
+                errorMessage: Access to the requested resource is forbidden.
+              schema:
+                $ref: '#/components/schemas/errorResult'
+          description: Forbidden.
+        '404':
+          content:
+            application/json:
+              example:
+                correlationId: 289346a1-3eaf-4da4-b707-62ef12eb08be
+                errorCode: '404'
+                errorMessage: Resource not found
+              schema:
+                $ref: '#/components/schemas/errorResult'
+          description: Not Found.
+        '500':
+          content:
+            application/json:
+              example:
+                correlationId: 289346a1-3eaf-4da4-b707-62ef12eb08be
+                errorCode: '500'
+                errorMessage: '''The API could not handle your request at this time.'
+              schema:
+                $ref: '#/components/schemas/errorResult'
+          description: Internal Server Error.
+        '503':
+          content:
+            application/json:
+              example:
+                correlationId: 289346a1-3eaf-4da4-b707-62ef12eb08be
+                errorCode: '503'
+                errorMessage: The API is not available at the moment.
+              schema:
+                $ref: '#/components/schemas/errorResult'
+          description: Service Unavailable.
+      summary: VPS ordering
+      tags:
+      - ordering
+    servers:
+    - url: https://api.leaseweb.com/ordering/v1
+components:
+  schemas:
+    vpsDetail:
+      properties:
+        id:
+          description: Id of the VPS
+          type: string
+        name:
+          description: Name of the VPS
+          type: string
+        vCpu:
+          description: Number of virtual CPUs
+          type: string
+        vRam:
+          description: Virtual RAM in GB
+          type: string
+        nvmeStorage:
+          description: Included NVMe storage
+          type: string
+        traffic:
+          description: Traffic allowance
+          type: string
+        location:
+          description: All locations where the VPS is available, regardless of the API key's entity
+          items:
+            type: string
+          type: array
+      type: object
+    orderVpsOpts:
+      properties:
+        location:
+          description: The datacenter location
+          example: AMS-01
+          type: string
+        diskUpgrade:
+          description: Disk upgrade option
+          example: 100 GB
+          type: string
+        operatingSystem:
+          description: Operating system option. Matched case-insensitively and ignoring the licensing/core suffix, so "windows server 2022 datacenter" matches "Windows Server 2022 Datacenter (2-Cores)".
+          example: Windows Server 2022 Datacenter
+          type: string
+        controlPanel:
+          description: Control panel option
+          example: Plesk Web Pro Edition (30 Domains) for VPS
+          type: string
+        serviceLevelAgreement:
+          $ref: '#/components/schemas/serviceLevelAgreement'
+        contractTerm:
+          $ref: '#/components/schemas/contractTerm'
+        billingCycle:
+          $ref: '#/components/schemas/billingCycle'
+      required:
+      - location
+      type: object
+    serviceLevelAgreement:
+      description: Service level agreement option
+      enum:
+      - Basic
+      - Bronze
+      - Silver
+      - Gold
+      - Platinum
+      example: Basic
+      type: string
+    ramQuery:
+      description: The ram information
+      example: 64GB
+      type: string
+    operatingSystem:
+      description: Operating system option. Matched case-insensitively and ignoring the licensing/core suffix, so "windows server 2022 datacenter" matches "Windows Server 2022 Datacenter (2-Cores)".
+      example: Windows Server 2022 Datacenter
+      type: string
+    errorResult:
+      example:
+        errorMessage: errorMessage
+        errorCode: errorCode
+        correlationId: correlationId
+        errorDetails:
+          key:
+          - errorDetails
+          - errorDetails
+      properties:
+        correlationId:
+          description: The correlation ID of the current request.
+          type: string
+        errorCode:
+          description: The error code.
+          type: string
+        errorMessage:
+          description: A human friendly description of the error.
+          type: string
+        errorDetails:
+          additionalProperties:
+            items:
+              type: string
+            type: array
+          title: errorDetails
+          type: object
+      type: object
+    diskSize:
+      description: The disk size information
+      example: SSD480GB
+      type: string
+    dedicatedServerConfigurationOptions_1:
+      description: Available configuration options for the dedicated server
+      example:
+        operatingSystem:
+        - price: 0.8008281904610115
+          name: name
+          currency: currency
+          selected: true
+        - price: 0.8008281904610115
+          name: name
+          currency: currency
+          selected: true
+      properties:
+        operatingSystem:
+          description: Available operating system options with their price
+          items:
+            $ref: '#/components/schemas/dedicatedServerConfigurationOption'
+          type: array
+      title: dedicatedServerConfigurationOptions
+      type: object
+    vpsList:
+      example:
+        _metadata:
+          offset: 0
+          limit: 5
+          totalCount: 2
+        vpss:
+        - vCpu: vCpu
+          price:
+            total: 1.4658129805029452
+            discount: 6.027456183070403
+            currency: currency
+            basePrice: 0.8008281904610115
+          name: name
+          nvmeStorage: nvmeStorage
+          id: id
+          vRam: vRam
+          traffic: traffic
+        - vCpu: vCpu
+          price:
+            total: 1.4658129805029452
+            discount: 6.027456183070403
+            currency: currency
+            basePrice: 0.8008281904610115
+          name: name
+          nvmeStorage: nvmeStorage
+          id: id
+          vRam: vRam
+          traffic: traffic
+      properties:
+        vpss:
+          items:
+            $ref: '#/components/schemas/vpsListItem'
+          type: array
+        _metadata:
+          $ref: '#/components/schemas/_metadata'
+      type: object
+    diskAmount:
+      description: The amount of disks
+      example: '2'
+      type: string
+    connectedToAggregationPool:
+      default: false
+      description: To add the dedicated server in the connectivity aggregation pool
+      example: true
+      type: boolean
+    dedicatedServerDetail:
+      example:
+        deliveryMethod: deliveryMethod
+        name: name
+        cpu:
+          coresPerCPU: coresPerCPU
+          quantity: quantity
+          totalCores: totalCores
+          type: type
+          speed: speed
+        hdd:
+        - amount: amount
+          size: size
+        - amount: amount
+          size: size
+        location:
+        - location
+        - location
+        id: id
+        chassis: chassis
+        ram:
+          unit: unit
+          size: size
+      properties:
+        id:
+          description: Id of the server
+          type: string
+        name:
+          description: Name of the server
+          type: string
+        chassis:
+          description: Chassis of the server
+          type: string
+        cpu:
+          $ref: '#/components/schemas/cpu'
+        deliveryMethod:
+          description: Time to get the server ready
+          type: string
+        hdd:
+          description: HDD info of the server
+          items:
+            $ref: '#/components/schemas/hdd'
+          type: array
+        ram:
+          $ref: '#/components/schemas/ram'
+        location:
+          description: Location of the server
+          items:
+            type: string
+          type: array
+      type: object
+    dedicatedServerList:
+      example:
+        _metadata:
+          offset: 0
+          limit: 5
+          totalCount: 2
+        dedicatedServers:
+        - deliveryMethod: deliveryMethod
+          name: name
+          cpu:
+            coresPerCPU: coresPerCPU
+            quantity: quantity
+            totalCores: totalCores
+            type: type
+            speed: speed
+          hdd:
+          - amount: amount
+            size: size
+          - amount: amount
+            size: size
+          location:
+          - location
+          - location
+          id: id
+          chassis: chassis
+          ram:
+            unit: unit
+            size: size
+        - deliveryMethod: deliveryMethod
+          name: name
+          cpu:
+            coresPerCPU: coresPerCPU
+            quantity: quantity
+            totalCores: totalCores
+            type: type
+            speed: speed
+          hdd:
+          - amount: amount
+            size: size
+          - amount: amount
+            size: size
+          location:
+          - location
+          - location
+          id: id
+          chassis: chassis
+          ram:
+            unit: unit
+            size: size
+      properties:
+        dedicatedServers:
+          items:
+            $ref: '#/components/schemas/dedicatedServerDetail'
+          type: array
+        _metadata:
+          $ref: '#/components/schemas/_metadata'
+      type: object
+    billingCycle:
+      default: 1_MONTH
+      description: Billing cycle period
+      enum:
+      - 1_MONTH
+      - 3_MONTHS
+      - 6_MONTHS
+      - 1_YEAR
+      - 2_YEARS
+      - 3_YEARS
+      example: 1_MONTH
+      type: string
+    dedicatedServerConfigurationOption:
+      example:
+        price: 0.8008281904610115
+        name: name
+        currency: currency
+        selected: true
+      properties:
+        name:
+          description: Option name
+          type: string
+        selected:
+          description: Whether this option is selected
+          type: boolean
+        price:
+          description: Price for this option
+          type: number
+        currency:
+          description: Currency for the price
+          type: string
+      title: dedicatedServerConfigurationOption
+      type: object
+    order:
+      example:
+        orderId: 0
+      properties:
+        orderId:
+          description: Order Id
+          type: integer
+      type: object
+    configurationOptions:
+      description: Available configuration options for the VPS
+      example:
+        controlPanel:
+        - price: 0.8008281904610115
+          name: name
+          currency: currency
+          selected: true
+        - price: 0.8008281904610115
+          name: name
+          currency: currency
+          selected: true
+        serviceLevelAgreement:
+        - price: 0.8008281904610115
+          name: name
+          currency: currency
+          selected: true
+        - price: 0.8008281904610115
+          name: name
+          currency: currency
+          selected: true
+        diskUpgrade:
+        - price: 0.8008281904610115
+          name: name
+          currency: currency
+          selected: true
+        - price: 0.8008281904610115
+          name: name
+          currency: currency
+          selected: true
+        operatingSystem:
+        - price: 0.8008281904610115
+          name: name
+          currency: currency
+          selected: true
+        - price: 0.8008281904610115
+          name: name
+          currency: currency
+          selected: true
+      properties:
+        diskUpgrade:
+          description: 'Available disk upgrade options. Note: This will add additional storage on top of the base NVMe Storage included with your package'
+          items:
+            $ref: '#/components/schemas/vpsConfigurationOption'
+          type: array
+        operatingSystem:
+          description: Available operating system options
+          items:
+            $ref: '#/components/schemas/vpsConfigurationOption'
+          type: array
+        controlPanel:
+          description: Available control panel options
+          items:
+            $ref: '#/components/schemas/vpsConfigurationOption'
+          type: array
+        serviceLevelAgreement:
+          description: Available SLA options
+          items:
+            $ref: '#/components/schemas/vpsConfigurationOption'
+          type: array
+      title: configurationOptions
+      type: object
+    productPrice_price:
+      description: Price details of the product
+      example:
+        contractTerms:
+        - total: 2.027123023002322
+          description: description
+          discountValue: 3.616076749251911
+          key: 1_MONTH
+          discountText: discountText
+        - total: 2.027123023002322
+          description: description
+          discountValue: 3.616076749251911
+          key: 1_MONTH
+          discountText: discountText
+        total: 9.301444243932576
+        discounts:
+          total: 2.3021358869347655
+          details:
+          - description: description
+            value: 7.061401241503109
+          - description: description
+            value: 7.061401241503109
+        billingCycles:
+        - total: 7.386281948385884
+          description: description
+          discountValue: 4.145608029883936
+          key: 1_MONTH
+          discountText: discountText
+        - total: 7.386281948385884
+          description: description
+          discountValue: 4.145608029883936
+          key: 1_MONTH
+          discountText: discountText
+        billingCycle: 1 month
+        fee: 5.637376656633329
+        contractTerm: 1 month
+        currency: currency
+        tax: 1.4658129805029452
+        setupFee: 5.962133916683182
+        details:
+          key:
+            key: details
+        basePrice: 6.027456183070403
+      properties:
+        currency:
+          description: Price's currency
+          type: string
+        basePrice:
+          description: Initial price
+          type: number
+        tax:
+          description: Tax
+          type: number
+        setupFee:
+          description: Setup Fee
+          type: number
+        fee:
+          description: Fee amount
+          type: number
+        discounts:
+          $ref: '#/components/schemas/productDiscounts'
+        total:
+          description: Final price
+          type: number
+        contractTerm:
+          description: Selected contract term
+          enum:
+          - 1 month
+          - 3 months
+          - 6 months
+          - 1 year
+          - 2 years
+          - 3 years
+          type: string
+        contractTerms:
+          description: Available contract terms
+          items:
+            $ref: '#/components/schemas/contractTermItem'
+          title: contractTerms
+          type: array
+        billingCycle:
+          description: Selected billing cycle
+          enum:
+          - 1 month
+          - 3 months
+          - 6 months
+          - 1 year
+          - 2 years
+          - 3 years
+          type: string
+        billingCycles:
+          description: Available billing cycles
+          items:
+            $ref: '#/components/schemas/billingCycleItem'
+          title: billingCycles
+          type: array
+        details:
+          additionalProperties:
+            additionalProperties:
+              type: string
+            type: object
+          description: Per-component price breakdown grouped by section (e.g. Server, Connectivity, Software, Services, Discounts). Each section maps a line description to its formatted price (e.g. "incl." or "€ 513.00").
+          title: priceDetails
+          type: object
+      type: object
+    dedicatedServerConfiguration:
+      description: Selected configuration of the server
+      properties:
+        operatingSystem:
+          description: Selected operating system
+          type: string
+        installOsOnHdd:
+          description: Disk set where the OS is installed
+          type: string
+        controlPanel:
+          description: Selected control panel
+          type: string
+        ipConnectivityType:
+          description: IP connectivity type
+          type: string
+        dataPackConfiguration:
+          description: Data pack configuration
+          type: string
+        uplinkPortSpeed:
+          description: Uplink port speed
+          type: string
+        privateNetwork1xvlan:
+          description: Private network configuration
+          type: string
+        ipV4Configuration:
+          description: IPv4 configuration
+          type: string
+        additionalServices:
+          description: Additional services
+          items:
+            type: string
+          type: array
+        monitoringType:
+          description: Monitoring type
+          type: string
+        ddosIpProtection:
+          description: DDoS IP protection
+          type: string
+        serviceLevelAgreement:
+          description: Service level agreement
+          type: string
+      type: object
+    productDiscounts:
+      description: Discounts details
+      example:
+        total: 2.3021358869347655
+        details:
+        - description: description
+          value: 7.061401241503109
+        - description: description
+          value: 7.061401241503109
+      properties:
+        total:
+          description: Total discounts
+          type: number
+        details:
+          description: Discount details
+          items:
+            $ref: '#/components/schemas/discountItems'
+          type: array
+      title: productDiscounts
+      type: object
+    contractTermItem:
+      example:
+        total: 2.027123023002322
+        description: description
+        discountValue: 3.616076749251911
+        key: 1_MONTH
+        discountText: discountText
+      properties:
+        key:
+          description: Contract term key
+          enum:
+          - 1_MONTH
+          - 3_MONTHS
+          - 6_MONTHS
+          - 1_YEAR
+          - 2_YEARS
+          - 3_YEARS
+          type: string
+        description:
+          description: Contract term description
+          type: string
+        discountText:
+          description: Discount in percentage
+          type: string
+        discountValue:
+          description: Discount value
+          type: number
+        total:
+          description: Total price with discount
+          type: number
+      title: contractTermItem
+      type: object
+    billingCycleItem:
+      example:
+        total: 7.386281948385884
+        description: description
+        discountValue: 4.145608029883936
+        key: 1_MONTH
+        discountText: discountText
+      properties:
+        key:
+          description: Billing cycle key
+          enum:
+          - 1_MONTH
+          - 3_MONTHS
+          - 6_MONTHS
+          - 1_YEAR
+          - 2_YEARS
+          - 3_YEARS
+          type: string
+        description:
+          description: Billing cycle description
+          type: string
+        discountText:
+          description: Discount in percentage
+          type: string
+        discountValue:
+          description: Discount value
+          type: number
+        total:
+          description: Total price with discount
+          type: number
+      title: billingCycleItem
+      type: object
+    _metadata:
+      description: Metadata about the collection
+      example:
+        offset: 0
+        limit: 5
+        totalCount: 2
+      properties:
+        totalCount:
+          description: Total amount of elements in this collection
+          example: 2
+          minimum: 0
+          type: integer
+        offset:
+          default: 0
+          description: The offset used to generate this response
+          example: 0
+          minimum: 0
+          type: integer
+        limit:
+          default: 5
+          description: The limit used to generate this response
+          example: 5
+          minimum: 0
+          type: integer
+      required:
+      - limit
+      - offset
+      - totalCount
+      title: metadata
+      type: object
+    cpu:
+      description: CPU info of the server
+      example:
+        coresPerCPU: coresPerCPU
+        quantity: quantity
+        totalCores: totalCores
+        type: type
+        speed: speed
+      properties:
+        coresPerCPU:
+          description: Quantity of cores per CPU
+          type: string
+        totalCores:
+          description: Sum of CPU cores
+          type:
+          - string
+          - 'null'
+        quantity:
+          description: Quantity of CPUs
+          type: string
+        speed:
+          description: CPU speed
+          type: string
+        type:
+          description: CPU type
+          type: string
+      title: cpu
+      type: object
+    dedicatedServer:
+      allOf:
+      - $ref: '#/components/schemas/dedicatedServerDetail'
+      - $ref: '#/components/schemas/dedicatedServerConfiguration'
+      - $ref: '#/components/schemas/dedicatedServerConfigurationOptions'
+      - $ref: '#/components/schemas/productPrice'
+      example:
+        controlPanel: controlPanel
+        additionalServices:
+        - additionalServices
+        - additionalServices
+        ipV4Configuration: ipV4Configuration
+        deliveryMethod: deliveryMethod
+        cpu:
+          coresPerCPU: coresPerCPU
+          quantity: quantity
+          totalCores: totalCores
+          type: type
+          speed: speed
+        hdd:
+        - amount: amount
+          size: size
+        - amount: amount
+          size: size
+        configurationOptions:
+          operatingSystem:
+          - price: 0.8008281904610115
+            name: name
+            currency: currency
+            selected: true
+          - price: 0.8008281904610115
+            name: name
+            currency: currency
+            selected: true
+        chassis: chassis
+        serviceLevelAgreement: serviceLevelAgreement
+        operatingSystem: operatingSystem
+        installOsOnHdd: installOsOnHdd
+        privateNetwork1xvlan: privateNetwork1xvlan
+        monitoringType: monitoringType
+        ipConnectivityType: ipConnectivityType
+        dataPackConfiguration: dataPackConfiguration
+        ddosIpProtection: ddosIpProtection
+        price:
+          contractTerms:
+          - total: 2.027123023002322
+            description: description
+            discountValue: 3.616076749251911
+            key: 1_MONTH
+            discountText: discountText
+          - total: 2.027123023002322
+            description: description
+            discountValue: 3.616076749251911
+            key: 1_MONTH
+            discountText: discountText
+          total: 9.301444243932576
+          discounts:
+            total: 2.3021358869347655
+            details:
+            - description: description
+              value: 7.061401241503109
+            - description: description
+              value: 7.061401241503109
+          billingCycles:
+          - total: 7.386281948385884
+            description: description
+            discountValue: 4.145608029883936
+            key: 1_MONTH
+            discountText: discountText
+          - total: 7.386281948385884
+            description: description
+            discountValue: 4.145608029883936
+            key: 1_MONTH
+            discountText: discountText
+          billingCycle: 1 month
+          fee: 5.637376656633329
+          contractTerm: 1 month
+          currency: currency
+          tax: 1.4658129805029452
+          setupFee: 5.962133916683182
+          details:
+            key:
+              key: details
+          basePrice: 6.027456183070403
+        name: name
+        location:
+        - location
+        - location
+        id: id
+        ram:
+          unit: unit
+          size: size
+        uplinkPortSpeed: uplinkPortSpeed
+    ram:
+      description: Ram info of the server
+      example:
+        unit: unit
+        size: size
+      properties:
+        size:
+          description: Ram size
+          type: string
+        unit:
+          description: Unit description
+          type: string
+      title: ram
+      type: object
+    vpsListItem:
+      example:
+        vCpu: vCpu
+        price:
+          total: 1.4658129805029452
+          discount: 6.027456183070403
+          currency: currency
+          basePrice: 0.8008281904610115
+        name: name
+        nvmeStorage: nvmeStorage
+        id: id
+        vRam: vRam
+        traffic: traffic
+      properties:
+        id:
+          description: Id of the VPS
+          type: string
+        name:
+          description: Name of the VPS
+          type: string
+        vCpu:
+          description: Number of virtual CPUs
+          type: string
+        vRam:
+          description: Virtual RAM in GB
+          type: string
+        nvmeStorage:
+          description: NVMe storage capacity
+          type: string
+        traffic:
+          description: Traffic allowance
+          type: string
+        price:
+          $ref: '#/components/schemas/vpsListItemPrice'
+      type: object
+    vpsListItemPrice:
+      description: Price summary of the VPS
+      example:
+        total: 1.4658129805029452
+        discount: 6.027456183070403
+        currency: currency
+        basePrice: 0.8008281904610115
+      properties:
+        currency:
+          description: Price's currency
+          type: string
+        basePrice:
+          description: Base price
+          type: number
+        discount:
+          description: Discount amount
+          type: number
+        total:
+          description: Final price
+          type: number
+      title: vpsListItemPrice
+      type: object
+    dedicatedServerConfigurationOptions:
+      properties:
+        configurationOptions:
+          $ref: '#/components/schemas/dedicatedServerConfigurationOptions_1'
+      type: object
+    diskUpgrade:
+      description: Disk upgrade option
+      example: 100 GB
+      type: string
+    hdd:
+      example:
+        amount: amount
+        size: size
+      properties:
+        amount:
+          description: Amount of disks
+          type: string
+        size:
+          description: Disk size
+          type: string
+      title: hdd
+      type: object
+    vpsConfigurationOption:
+      example:
+        price: 0.8008281904610115
+        name: name
+        currency: currency
+        selected: true
+      properties:
+        name:
+          description: Option name
+          type: string
+        selected:
+          description: Whether this option is selected
+          type: boolean
+        price:
+          description: Price for this option
+          type: number
+        currency:
+          description: Currency for the price
+          type: string
+      type: object
+    discountItems:
+      example:
+        description: description
+        value: 7.061401241503109
+      properties:
+        description:
+          description: Discount description
+          type: string
+        value:
+          description: Discount value
+          type: number
+      title: discountItems
+      type: object
+    location:
+      description: The datacenter location
+      example: AMS-01
+      type: string
+    vps:
+      allOf:
+      - $ref: '#/components/schemas/vpsDetail'
+      - $ref: '#/components/schemas/productPrice'
+      - $ref: '#/components/schemas/vpsConfigurationOptions'
+      example:
+        vCpu: vCpu
+        price:
+          contractTerms:
+          - total: 2.027123023002322
+            description: description
+            discountValue: 3.616076749251911
+            key: 1_MONTH
+            discountText: discountText
+          - total: 2.027123023002322
+            description: description
+            discountValue: 3.616076749251911
+            key: 1_MONTH
+            discountText: discountText
+          total: 9.301444243932576
+          discounts:
+            total: 2.3021358869347655
+            details:
+            - description: description
+              value: 7.061401241503109
+            - description: description
+              value: 7.061401241503109
+          billingCycles:
+          - total: 7.386281948385884
+            description: description
+            discountValue: 4.145608029883936
+            key: 1_MONTH
+            discountText: discountText
+          - total: 7.386281948385884
+            description: description
+            discountValue: 4.145608029883936
+            key: 1_MONTH
+            discountText: discountText
+          billingCycle: 1 month
+          fee: 5.637376656633329
+          contractTerm: 1 month
+          currency: currency
+          tax: 1.4658129805029452
+          setupFee: 5.962133916683182
+          details:
+            key:
+              key: details
+          basePrice: 6.027456183070403
+        name: name
+        nvmeStorage: nvmeStorage
+        location:
+        - location
+        - location
+        configurationOptions:
+          controlPanel:
+          - price: 0.8008281904610115
+            name: name
+            currency: currency
+            selected: true
+          - price: 0.8008281904610115
+            name: name
+            currency: currency
+            selected: true
+          serviceLevelAgreement:
+          - price: 0.8008281904610115
+            name: name
+            currency: currency
+            selected: true
+          - price: 0.8008281904610115
+            name: name
+            currency: currency
+            selected: true
+          diskUpgrade:
+          - price: 0.8008281904610115
+            name: name
+            currency: currency
+            selected: true
+          - price: 0.8008281904610115
+            name: name
+            currency: currency
+            selected: true
+          operatingSystem:
+          - price: 0.8008281904610115
+            name: name
+            currency: currency
+            selected: true
+          - price: 0.8008281904610115
+            name: name
+            currency: currency
+            selected: true
+        id: id
+        vRam: vRam
+        traffic: traffic
+    vpsConfigurationOptions:
+      properties:
+        configurationOptions:
+          $ref: '#/components/schemas/configurationOptions'
+      type: object
+    productPrice:
+      properties:
+        price:
+          $ref: '#/components/schemas/productPrice_price'
+    contractTerm:
+      default: 1_YEAR
+      description: Order contract term
+      enum:
+      - 1_MONTH
+      - 3_MONTHS
+      - 6_MONTHS
+      - 1_YEAR
+      - 2_YEARS
+      - 3_YEARS
+      example: 3_YEARS
+      type: string
+    orderDedicatedServerOpts:
+      properties:
+        location:
+          description: The location of the server
+          example: AMS-01
+          type: string
+        connectedToAggregationPool:
+          default: false
+          description: Whether the server is connected to an aggregation pool
+          example: true
+          type: boolean
+        contractTerm:
+          default: 1_MONTH
+          description: The contract term of the server
+          enum:
+          - 1_MONTH
+          - 3_MONTHS
+          - 6_MONTHS
+          - 1_YEAR
+          - 2_YEARS
+          - 3_YEARS
+          example: 2_YEARS
+          type: string
+        operatingSystem:
+          description: Operating system option. Defaults to no OS when omitted.
+          example: Windows Server 2022 Standard
+          type: string
+      required:
+      - location
+      type: object
+    controlPanel:
+      description: Control panel option
+      example: Plesk Web Pro Edition (30 Domains) for VPS
+      type: string
+  securitySchemes:
+    BearerAuth:
+      scheme: bearer
+      type: http
+    X-LSW-Auth:
+      description: API key authentication by setting `X-LSW-Auth` header.
+      in: header
+      name: X-LSW-Auth
+      type: apiKey
+x-refined-from:
+- leaseweb-ordering-openapi.yaml
+- leaseweb-ordering-openapi.yml
