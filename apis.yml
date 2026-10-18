@@ -14,6 +14,15 @@ modified: '2026-10-13'
 tags:
 - Company
 - Cloud
+- Infrastructure-as-a-Service
+- Bare Metal
+- Dedicated Servers
+- Object Storage
+- DNS
+- Hosting
+tags_raw:
+- Company
+- Cloud
 - Infrastructure as a Service
 - Bare Metal
 - Dedicated Servers
@@ -76,6 +85,8 @@ apis:
   humanURL: https://developer.leaseweb.com/docs/
   baseURL: https://api.leaseweb.com/publicCloud/v1
   tags:
+  - Abuse
+  tags_raw:
   - abuse
   properties:
   - type: OpenAPI
@@ -436,6 +447,8 @@ apis:
   humanURL: https://developer.leaseweb.com/docs/
   baseURL: https://api.leaseweb.com/publicCloud/v1
   tags:
+  - DNS
+  tags_raw:
   - dns
   properties:
   - type: OpenAPI
@@ -556,6 +569,8 @@ apis:
   humanURL: https://developer.leaseweb.com/docs/
   baseURL: https://api.leaseweb.com/publicCloud/v1
   tags:
+  - Invoices
+  tags_raw:
   - invoice
   properties:
   - type: OpenAPI
@@ -796,6 +811,8 @@ apis:
   humanURL: https://developer.leaseweb.com/docs/
   baseURL: https://api.leaseweb.com/publicCloud/v1
   tags:
+  - Network Equipment
+  tags_raw:
   - networkequipment
   properties:
   - type: OpenAPI
@@ -916,6 +933,8 @@ apis:
   humanURL: https://developer.leaseweb.com/docs/
   baseURL: https://api.leaseweb.com/publicCloud/v1
   tags:
+  - Object Storage
+  tags_raw:
   - objectstorage
   properties:
   - type: OpenAPI
@@ -1036,6 +1055,8 @@ apis:
   humanURL: https://developer.leaseweb.com/docs/
   baseURL: https://api.leaseweb.com/publicCloud/v1
   tags:
+  - Ordering
+  tags_raw:
   - ordering
   properties:
   - type: OpenAPI
