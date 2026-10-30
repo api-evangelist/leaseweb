@@ -64,5 +64,151 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-Leaseweb is a company surfaced via the API Evangelist harvest backlog (source: market-gap:object-storage) and added to the network as a stub for full-pipeline profiling.
-- https://www.leaseweb.com
+Leaseweb is a Netherlands-founded global Infrastructure-as-a-Service provider offering dedicated (bare metal) servers, public and private cloud, object storage, CDN, colocation and networking. Its Developer API at api.leaseweb.com lets customers automate and integrate their infrastructure, authenticated with an API key sent in the X-LSW-Auth header; Leaseweb publishes the OpenAPI definitions in its leaseweb-go-sdk GitHub repository.
+
+**Areas:** Company · Cloud · Infrastructure-as-a-Service · Bare Metal · Dedicated Servers · Object Storage · DNS · Hosting
+
+## Leaseweb on APIs.io
+
+Everything profiled for Leaseweb is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/leaseweb/](https://apis.io/providers/leaseweb/)** — or go straight to one of the APIs or properties below.
+
+### APIs (9)
+
+- [Leaseweb Abuse API](https://apis.io/apis/leaseweb/leaseweb-abuse-api/) — The abuse API from Leaseweb — 7 operation(s) for abuse.
+- [Leaseweb Aggregationpack API](https://apis.io/apis/leaseweb/leaseweb-aggregationpack-api/) — The aggregationpack API from Leaseweb — 2 operation(s) for aggregationpack.
+- [Leaseweb Dedicatedserver API](https://apis.io/apis/leaseweb/leaseweb-dedicatedserver-api/) — The dedicatedserver API from Leaseweb — 46 operation(s) for dedicatedserver.
+- [Leaseweb Dns API](https://apis.io/apis/leaseweb/leaseweb-dns-api/) — The dns API from Leaseweb — 8 operation(s) for dns.
+- [Leaseweb Invoice API](https://apis.io/apis/leaseweb/leaseweb-invoice-api/) — The invoice API from Leaseweb — 5 operation(s) for invoice.
+- [Leaseweb Ipmgmt API](https://apis.io/apis/leaseweb/leaseweb-ipmgmt-api/) — The ipmgmt API from Leaseweb — 7 operation(s) for ipmgmt.
+- [Leaseweb Networkequipment API](https://apis.io/apis/leaseweb/leaseweb-networkequipment-api/) — The networkequipment API from Leaseweb — 14 operation(s) for networkequipment.
+- [Leaseweb Objectstorage API](https://apis.io/apis/leaseweb/leaseweb-objectstorage-api/) — The objectstorage API from Leaseweb — 9 operation(s) for objectstorage.
+- [Leaseweb Ordering API](https://apis.io/apis/leaseweb/leaseweb-ordering-api/) — The ordering API from Leaseweb — 6 operation(s) for ordering.
+
+### Published properties
+
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
+
+#### MCP servers (1)
+
+Model Context Protocol servers that expose the API to agents.
+
+- [leaseweb-mcp.yml](https://apis.io/servers/leaseweb/leaseweb-mcp-yml/)
+
+#### Agentic access (1)
+
+Which operations an agent can call, which act, and which need a human in the loop.
+
+- [Leaseweb Agentic Access](https://apis.io/agentic-access/leaseweb/leaseweb-agentic-access/)
+
+#### JSON Schema (54)
+
+The data models the API reads and writes.
+
+- [aggregationPack](https://apis.io/schemas/leaseweb/leaseweb-aggregation-pack/)
+- [autoScalingGroupDetails](https://apis.io/schemas/leaseweb/leaseweb-auto-scaling-group-details/)
+- [bucket](https://apis.io/schemas/leaseweb/leaseweb-bucket/)
+- [createObjectStorageAccessKeyResult](https://apis.io/schemas/leaseweb/leaseweb-create-object-storage-access-key-result/)
+- [createObjectStorageBucketOpts](https://apis.io/schemas/leaseweb/leaseweb-create-object-storage-bucket-opts/)
+- [createReportMessageOpts](https://apis.io/schemas/leaseweb/leaseweb-create-report-message-opts/)
+- [credentialList](https://apis.io/schemas/leaseweb/leaseweb-credential-list/)
+- [dedicatedServer](https://apis.io/schemas/leaseweb/leaseweb-dedicated-server/)
+- [dedicatedServerList](https://apis.io/schemas/leaseweb/leaseweb-dedicated-server-list/)
+- [getAggregationPackListResult](https://apis.io/schemas/leaseweb/leaseweb-get-aggregation-pack-list-result/)
+- [getHardwareResult](https://apis.io/schemas/leaseweb/leaseweb-get-hardware-result/)
+- [getInvoicePdfResult](https://apis.io/schemas/leaseweb/leaseweb-get-invoice-pdf-result/)
+- [getInvoiceResult](https://apis.io/schemas/leaseweb/leaseweb-get-invoice-result/)
+- [getInvoicesExportCsvResult](https://apis.io/schemas/leaseweb/leaseweb-get-invoices-export-csv-result/)
+- [getInvoicesResult](https://apis.io/schemas/leaseweb/leaseweb-get-invoices-result/)
+- [getIPListResult](https://apis.io/schemas/leaseweb/leaseweb-get-iplist-result/)
+- [getNetworkEquipmentListResult](https://apis.io/schemas/leaseweb/leaseweb-get-network-equipment-list-result/)
+- [getNullRouteHistoryListResult](https://apis.io/schemas/leaseweb/leaseweb-get-null-route-history-list-result/)
+- [objectStorageBucketList](https://apis.io/schemas/leaseweb/leaseweb-get-object-storage-bucket-list-result/)
+- [objectStorageList](https://apis.io/schemas/leaseweb/leaseweb-get-object-storage-list-result/)
+- [getProformaResult](https://apis.io/schemas/leaseweb/leaseweb-get-proforma-result/)
+- [getQueryMetricsResult](https://apis.io/schemas/leaseweb/leaseweb-get-query-metrics-result/)
+- [getReportListResult](https://apis.io/schemas/leaseweb/leaseweb-get-report-list-result/)
+- [getReportMessageListResult](https://apis.io/schemas/leaseweb/leaseweb-get-report-message-list-result/)
+- [getReportResolutionListResult](https://apis.io/schemas/leaseweb/leaseweb-get-report-resolution-list-result/)
+- …and 29 more published on APIs.io
+
+#### JSON-LD (1)
+
+Linked-data contexts for the provider's vocabulary.
+
+- [Leaseweb Context](https://apis.io/jsonld/leaseweb/leaseweb-context/)
+
+#### Governance rules (1)
+
+Spectral rulesets for the provider's contracts.
+
+- [Leaseweb API Rules](https://apis.io/rules/leaseweb/leaseweb-rules/)
+
+#### Security (2)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Leaseweb Authentication](https://apis.io/security/leaseweb/leaseweb-authentication/)
+- [Leaseweb Domain Security](https://apis.io/security/leaseweb/leaseweb-domain-security/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
+- [Website](https://www.leaseweb.com)
+- [Documentation](https://developer.leaseweb.com/docs/)
+- [Getting started](https://developer.leaseweb.com/get-started/)
+- [Blog](https://blog.leaseweb.com/)
+- [GitHub](https://github.com/leaseweb)
+
+## API Evangelist rating
+
+**Kin Score 38.6** — thin · rubric 0.24.0 · scored 2026-10-17
+
+| Facet | Score |
+|---|---|
+| Discoverability | 67.9 |
+| Contract quality | 64.4 |
+| Contract governance | 19.7 |
+| Operational transparency | 5.3 |
+| Developer ergonomics | 52.4 |
+| Access clarity | 13.2 |
+
+**Agent readiness 29.8** — agent-ready
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | documented (partial credit) |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | verified |
+| OpenAPI Examples | verified |
+| Rate Limit Signal | — |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+
+**Regulatory alignment 16.7** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/leaseweb/](https://apis.io/providers/leaseweb/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Leaseweb: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/leaseweb/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
